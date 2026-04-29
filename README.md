@@ -8,6 +8,9 @@ This repository contains the data and scripts used for the spatio-temporal Bayes
 Administrative boundaries of the municipality of Bologna (study area), in EPSG:25832 (ETRS89 / UTM zone 32N).  
 Source: [ISTAT – administrative boundaries for statistical purposes](https://www.istat.it/notizia/confini-delle-unita-amministrative-a-fini-statistici-al-1-gennaio-2018-2/).
 
+### GEE_lst_landsat8.js
+JavaScript file used in Google Earth Engine to download Landsat 8 LST raster data for the municipality of Bologna.
+
 ## Reproducibility and Random Seeds
 
 The models in this repository are implemented using the INLA framework in R.
