@@ -2,6 +2,12 @@
 
 This repository contains the data and scripts used for the spatio-temporal Bayesian hierarchical modelling of land surface temperature (LST) and surface urban heat island (SUHI) dynamics using spatially varying coefficients (SVC) within the SPDE–INLA framework.
 
+## Repository Contents
+
+### bologna-municipality.gpkg
+Administrative boundaries of the municipality of Bologna (study area), in EPSG:25832 (ETRS89 / UTM zone 32N).  
+Source: [ISTAT – administrative boundaries for statistical purposes](https://www.istat.it/notizia/confini-delle-unita-amministrative-a-fini-statistici-al-1-gennaio-2018-2/).
+
 ## Reproducibility and Random Seeds
 
 The models in this repository are implemented using the INLA framework in R.
