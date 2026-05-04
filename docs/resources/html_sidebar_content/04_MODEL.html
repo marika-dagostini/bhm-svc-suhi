@@ -1,0 +1,72 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 15">
+<meta name=Originator content="Microsoft Word 15">
+<meta charset="UTF-8">
+<link rel=File-List href="03_REF_file/filelist.xml">
+<link rel=themeData href="03_REF_file/themedata.thmx">
+<link rel=colorSchemeMapping href="03_REF_file/colorschememapping.xml">
+
+<script type="text/javascript" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+</head>
+
+<body lang=IT style='tab-interval:36.0pt;word-wrap:break-word'>
+
+<div style='border:none;border-bottom:none;
+padding:0cm 0cm 1.0pt 0cm'>
+
+<h2 style='text-align:left'><span class=SpellE><span style='font-size:12.0pt;
+font-family:"Arial",sans-serif'>A) Bayesian Spatially Varying Coefficient (SVC) Model for LST</span></span><span style='font-size:
+12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></span></h2>
+<img width=550  src="04_MODEL_file/modelA.png" v:shapes="Immagine_x0020_4" style="position: relative; left: -60px;">
+<br><br>
+
+<h2 style='text-align:left'><span class=SpellE><span style='font-size:12.0pt;
+font-family:"Arial",sans-serif'>B) Bayesian SVC Model for SUHI</span></span><span style='font-size:
+12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></span></h2>
+<img width=550  src="04_MODEL_file/modelB.png" v:shapes="Immagine_x0020_4" style="position: relative; left: -60px;">
+<br><br>
+
+<h2 style='text-align:left'><span class=SpellE><!-- /wp:heading --><!-- wp:paragraph --><!-- /wp:paragraph --><!-- wp:paragraph --><span
+style='font-size:11.0pt;font-family:"Arial",sans-serif;font-weight:normal'>
+where
+<ul>
+ <li> \( y_i(s) \) = LST at day \( i \) and pixel \( s \)</li><br>
+    <li> \( z_i(s) \) = SUHI at day \( i \) and pixel \( s \)</li><br>
+    <li> \( \mathbf{X}_i(s)\boldsymbol{\beta} \) = linear predictor for day \( i \) and pixel \( s \)</li><br>
+    <li> <span style=color:rgb(34,135,61);> \( u(s) \) </span> = <b>spatially varying intercept</b> (residual spatial effect)</li><br>
+    <li> <span style="color: rgb(173,26,16);"> \( t_i \cdot v(s) \) </span> = <b>spatially varying linear effect of time</b> (long-term <br>summer linear trend)</li><br>
+</ul>
+<ul style="list-style: none; padding-left: 0;">
+  <li style="position: relative; padding-left: 1.5em;">
+    <span style="position: absolute; left: 0; color: black;">&#10132;</span> 
+    <span style="color: rgb(34,135,61);">Spatially varying intercept</span> and 
+    <span style="color: rgb(173,26,16);">spatially varying linear effect of time</span> 
+    modelled as <b>latent Gaussian random fields</b> using the <b>SPDE</b> <br>
+    (Stochastic Partial Differential Equation) approach
+  </li>
+  <li style="position: relative; padding-left: 1.5em; margin-top: 0.5em;">
+    <span style="position: absolute; left: 0; color: black;">&#10132;</span> 
+    <b>Posterior excursion sets at 95% probability</b> for 
+    <span style="color: rgb(173,26,16);">\( t_i \cdot v(s) > 0 \)</span> and <br>
+    <span style="color: rgb(173,26,16);">\( t_i \cdot v(s) < 0 \)</span> to identify warming and cooling regions
+  </li>
+  <li style="position: relative; padding-left: 1.5em; margin-top: 0.5em;">
+    <span style="position: absolute; left: 0; color: black;">&#10132;</span> 
+    Inference performed with <b>INLA</b>
+  </li>
+</ul>
+</span></h2>
+</body>
+
+</html>
