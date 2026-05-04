@@ -50,15 +50,16 @@ output_dir = here()
 # --------------------------------------------------------------------------- -
 
 # input files
-lst_data = read_csv("data_LST_Landsat8_ST10_13_25_Bologna.csv")
+lst_data = read_csv("data_LST_Landsat8_ST10_13_16_Bologna.csv")
 bologna_boundary = st_read("municipality_bologna.gpkg")
 
 lst_data = lst_data %>%
   mutate(
     date = as.Date(date),
+    cell_idx = as.integer(interaction(x, y, drop = TRUE)),
     time_days_raw = as.numeric(date - as.Date("2013-06-16")) + 1,
     time_days = time_days_raw - mean(time_days_raw, na.rm = TRUE),
-    time_years = time_days / 365
+    time_years = time_days / 365.25
   )
 
 # --------------------------------------------------------------------------- -

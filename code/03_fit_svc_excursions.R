@@ -49,7 +49,7 @@ output_dir = getwd()
 # --------------------------------------------------------------------------- -
 
 # input files
-lst_data = read_csv("data_LST_Landsat8_ST10_13_25_Bologna.csv")
+lst_data = read_csv("data_LST_Landsat8_ST10_13_16_Bologna.csv")
 bologna_boundary = st_read("municipality_bologna.gpkg")
 
 lst_data = lst_data %>%
