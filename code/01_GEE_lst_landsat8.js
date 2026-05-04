@@ -61,7 +61,7 @@ imageList.size().evaluate(function(count) {
 
     Export.image.toDrive({
       image: img,
-      description: 'Bologna_LST_QA_' + id,
+      description: 'Bologna_LST_B10_QA_' + id,
       region: bologna_municipality.geometry(),
       scale: 30,
       folder: 'LST_QA_Bologna',
