@@ -1853,14 +1853,15 @@
 
 
 	//	/* Hide opacity bar for noOpacity class list element */	
-	//		layerSwitcher.on('drawlist', function (e) {
-	//		  // Current layer
-	//		  var layer =  e.layer;
-	//		  // Current line
-	//		  var li = e.li;
-	// 		  // Change className base on a layer property
-	//		  if (layer.get('noOpacity')) li.classList.add('noOpacity');
-	//		});
+			layerSwitcher.on('drawlist', function (e) {
+			  // Current layer
+			  var layer =  e.layer;
+			  // Current line
+			  var li = e.li;
+	 		  // Change className base on a layer property
+			  if (layer.get('noOpacity')) li.classList.add('noOpacity');
+			  if (layer.get('noCheckbox')) li.classList.add('noCheckbox');
+			});
 	
 	
 	// Hide layer for hideLayer class list element
@@ -1876,7 +1877,7 @@
 	layerSwitcher.on("drawlist", function (e) {
 	  if (e.layer instanceof ol.layer.Group) {
 		// Aggiungi una classe per identificare i gruppi   
-		e.li.className = "ol-layer-group"; 
+		e.li.classList.add("ol-layer-group"); // noOpacity groups: change here!!
 		
 		// Funzione ricorsiva per verificare se un layer o un gruppo è visibile
 		function isAnythingVisible(group) {

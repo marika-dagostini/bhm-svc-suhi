@@ -1,14 +1,20 @@
 var wms_layers = [];
 
 var lyr_OSMStandard = new ol.layer.Tile({
-            'title': 'OSM Standard',
-            'baseLayer':'true',
+  title: 'Basemap',
+  source: new ol.source.XYZ({
+    url: 'https://a.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}@2x.png',
+    attributions: [
+      '&copy; <a href="https://carto.com/attributions">CARTO</a>'
+    ]
+  })
+});
+
+var lyr_Voyager = new ol.layer.Tile({
+            'title': 'Labels',
             'opacity': 1.000000,
-            
-            
             source: new ol.source.XYZ({
-            attributions: '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors, CC-BY-SA</a> &nbsp&nbsp ',
-                url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+                url: 'https://a.basemaps.cartocdn.com/rastertiles/voyager_only_labels/{z}/{x}/{y}@2x.png'
             })
         });
         
@@ -25,7 +31,7 @@ var lyr_June2013 = new ol.layer.Image({
     
      
     title: '<div id="layertitle">June 2013<br />\
-        <i class="fas fa-angle-up" id="secondImage"></i><i class="fas fa-angle-down" id="firstImage"></i></div><a class="layerlegend"></a>'
+        </i></div><a class="layerlegend"></a>'
         });
     
 var lyr_June2025 = new ol.layer.Image({
@@ -41,7 +47,7 @@ var lyr_June2025 = new ol.layer.Image({
     
      
     title: '<div id="layertitle">June 2025<br />\
-        <i class="fas fa-angle-up" id="secondImage"></i><i class="fas fa-angle-down" id="firstImage"></i></div><a class="layerlegend"></a>'
+        </div><a class="layerlegend"></a>'
         });
     
 var lyr_PosteriorSD = new ol.layer.Image({
@@ -78,32 +84,32 @@ var lyr_PosteriorMean = new ol.layer.Image({
         projection: 'EPSG:3857',
         alwaysInRange: true,
         imageExtent: [1249622.969618, 5530466.251247, 1272987.037882, 5552327.065035],
-    attributions: '<a class="legend"><b>Posterior Mean</b><br />\
-        <img src="styles/legend/PosteriorMean_0.png" /> -0,7600<br />\
-        <img src="styles/legend/PosteriorMean_1.png" /> -0,5676<br />\
-        <img src="styles/legend/PosteriorMean_2.png" /> -0,3752<br />\
-        <img src="styles/legend/PosteriorMean_3.png" /> -0,1828<br />\
-        <img src="styles/legend/PosteriorMean_4.png" /> 0,0096<br />\
-        <img src="styles/legend/PosteriorMean_5.png" /> 0,2020<br />\
-        <img src="styles/legend/PosteriorMean_6.png" /> 0,3944<br />\
-        <img src="styles/legend/PosteriorMean_7.png" /> 0,5720<br />\
-        <img src="styles/legend/PosteriorMean_8.png" /> 0,7200<br /></a>'
+    attributions: '<a class="legend"><b>β+v(s) - Temporal Trend</b><br />\
+        <img src="styles/legend/PosteriorMean_8.png" /> 0,72<br />\
+        <img src="styles/legend/PosteriorMean_7.png" /> 0,57<br />\
+        <img src="styles/legend/PosteriorMean_6.png" /> 0,39<br />\
+        <img src="styles/legend/PosteriorMean_5.png" /> 0,20<br />\
+        <img src="styles/legend/PosteriorMean_4.png" /> 0,01<br />\
+        <img src="styles/legend/PosteriorMean_3.png" /> -0,18<br />\
+        <img src="styles/legend/PosteriorMean_2.png" /> -0,38<br />\
+        <img src="styles/legend/PosteriorMean_1.png" /> -0,57<br />\
+        <img src="styles/legend/PosteriorMean_0.png" /> -0,76<br /></a>'
         }),
     opacity: 1,
     permalink: "PosteriorMean",
     
      
-    title: '<div id="layertitle">Posterior Mean<br />\
+    title: '<div id="layertitle">β+v(s) - Temporal Trend<br />\
         <i class="fas fa-angle-up" id="secondImage"></i><i class="fas fa-angle-down" id="firstImage"></i></div><a class="layerlegend">\
-        <img src="styles/legend/PosteriorMean_0.png" /> -0,7600<br />\
-        <img src="styles/legend/PosteriorMean_1.png" /> -0,5676<br />\
-        <img src="styles/legend/PosteriorMean_2.png" /> -0,3752<br />\
-        <img src="styles/legend/PosteriorMean_3.png" /> -0,1828<br />\
-        <img src="styles/legend/PosteriorMean_4.png" /> 0,0096<br />\
-        <img src="styles/legend/PosteriorMean_5.png" /> 0,2020<br />\
-        <img src="styles/legend/PosteriorMean_6.png" /> 0,3944<br />\
-        <img src="styles/legend/PosteriorMean_7.png" /> 0,5720<br />\
-        <img src="styles/legend/PosteriorMean_8.png" /> 0,7200<br /></a>'
+        <img src="styles/legend/PosteriorMean_8.png" /> 0,72<br />\
+        <img src="styles/legend/PosteriorMean_7.png" /> 0,57<br />\
+        <img src="styles/legend/PosteriorMean_6.png" /> 0,39<br />\
+        <img src="styles/legend/PosteriorMean_5.png" /> 0,20<br />\
+        <img src="styles/legend/PosteriorMean_4.png" /> 0,01<br />\
+        <img src="styles/legend/PosteriorMean_3.png" /> -0,18<br />\
+        <img src="styles/legend/PosteriorMean_2.png" /> -0,38<br />\
+        <img src="styles/legend/PosteriorMean_1.png" /> -0,57<br />\
+        <img src="styles/legend/PosteriorMean_0.png" /> -0,76<br /></a>'
         });
     
 var format_MeanLSTChange = new ol.format.GeoJSON();
@@ -133,17 +139,17 @@ var lyr_MeanLSTChange = new ol.layer.Vector({
     interactive: false,
     title: '<div id="layertitle">Mean LST Change<br />\
         <i class="fas fa-angle-up" id="secondImage"></i><i class="fas fa-angle-down" id="firstImage"></i></div><a class="layerlegend">\
-        <img src="styles/legend/MeanLSTChange_0.png" /> -4,07 - -4<br />\
-        <img src="styles/legend/MeanLSTChange_1.png" /> -4 - -3<br />\
-        <img src="styles/legend/MeanLSTChange_2.png" /> -3 - -2<br />\
-        <img src="styles/legend/MeanLSTChange_3.png" /> -2 - -1<br />\
-        <img src="styles/legend/MeanLSTChange_4.png" /> -1 - 0<br />\
-        <img src="styles/legend/MeanLSTChange_5.png" /> 0 - 1<br />\
-        <img src="styles/legend/MeanLSTChange_6.png" /> 1 - 2<br />\
-        <img src="styles/legend/MeanLSTChange_7.png" /> 2 - 3<br />\
-        <img src="styles/legend/MeanLSTChange_8.png" /> 3 - 4<br />\
+        <img src="styles/legend/MeanLSTChange_10.png" /> 5 - 5,2<br />\
         <img src="styles/legend/MeanLSTChange_9.png" /> 4 - 5<br />\
-        <img src="styles/legend/MeanLSTChange_10.png" /> 5 - 5,2<br /></a>'
+        <img src="styles/legend/MeanLSTChange_8.png" /> 3 - 4<br />\
+        <img src="styles/legend/MeanLSTChange_7.png" /> 2 - 3<br />\
+        <img src="styles/legend/MeanLSTChange_6.png" /> 1 - 2<br />\
+        <img src="styles/legend/MeanLSTChange_5.png" /> 0 - 1<br />\
+        <img src="styles/legend/MeanLSTChange_4.png" /> -1 - 0<br />\
+        <img src="styles/legend/MeanLSTChange_3.png" /> -2 - -1<br />\
+        <img src="styles/legend/MeanLSTChange_2.png" /> -3 - -2<br />\
+        <img src="styles/legend/MeanLSTChange_1.png" /> -4 - -3<br />\
+        <img src="styles/legend/MeanLSTChange_0.png" /> -4,07 - -4<br /></a>'
         });
 var featureCounter_MeanLSTChange = 1;
 jsonSource_MeanLSTChange.on('addfeature', function (event) {
@@ -233,7 +239,7 @@ var lyr_vsPosteriorMean = new ol.layer.Image({
         projection: 'EPSG:3857',
         alwaysInRange: true,
         imageExtent: [1249622.477437, 5530481.577854, 1272969.872405, 5552313.551122],
-    attributions: '<a class="legend"><b>v(s) - Posterior Mean</b><br />\
+    attributions: '<a class="legend"><b>v(s)</b><br />\
         <img src="styles/legend/vsPosteriorMean_0.png" /> -0,88<br />\
         <img src="styles/legend/vsPosteriorMean_1.png" /> -0,70<br />\
         <img src="styles/legend/vsPosteriorMean_2.png" /> -0,52<br />\
@@ -248,17 +254,55 @@ var lyr_vsPosteriorMean = new ol.layer.Image({
     permalink: "vsPosteriorMean",
     
      
-    title: '<div id="layertitle">v(s) - Posterior Mean<br />\
+    title: '<div id="layertitle">v(s)<br />\
         <i class="fas fa-angle-up" id="secondImage"></i><i class="fas fa-angle-down" id="firstImage"></i></div><a class="layerlegend">\
-        <img src="styles/legend/vsPosteriorMean_0.png" /> -0,88<br />\
-        <img src="styles/legend/vsPosteriorMean_1.png" /> -0,70<br />\
-        <img src="styles/legend/vsPosteriorMean_2.png" /> -0,52<br />\
-        <img src="styles/legend/vsPosteriorMean_3.png" /> -0,33<br />\
-        <img src="styles/legend/vsPosteriorMean_4.png" /> -0,15<br />\
-        <img src="styles/legend/vsPosteriorMean_5.png" /> 0,03<br />\
-        <img src="styles/legend/vsPosteriorMean_6.png" /> 0,21<br />\
+        <img src="styles/legend/vsPosteriorMean_8.png" /> 0,58<br />\
         <img src="styles/legend/vsPosteriorMean_7.png" /> 0,40<br />\
-        <img src="styles/legend/vsPosteriorMean_8.png" /> 0,58<br /></a>'
+        <img src="styles/legend/vsPosteriorMean_6.png" /> 0,21<br />\
+        <img src="styles/legend/vsPosteriorMean_5.png" /> 0,03<br />\
+        <img src="styles/legend/vsPosteriorMean_4.png" /> -0,15<br />\
+        <img src="styles/legend/vsPosteriorMean_3.png" /> -0,33<br />\
+        <img src="styles/legend/vsPosteriorMean_2.png" /> -0,52<br />\
+        <img src="styles/legend/vsPosteriorMean_1.png" /> -0,70<br />\
+        <img src="styles/legend/vsPosteriorMean_0.png" /> -0,88<br /></a>'
+        });
+
+var lyr_PosteriorMean_alpha_us = new ol.layer.Image({
+    source: new ol.source.ImageStatic({
+        url: "./layers/PosteriorMean_alpha_us.png",
+        projection: 'EPSG:3857',
+        alwaysInRange: true,
+        imageExtent: [1249622.969618, 5530466.251247, 1272987.037882, 5552327.065035],
+    attributions: '<a class="legend"><b>α + u(s) - Persistent Spatial Pattern</b><br />\
+        <img src="styles/legend/PosteriorMean_alpha_us_0.png" /> 29,89<br />\
+        <img src="styles/legend/PosteriorMean_alpha_us_1.png" /> 32,09<br />\
+        <img src="styles/legend/PosteriorMean_alpha_us_2.png" /> 34,29<br />\
+        <img src="styles/legend/PosteriorMean_alpha_us_3.png" /> 36,50<br />\
+        <img src="styles/legend/PosteriorMean_alpha_us_4.png" /> 38,70<br />\
+        <img src="styles/legend/PosteriorMean_alpha_us_5.png" /> 40,90<br />\
+        <img src="styles/legend/PosteriorMean_alpha_us_6.png" /> 43,10<br />\
+        <img src="styles/legend/PosteriorMean_alpha_us_7.png" /> 45,30<br />\
+        <img src="styles/legend/PosteriorMean_alpha_us_8.png" /> 47,51<br />\
+        <img src="styles/legend/PosteriorMean_alpha_us_9.png" /> 49,71<br />\
+        <img src="styles/legend/PosteriorMean_alpha_us_10.png" /> 51,91<br /></a>'
+        }),
+    opacity: 1,
+    permalink: "PosteriorMean",
+    
+     
+    title: '<div id="layertitle">α + u(s) - Persistent Spatial Pattern<br />\
+        <i class="fas fa-angle-up" id="secondImage"></i><i class="fas fa-angle-down" id="firstImage"></i></div><a class="layerlegend">\
+        <img src="styles/legend/PosteriorMean_alpha_us_0.png" /> 29,89<br />\
+        <img src="styles/legend/PosteriorMean_alpha_us_1.png" /> 32,09<br />\
+        <img src="styles/legend/PosteriorMean_alpha_us_2.png" /> 34,29<br />\
+        <img src="styles/legend/PosteriorMean_alpha_us_3.png" /> 36,50<br />\
+        <img src="styles/legend/PosteriorMean_alpha_us_4.png" /> 38,70<br />\
+        <img src="styles/legend/PosteriorMean_alpha_us_5.png" /> 40,90<br />\
+        <img src="styles/legend/PosteriorMean_alpha_us_6.png" /> 43,10<br />\
+        <img src="styles/legend/PosteriorMean_alpha_us_7.png" /> 45,30<br />\
+        <img src="styles/legend/PosteriorMean_alpha_us_8.png" /> 47,51<br />\
+        <img src="styles/legend/PosteriorMean_alpha_us_9.png" /> 49,71<br />\
+        <img src="styles/legend/PosteriorMean_alpha_us_10.png" /> 51,91<br /></a>'
         });
     
 var lyr_SUHIPosteriorSD = new ol.layer.Image({
@@ -369,30 +413,30 @@ var lyr_usPosteriorMean = new ol.layer.Image({
         projection: 'EPSG:3857',
         alwaysInRange: true,
         imageExtent: [1249622.477437, 5530481.577854, 1272969.872405, 5552313.551122],
-    attributions: '<a class="legend"><b>u(s) - Posterior Mean</b><br />\
-        <img src="styles/legend/usPosteriorMean_0.png" /> -9,7<br />\
-        <img src="styles/legend/usPosteriorMean_1.png" /> -6,6<br />\
-        <img src="styles/legend/usPosteriorMean_2.png" /> -3,5<br />\
-        <img src="styles/legend/usPosteriorMean_3.png" /> -0,3<br />\
-        <img src="styles/legend/usPosteriorMean_4.png" /> 2,8<br />\
-        <img src="styles/legend/usPosteriorMean_5.png" /> 5,9<br />\
-        <img src="styles/legend/usPosteriorMean_6.png" /> 9,1<br />\
-        <img src="styles/legend/usPosteriorMean_7.png" /> 12,2<br /></a>'
+    attributions: '<a class="legend"><b>u(s)</b><br />\
+        <img src="styles/legend/usPosteriorMean_0.png" /> -9,73<br />\
+        <img src="styles/legend/usPosteriorMean_1.png" /> -6,60<br />\
+        <img src="styles/legend/usPosteriorMean_2.png" /> -3,46<br />\
+        <img src="styles/legend/usPosteriorMean_3.png" /> -0,33<br />\
+        <img src="styles/legend/usPosteriorMean_4.png" /> 2,81<br />\
+        <img src="styles/legend/usPosteriorMean_5.png" /> 5,94<br />\
+        <img src="styles/legend/usPosteriorMean_6.png" /> 9,08<br />\
+        <img src="styles/legend/usPosteriorMean_7.png" /> 12,21<br /></a>'
         }),
     opacity: 1,
     permalink: "usPosteriorMean",
     
      
-    title: '<div id="layertitle">u(s) - Posterior Mean<br />\
+    title: '<div id="layertitle">u(s)<br />\
         <i class="fas fa-angle-up" id="secondImage"></i><i class="fas fa-angle-down" id="firstImage"></i></div><a class="layerlegend">\
-        <img src="styles/legend/usPosteriorMean_0.png" /> -9,7<br />\
-        <img src="styles/legend/usPosteriorMean_1.png" /> -6,6<br />\
-        <img src="styles/legend/usPosteriorMean_2.png" /> -3,5<br />\
-        <img src="styles/legend/usPosteriorMean_3.png" /> -0,3<br />\
-        <img src="styles/legend/usPosteriorMean_4.png" /> 2,8<br />\
-        <img src="styles/legend/usPosteriorMean_5.png" /> 5,9<br />\
-        <img src="styles/legend/usPosteriorMean_6.png" /> 9,1<br />\
-        <img src="styles/legend/usPosteriorMean_7.png" /> 12,2<br /></a>'
+        <img src="styles/legend/usPosteriorMean_7.png" /> 12,21<br />\
+        <img src="styles/legend/usPosteriorMean_6.png" /> 9,08<br />\
+        <img src="styles/legend/usPosteriorMean_5.png" /> 5,94<br />\
+        <img src="styles/legend/usPosteriorMean_4.png" /> 2,81<br />\
+        <img src="styles/legend/usPosteriorMean_3.png" /> -0,33<br />\
+        <img src="styles/legend/usPosteriorMean_2.png" /> -3,46<br />\
+        <img src="styles/legend/usPosteriorMean_1.png" /> -6,60<br />\
+        <img src="styles/legend/usPosteriorMean_0.png" /> -9,73<br /></a>'
         });
     
 var lyr_LandCover = new ol.layer.Image({
@@ -499,29 +543,42 @@ jsonSource_MunicipalityofBologna.on('addfeature', function (event) {
 });        
 jsonSource_MunicipalityofBologna.addFeatures(features_MunicipalityofBologna);
 
+var group_Boundaries = new ol.layer.Group({
+                            layers: [lyr_Voyager,lyr_MunicipalityofBologna,],
+                            openInLayerSwitcher: true,
+                            title: 'Boundaries and Labels',
+                            noOpacity: true});
+var group_Land = new ol.layer.Group({
+                        layers: [lyr_LandUse,lyr_LandCover,],
+                        openInLayerSwitcher: true,
+                        title: 'Land Classification',
+                        noOpacity: true});
 var group_SpatialResults = new ol.layer.Group({
-                                layers: [lyr_SUHIPosteriorSD,lyr_SUHIPosteriorMean,lyr_usPosteriorSD,lyr_usPosteriorMean,],
+                                layers: [lyr_PosteriorMean,lyr_PosteriorMean_alpha_us,lyr_vsPosteriorMean,lyr_usPosteriorMean,],
                                 openInLayerSwitcher: true,
-                                title: 'Spatial Results'});
+                                title: 'Random Fields - Posterior Means',
+                                noOpacity: true});
 var group_PersistentSpatialPattern = new ol.layer.Group({
-                                layers: [],
+                                layers: [lyr_SUHIPosteriorSD,lyr_SUHIPosteriorMean,],
                                 openInLayerSwitcher: true,
-                                title: 'Persistent Spatial Pattern'});
+                                title: 'Surface Urban Heat Island',
+                                noOpacity: true});
 var group_TemporalResults = new ol.layer.Group({
-                                layers: [lyr_MeanLSTChange,lyr_WarmingRegions,lyr_CoolingRegions,lyr_vsPosteriorSD,lyr_vsPosteriorMean,],
+                                layers: [lyr_MeanLSTChange,lyr_WarmingRegions,lyr_CoolingRegions,],
                                 openInLayerSwitcher: true,
-                                title: 'Temporal Results'});
-var group_TemporalTrend = new ol.layer.Group({
-                                layers: [lyr_PosteriorSD,lyr_PosteriorMean,],
-                                openInLayerSwitcher: true,
-                                title: 'Temporal Trend'});
+                                title: 'Excursion Sets',
+                                noOpacity: true});
 var group_SurfaceReflectance = new ol.layer.Group({
                                 layers: [lyr_June2013,lyr_June2025,],
                                 openInLayerSwitcher: true,
-                                title: 'Surface Reflectance'});
+                                title: 'Surface Reflectance',
+                                noOpacity: true});
 
-lyr_OSMStandard.setVisible(true);lyr_June2013.setVisible(false);lyr_June2025.setVisible(false);lyr_PosteriorSD.setVisible(false);lyr_PosteriorMean.setVisible(false);lyr_MeanLSTChange.setVisible(false);lyr_WarmingRegions.setVisible(false);lyr_CoolingRegions.setVisible(false);lyr_vsPosteriorSD.setVisible(false);lyr_vsPosteriorMean.setVisible(false);lyr_SUHIPosteriorSD.setVisible(false);lyr_SUHIPosteriorMean.setVisible(false);lyr_usPosteriorSD.setVisible(false);lyr_usPosteriorMean.setVisible(false);lyr_LandCover.setVisible(false);lyr_LandUse.setVisible(false);lyr_MunicipalityofBologna.setVisible(true);
-var layersList = [lyr_OSMStandard,group_SurfaceReflectance,group_TemporalTrend,group_TemporalResults,group_SpatialResults,lyr_LandCover,lyr_LandUse,lyr_MunicipalityofBologna];
+lyr_Voyager.setVisible(false);lyr_OSMStandard.setVisible(true);lyr_June2013.setVisible(false);lyr_June2025.setVisible(false);
+lyr_PosteriorSD.setVisible(false);lyr_PosteriorMean.setVisible(false);lyr_MeanLSTChange.setVisible(false);
+lyr_WarmingRegions.setVisible(false);lyr_CoolingRegions.setVisible(false);lyr_PosteriorMean_alpha_us.setVisible(false);
+lyr_vsPosteriorSD.setVisible(false);lyr_vsPosteriorMean.setVisible(false);lyr_SUHIPosteriorSD.setVisible(false);lyr_SUHIPosteriorMean.setVisible(false);lyr_usPosteriorSD.setVisible(false);lyr_usPosteriorMean.setVisible(false);lyr_LandCover.setVisible(false);lyr_LandUse.setVisible(false);lyr_MunicipalityofBologna.setVisible(true);
+var layersList = [lyr_OSMStandard,group_SurfaceReflectance,group_TemporalResults,group_SpatialResults,group_Land,group_Boundaries];
 lyr_MeanLSTChange.set('fieldAliases', {'fid': 'fid', '_count': '_count', '_sum': '_sum', '_mean': '_mean', 'total_effect_14-25': 'total_effect_14-25', '_stdev': '_stdev', 'mean_12y': 'mean_12y', 'fid_2': 'fid_2', '_count_2': '_count_2', '_sum_2': '_sum_2', '_mean_2': '_mean_2', '_stdev_2': '_stdev_2', 'mean_tot_14_25': 'mean_tot_14_25', 'mean_12y_2': 'mean_12y_2', 'mean_12y_merged': 'mean_12y_merged', });
 lyr_WarmingRegions.set('fieldAliases', {'FID': 'FID', });
 lyr_CoolingRegions.set('fieldAliases', {'FID': 'FID', });

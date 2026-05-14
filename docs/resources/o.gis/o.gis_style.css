@@ -1906,25 +1906,24 @@
 		}
 		
 		
-		/* Hide opacity bar for noOpacity class list element
-		li.noOpacity .layerswitcher-opacity {
+		/* Hide opacity bar for noOpacity class list element */
+		li.noOpacity > .li-content .layerswitcher-opacity {
 		display: none;
 		}
-		li.noOpacity .layerswitcher-opacity-label {
+		li.noOpacity > .li-content .layerswitcher-opacity-label {
 		display: none;
 		}
-		*/
+
 		
-		/* Remove the checkbox in Group Layer (using initial [#map .visible] if using Father/Children group relation in .js)
+		/* Remove the checkbox in Group Layer (using initial [#map .visible] if using Father/Children group relation in .js) */
 		#map .ol-layer-group > .li-content input[type="checkbox"]{
 		display: none;
-		}
 		
-		/* Prevent clic (using initial [#map .visible] if using Father/Children group relation in .js)
-		#map .ol-layer-group > .li-content label {
+		
+		/* Prevent clic (using initial [#map .visible] if using Father/Children group relation in .js) */
 		  padding-left: 0px;
 		  pointer-events: none;
-		}*/
+		}
 		
 		/* 
 		.ol-touch .ol-layerswitcher .layerswitcher-opacity .layerswitcher-opacity-cursor {
