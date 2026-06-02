@@ -17,38 +17,6 @@ var lyr_Voyager = new ol.layer.Tile({
                 url: 'https://a.basemaps.cartocdn.com/rastertiles/voyager_only_labels/{z}/{x}/{y}@2x.png'
             })
         });
-        
-var lyr_June2013 = new ol.layer.Image({
-    source: new ol.source.ImageStatic({
-        url: "./layers/June2013.png",
-        projection: 'EPSG:3857',
-        alwaysInRange: true,
-        imageExtent: [1249629.274315, 5530474.360217, 1272977.082897, 5552320.386213],
-    attributions: '<a class="legend"><b>June 2013</b><br /></a>'
-        }),
-    opacity: 1,
-    permalink: "June2013",
-    
-     
-    title: '<div id="layertitle">June 2013<br />\
-        </i></div><a class="layerlegend"></a>'
-        });
-    
-var lyr_June2025 = new ol.layer.Image({
-    source: new ol.source.ImageStatic({
-        url: "./layers/June2025.png",
-        projection: 'EPSG:3857',
-        alwaysInRange: true,
-        imageExtent: [1249629.274315, 5530474.360217, 1272977.082897, 5552320.386213],
-    attributions: '<a class="legend"><b>June 2025</b><br /></a>'
-        }),
-    opacity: 1,
-    permalink: "June2025",
-    
-     
-    title: '<div id="layertitle">June 2025<br />\
-        </div><a class="layerlegend"></a>'
-        });
     
 var lyr_PosteriorSD = new ol.layer.Image({
     source: new ol.source.ImageStatic({
@@ -111,53 +79,6 @@ var lyr_PosteriorMean = new ol.layer.Image({
         <img src="styles/legend/PosteriorMean_1.png" /> -0,57<br />\
         <img src="styles/legend/PosteriorMean_0.png" /> -0,76<br /></a>'
         });
-    
-var format_MeanLSTChange = new ol.format.GeoJSON();
-var features_MeanLSTChange = format_MeanLSTChange.readFeatures(json_MeanLSTChange, 
-    {dataProjection: 'EPSG:4326', featureProjection: 'EPSG:3857'});
-var jsonSource_MeanLSTChange = new ol.source.Vector({
-    attributions: '<a class="legend"><b>Mean LST Change</b><br />\
-        <img src="styles/legend/MeanLSTChange_0.png" /> -4,07 - -4<br />\
-        <img src="styles/legend/MeanLSTChange_1.png" /> -4 - -3<br />\
-        <img src="styles/legend/MeanLSTChange_2.png" /> -3 - -2<br />\
-        <img src="styles/legend/MeanLSTChange_3.png" /> -2 - -1<br />\
-        <img src="styles/legend/MeanLSTChange_4.png" /> -1 - 0<br />\
-        <img src="styles/legend/MeanLSTChange_5.png" /> 0 - 1<br />\
-        <img src="styles/legend/MeanLSTChange_6.png" /> 1 - 2<br />\
-        <img src="styles/legend/MeanLSTChange_7.png" /> 2 - 3<br />\
-        <img src="styles/legend/MeanLSTChange_8.png" /> 3 - 4<br />\
-        <img src="styles/legend/MeanLSTChange_9.png" /> 4 - 5<br />\
-        <img src="styles/legend/MeanLSTChange_10.png" /> 5 - 5,2<br /></a>'
-        });
-var lyr_MeanLSTChange = new ol.layer.Vector({
-    declutter: false,
-    source: jsonSource_MeanLSTChange, 
-    style: style_MeanLSTChange,
-    permalink: "MeanLSTChange",
-    popuplayertitle: 'Mean LST Change',
-    creationdate: '2026-03-21 19:16:51',
-    interactive: false,
-    title: '<div id="layertitle">Mean LST Change<br />\
-        <i class="fas fa-angle-up" id="secondImage"></i><i class="fas fa-angle-down" id="firstImage"></i></div><a class="layerlegend">\
-        <img src="styles/legend/MeanLSTChange_10.png" /> 5 - 5,2<br />\
-        <img src="styles/legend/MeanLSTChange_9.png" /> 4 - 5<br />\
-        <img src="styles/legend/MeanLSTChange_8.png" /> 3 - 4<br />\
-        <img src="styles/legend/MeanLSTChange_7.png" /> 2 - 3<br />\
-        <img src="styles/legend/MeanLSTChange_6.png" /> 1 - 2<br />\
-        <img src="styles/legend/MeanLSTChange_5.png" /> 0 - 1<br />\
-        <img src="styles/legend/MeanLSTChange_4.png" /> -1 - 0<br />\
-        <img src="styles/legend/MeanLSTChange_3.png" /> -2 - -1<br />\
-        <img src="styles/legend/MeanLSTChange_2.png" /> -3 - -2<br />\
-        <img src="styles/legend/MeanLSTChange_1.png" /> -4 - -3<br />\
-        <img src="styles/legend/MeanLSTChange_0.png" /> -4,07 - -4<br /></a>'
-        });
-var featureCounter_MeanLSTChange = 1;
-jsonSource_MeanLSTChange.on('addfeature', function (event) {
-    var feature = event.feature;
-    feature.set("idO", featureCounter_MeanLSTChange++);
-    feature.set("layerObject", lyr_MeanLSTChange);
-});        
-jsonSource_MeanLSTChange.addFeatures(features_MeanLSTChange);
 
 var format_WarmingRegions = new ol.format.GeoJSON();
 var features_WarmingRegions = format_WarmingRegions.readFeatures(json_WarmingRegions, 
@@ -273,7 +194,7 @@ var lyr_PosteriorMean_alpha_us = new ol.layer.Image({
         projection: 'EPSG:3857',
         alwaysInRange: true,
         imageExtent: [1249622.969618, 5530466.251247, 1272987.037882, 5552327.065035],
-    attributions: '<a class="legend"><b>α + u(s) - Persistent Spatial Pattern</b><br />\
+    attributions: '<a class="legend"><b>α + u(s) - Spatial Pattern</b><br />\
         <img src="styles/legend/PosteriorMean_alpha_us_0.png" /> 29,89<br />\
         <img src="styles/legend/PosteriorMean_alpha_us_1.png" /> 32,09<br />\
         <img src="styles/legend/PosteriorMean_alpha_us_2.png" /> 34,29<br />\
@@ -290,7 +211,7 @@ var lyr_PosteriorMean_alpha_us = new ol.layer.Image({
     permalink: "PosteriorMean",
     
      
-    title: '<div id="layertitle">α + u(s) - Persistent Spatial Pattern<br />\
+    title: '<div id="layertitle">α + u(s) - Spatial Pattern<br />\
         <i class="fas fa-angle-up" id="secondImage"></i><i class="fas fa-angle-down" id="firstImage"></i></div><a class="layerlegend">\
         <img src="styles/legend/PosteriorMean_alpha_us_0.png" /> 29,89<br />\
         <img src="styles/legend/PosteriorMean_alpha_us_1.png" /> 32,09<br />\
@@ -311,7 +232,7 @@ var lyr_SUHIPosteriorSD = new ol.layer.Image({
         projection: 'EPSG:3857',
         alwaysInRange: true,
         imageExtent: [1249622.969618, 5530466.251247, 1272987.037882, 5552327.065035],
-    attributions: '<a class="legend"><b>SUHI - Posterior SD</b><br />\
+    attributions: '<a class="legend"><b>Posterior SD</b><br />\
         <img src="styles/legend/SUHIPosteriorSD_0.png" /> 1,10<br />\
         <img src="styles/legend/SUHIPosteriorSD_1.png" /> 1,20<br />\
         <img src="styles/legend/SUHIPosteriorSD_2.png" /> 1,29<br />\
@@ -322,7 +243,7 @@ var lyr_SUHIPosteriorSD = new ol.layer.Image({
     permalink: "SUHIPosteriorSD",
     
      
-    title: '<div id="layertitle">SUHI - Posterior SD<br />\
+    title: '<div id="layertitle">Posterior SD<br />\
         <i class="fas fa-angle-up" id="secondImage"></i><i class="fas fa-angle-down" id="firstImage"></i></div><a class="layerlegend">\
         <img src="styles/legend/SUHIPosteriorSD_0.png" /> 1,10<br />\
         <img src="styles/legend/SUHIPosteriorSD_1.png" /> 1,20<br />\
@@ -337,7 +258,7 @@ var lyr_SUHIPosteriorMean = new ol.layer.Image({
         projection: 'EPSG:3857',
         alwaysInRange: true,
         imageExtent: [1249664.310193, 5530466.251247, 1272986.614698, 5552311.695170],
-    attributions: '<a class="legend"><b>SUHI - Posterior Mean</b><br />\
+    attributions: '<a class="legend"><b>Posterior Mean</b><br />\
         <img src="styles/legend/SUHIPosteriorMean_0.png" /> 0,10<br />\
         <img src="styles/legend/SUHIPosteriorMean_1.png" /> 1,90<br />\
         <img src="styles/legend/SUHIPosteriorMean_2.png" /> 3,71<br />\
@@ -356,7 +277,7 @@ var lyr_SUHIPosteriorMean = new ol.layer.Image({
     permalink: "SUHIPosteriorMean",
     
      
-    title: '<div id="layertitle">SUHI - Posterior Mean<br />\
+    title: '<div id="layertitle">Posterior Mean<br />\
         <i class="fas fa-angle-up" id="secondImage"></i><i class="fas fa-angle-down" id="firstImage"></i></div><a class="layerlegend">\
         <img src="styles/legend/SUHIPosteriorMean_0.png" /> 0,10<br />\
         <img src="styles/legend/SUHIPosteriorMean_1.png" /> 1,90<br />\
@@ -558,36 +479,29 @@ var group_SpatialResults = new ol.layer.Group({
                                 openInLayerSwitcher: true,
                                 title: 'Random Fields - Posterior Means',
                                 noOpacity: true});
-var group_PersistentSpatialPattern = new ol.layer.Group({
+var group_suhi = new ol.layer.Group({
                                 layers: [lyr_SUHIPosteriorSD,lyr_SUHIPosteriorMean,],
                                 openInLayerSwitcher: true,
                                 title: 'Surface Urban Heat Island',
                                 noOpacity: true});
 var group_TemporalResults = new ol.layer.Group({
-                                layers: [lyr_MeanLSTChange,lyr_WarmingRegions,lyr_CoolingRegions,],
+                                layers: [lyr_WarmingRegions,lyr_CoolingRegions,],
                                 openInLayerSwitcher: true,
                                 title: 'Excursion Sets',
                                 noOpacity: true});
-var group_SurfaceReflectance = new ol.layer.Group({
-                                layers: [lyr_June2013,lyr_June2025,],
-                                openInLayerSwitcher: true,
-                                title: 'Surface Reflectance',
-                                noOpacity: true});
 
-lyr_Voyager.setVisible(false);lyr_OSMStandard.setVisible(true);lyr_June2013.setVisible(false);lyr_June2025.setVisible(false);
-lyr_PosteriorSD.setVisible(false);lyr_PosteriorMean.setVisible(false);lyr_MeanLSTChange.setVisible(false);
+lyr_Voyager.setVisible(false);lyr_OSMStandard.setVisible(true);
+lyr_PosteriorSD.setVisible(false);lyr_PosteriorMean.setVisible(false)
 lyr_WarmingRegions.setVisible(false);lyr_CoolingRegions.setVisible(false);lyr_PosteriorMean_alpha_us.setVisible(false);
 lyr_vsPosteriorSD.setVisible(false);lyr_vsPosteriorMean.setVisible(false);lyr_SUHIPosteriorSD.setVisible(false);lyr_SUHIPosteriorMean.setVisible(false);lyr_usPosteriorSD.setVisible(false);lyr_usPosteriorMean.setVisible(false);lyr_LandCover.setVisible(false);lyr_LandUse.setVisible(false);lyr_MunicipalityofBologna.setVisible(true);
-var layersList = [lyr_OSMStandard,group_SurfaceReflectance,group_TemporalResults,group_SpatialResults,group_Land,group_Boundaries];
+var layersList = [lyr_OSMStandard,group_TemporalResults,group_suhi, group_SpatialResults,group_Land,group_Boundaries];
 lyr_MeanLSTChange.set('fieldAliases', {'fid': 'fid', '_count': '_count', '_sum': '_sum', '_mean': '_mean', 'total_effect_14-25': 'total_effect_14-25', '_stdev': '_stdev', 'mean_12y': 'mean_12y', 'fid_2': 'fid_2', '_count_2': '_count_2', '_sum_2': '_sum_2', '_mean_2': '_mean_2', '_stdev_2': '_stdev_2', 'mean_tot_14_25': 'mean_tot_14_25', 'mean_12y_2': 'mean_12y_2', 'mean_12y_merged': 'mean_12y_merged', });
 lyr_WarmingRegions.set('fieldAliases', {'FID': 'FID', });
 lyr_CoolingRegions.set('fieldAliases', {'FID': 'FID', });
 lyr_MunicipalityofBologna.set('fieldAliases', {'OBJECTID_1': 'OBJECTID_1', 'OBJECTID': 'OBJECTID', 'ISTAT': 'ISTAT', 'NOME_C': 'NOME_C', 'CD_BLF': 'CD_BLF', 'PRV_ID_E': 'PRV_ID_E', 'TY_E': 'TY_E', 'ID_E': 'ID_E', 'DT_INI_VAL': 'DT_INI_VAL', 'DATA_AGG': 'DATA_AGG', 'D_TIPO_AGG': 'D_TIPO_AGG', 'DT_PRES': 'DT_PRES', 'ST_VALID': 'ST_VALID', 'ST_CERTIF': 'ST_CERTIF', 'QUALITA': 'QUALITA', 'METODO': 'METODO', 'D_METODO': 'D_METODO', 'COMP_FONTI': 'COMP_FONTI', 'SEZ_ID_E': 'SEZ_ID_E', 'INT_FONTI': 'INT_FONTI', 'VISIBILITA': 'VISIBILITA', 'TIPO_FONTE': 'TIPO_FONTE', 'DATA_DA': 'DATA_DA', 'DATA_A': 'DATA_A', 'SHAPE_Leng': 'SHAPE_Leng', 'DT_FIN_VAL': 'DT_FIN_VAL', 'Shape_Le_1': 'Shape_Le_1', 'Shape_Le_2': 'Shape_Le_2', 'Shape_Area': 'Shape_Area', });
-lyr_MeanLSTChange.set('fieldImages', {'fid': 'TextEdit', '_count': 'TextEdit', '_sum': 'TextEdit', '_mean': 'TextEdit', 'total_effect_14-25': 'TextEdit', '_stdev': 'TextEdit', 'mean_12y': 'TextEdit', 'fid_2': 'TextEdit', '_count_2': 'TextEdit', '_sum_2': 'TextEdit', '_mean_2': 'TextEdit', '_stdev_2': 'TextEdit', 'mean_tot_14_25': 'TextEdit', 'mean_12y_2': 'TextEdit', 'mean_12y_merged': 'TextEdit', 'layerObject': 'Hidden', 'idO': 'Hidden'});
 lyr_WarmingRegions.set('fieldImages', {'FID': 'TextEdit', 'layerObject': 'Hidden', 'idO': 'Hidden'});
 lyr_CoolingRegions.set('fieldImages', {'FID': 'TextEdit', 'layerObject': 'Hidden', 'idO': 'Hidden'});
 lyr_MunicipalityofBologna.set('fieldImages', {'OBJECTID_1': 'TextEdit', 'OBJECTID': 'TextEdit', 'ISTAT': 'TextEdit', 'NOME_C': 'TextEdit', 'CD_BLF': 'TextEdit', 'PRV_ID_E': 'TextEdit', 'TY_E': 'TextEdit', 'ID_E': 'TextEdit', 'DT_INI_VAL': 'DateTime', 'DATA_AGG': 'DateTime', 'D_TIPO_AGG': 'TextEdit', 'DT_PRES': 'DateTime', 'ST_VALID': 'TextEdit', 'ST_CERTIF': 'TextEdit', 'QUALITA': 'TextEdit', 'METODO': 'TextEdit', 'D_METODO': 'TextEdit', 'COMP_FONTI': 'TextEdit', 'SEZ_ID_E': 'TextEdit', 'INT_FONTI': 'TextEdit', 'VISIBILITA': 'TextEdit', 'TIPO_FONTE': 'TextEdit', 'DATA_DA': 'DateTime', 'DATA_A': 'DateTime', 'SHAPE_Leng': 'TextEdit', 'DT_FIN_VAL': 'DateTime', 'Shape_Le_1': 'TextEdit', 'Shape_Le_2': 'TextEdit', 'Shape_Area': 'TextEdit', 'layerObject': 'Hidden', 'idO': 'Hidden'});
-lyr_MeanLSTChange.set('fieldLabels', {'fid': 'no label', '_count': 'no label', '_sum': 'no label', '_mean': 'no label', 'total_effect_14-25': 'no label', '_stdev': 'no label', 'mean_12y': 'no label', 'fid_2': 'no label', '_count_2': 'no label', '_sum_2': 'no label', '_mean_2': 'no label', '_stdev_2': 'no label', 'mean_tot_14_25': 'no label', 'mean_12y_2': 'no label', 'mean_12y_merged': 'no label', });
 lyr_WarmingRegions.set('fieldLabels', {'FID': 'no label', });
 lyr_CoolingRegions.set('fieldLabels', {'FID': 'header label - visible with data', });
 lyr_MunicipalityofBologna.set('fieldLabels', {'OBJECTID_1': 'no label', 'OBJECTID': 'no label', 'ISTAT': 'no label', 'NOME_C': 'no label', 'CD_BLF': 'no label', 'PRV_ID_E': 'no label', 'TY_E': 'no label', 'ID_E': 'no label', 'DT_INI_VAL': 'no label', 'DATA_AGG': 'no label', 'D_TIPO_AGG': 'no label', 'DT_PRES': 'no label', 'ST_VALID': 'no label', 'ST_CERTIF': 'no label', 'QUALITA': 'no label', 'METODO': 'no label', 'D_METODO': 'no label', 'COMP_FONTI': 'no label', 'SEZ_ID_E': 'no label', 'INT_FONTI': 'no label', 'VISIBILITA': 'no label', 'TIPO_FONTE': 'no label', 'DATA_DA': 'no label', 'DATA_A': 'no label', 'SHAPE_Leng': 'no label', 'DT_FIN_VAL': 'no label', 'Shape_Le_1': 'no label', 'Shape_Le_2': 'no label', 'Shape_Area': 'no label', });
