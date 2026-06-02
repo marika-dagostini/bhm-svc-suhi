@@ -5,7 +5,7 @@ This repository contains the code and data used to reproduce the analysis presen
 
 The project develops a Bayesian spatio-temporal framework for analysing surface urban heat island (SUHI) intensity and temporal change using satellite-derived land surface temperature (LST).
 
-The model combines a spatially varying coefficient specification with the SPDE--INLA approach to separate persistent spatial variation in baseline LST from spatial variation in temporal trends. Posterior summaries are used to estimate SUHI intensity, assess its relationship with land cover and land use, and identify regions of statistically supported warming or cooling through posterior excursion sets.
+The model combines a spatially varying coefficient specification with the SPDE-INLA approach to separate persistent spatial variation in baseline LST from spatial variation in temporal trends. Posterior summaries are used to estimate SUHI intensity, assess its relationship with land cover and land use, and identify regions of statistically supported warming or cooling through posterior excursion sets.
 
 The case study focuses on the municipality of Bologna, Italy, using summer Landsat 8 LST observations from 2013 to 2025, together with land cover, land use, and elevation data. Due to storage constraints, only a subset of the LST data is included, while the scripts provide the full workflow for data preprocessing, model fitting, posterior analysis, sensitivity checks, and visualisation of results.
 
