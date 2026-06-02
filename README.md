@@ -12,8 +12,14 @@ The case study focuses on the municipality of Bologna, Italy, using summer Lands
 ## Repository Contents
 
 - `code/`: R scripts used for data preprocessing, model fitting, posterior summaries, sensitivity analyses, and visualisation.
-- `data/`: Input data and derived data products used in the analysis. Due to storage constraints, only a subset of the full LST dataset is included.
+- `data/`: Example input data and derived data products used to test the workflow. 
 - `docs/`: Configuration files and assets for the interactive data-visualisation web app, available at: https://marika-dagostini.github.io/bhm-svc-suhi/
+
+## Data Availability
+
+All external datasets used in this study are publicly available from the original providers. To avoid duplicating large remote-sensing datasets, the repository does not include the full Landsat LST archive. Instead, it provides a subset of the processed LST data that allows users to test the workflow and reproduce the main computational steps.
+
+The full analysis can be reproduced by downloading the original datasets from their public sources and running the preprocessing scripts provided in the `code/` folder. Land cover, land use, elevation, and administrative boundary data are publicly available from the sources cited in the manuscript.
 
 ### Reproducibility and Random Seeds
 
