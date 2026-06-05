@@ -1,14 +1,14 @@
 var wms_layers = [];
 
 var lyr_OSMStandard = new ol.layer.Tile({
-  title: 'Basemap',
-  source: new ol.source.XYZ({
-    url: 'https://a.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}@2x.png',
-    attributions: [
-      '&copy; <a href="https://carto.com/attributions">CARTO</a>'
-    ]
-  })
-});
+            'title': 'BaseMap',
+            'opacity': 1.000000,
+            source: new ol.source.XYZ({
+            attributions: '<a href="https://cartodb.com/basemaps/">CartoDB</a> &nbsp&nbsp ',
+                url: 'https://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png'
+            })
+        });
+
 
 var lyr_Voyager = new ol.layer.Tile({
             'title': 'Labels',
