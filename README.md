@@ -1,7 +1,7 @@
-# A Bayesian Spatially Varying Coefficient Model for Surface Urban Heat Island Analysis
+# A Bayesian Spatially Varying Coefficient Model for Surface Urban Heat Island Estimation
 
 This repository contains the code and data used to reproduce the analysis presented in the study 
->  *D'Agostini M., Ventrucci M., de'Donato F. & Ranzi A. (2026) A Bayesian Spatially Varying Coefficient Model for Surface Urban Heat Island Analysis*. 
+>  *D'Agostini M., Ventrucci M., de'Donato F. & Ranzi A. (2026) A Bayesian Spatially Varying Coefficient Model for Surface Urban Heat Island Estimation*. 
 
 The project develops a Bayesian spatio-temporal framework for analysing surface urban heat island (SUHI) intensity and temporal change using satellite-derived land surface temperature (LST).
 
@@ -20,17 +20,3 @@ The case study focuses on the municipality of Bologna, Italy, using summer Lands
 All external datasets used in this study are publicly available from the original providers. To avoid duplicating large remote-sensing datasets, the repository does not include the full Landsat LST archive. Instead, it provides a subset of the processed LST data that allows users to test the workflow and reproduce the main computational steps.
 
 The full analysis can be reproduced by downloading the original datasets from their public sources and running the preprocessing scripts provided in the `code/` folder. Land cover, land use, elevation, and administrative boundary data are publicly available from the sources cited in the manuscript.
-
-### Reproducibility and Random Seeds
-
-The models in this repository are implemented using the INLA framework in R.
-
-Unlike MCMC-based methods, `inla()` does not rely on random sampling for inference. As a result, setting an R random seed does not guarantee identical results across runs.
-
-Small numerical differences may still occur due to:
-
-* floating-point arithmetic,
-* parallel computation,
-* and differences in the order of operations.
-
-These variations are typically negligible and do not affect the substantive results. Therefore, exact numerical reproducibility (bit-for-bit equality) should not be expected. Results should instead be interpreted up to numerical tolerance.
