@@ -1,3 +1,9 @@
+############################################################################## #
+# D'Agostini M., Ventrucci M., de'Donato F. & Ranzi A. (2026) 
+# A Bayesian Spatially Varying Coefficient Model 
+# for Surface Urban Heat Island Estimation
+############################################################################## #
+
 # Convert Google Earth Engine Landsat LST Raster Exports to CSV
 
 # Description:

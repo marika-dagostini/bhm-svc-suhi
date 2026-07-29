@@ -992,119 +992,7 @@
 		}
 		
 		
-/* form login 
-	
-      #form_login {
-		background-color: rgba(255, 255, 255, 0.75);
-		border: 2px solid #f8f8f8 ;
-		border-top: none ;
-        z-index: 1;
-        opacity: 1;
-		top: 10px;
-		right: 10px;
-		margin: 0;
-		width: 77px;
-		height: 24px;
-		vertical-align: middle
-      }
-	  .text_login {
-		position: absolute;
-		top: -1.6px;
-		left: 7px;
-		}
-	  .fa-sign-in-alt {
-		position: absolute;
-		top: 4.4px;
-		right: 8px;
-		}
-*/
 
-		
-/* modify qgis2web popup */
-
-		/*
-		#popup-content>ul>li:nth-child(even) {
-			background-color: unset;
-		}
-	
-		#popup-content li table{
-		max-height: 200px;
-		overflow-x: hidden;
-		overflow-y: auto;
-		display: block;
-		}
-		
-		#popup-content {
-			max-height: calc(100vh - 300px);
-			max-width: 350px;
-			overflow-y: auto;
-			font-size: 11.5px;
-		}
-		
-		#popup-content > a {
-			display: block;
-			padding: 2px;
-			border-bottom: 1px solid #666;
-			font-size: 12.4px;
-		}
-		
-		table.featureInfo caption {
-			color: #666;
-		}
-		
-		.ol-selectable {
-			z-index: 3;
-		}
-			
-		th {
-		min-width: 125px;
-		color: #666!important;
-		}
-		td {
-		min-width: 125px;
-		}
-		
-		@media screen and (max-width: 649px) {
-		th {
-		min-width: 125px;
-		}
-		td {
-		min-width: 125px;
-		}
-		#popup-content {
-			max-width: 265px;
-		}
-		}
-		
-		.ol-popup {
-		user-select: text;	
-		overflow: unset;
-		max-height: unset;
-		cursor: default;
-		left: -145px;
-		padding: 5px;
-		}
-		.ol-popup:after {
-        top: 100%;
-        border: solid transparent;
-        content: " ";
-        position: absolute;
-		border-top-color: white;
-        border-width: 10px;
-        left: 145px;
-        margin-left: -10px;
-		}	
-		#popup-content>ul>li>a {
-		position: relative;
-		display: block;
-		padding: 2px;
-		border-bottom: 1px solid #666;
-		font-size: 12.5px;
-		}
-		
-		#popup-content>table{
-			font-size: 11.4px!important;
-		} */
 		
 		th {
 		color: #666!important;
@@ -1478,7 +1366,7 @@
 /* ol-ext permalink  */		
 		.ol-permalink{
 			position: absolute;
-			right: 73px;
+			right: 39px;
 			top: 9px;
 		}
 		
@@ -2009,7 +1897,7 @@
 		margin: 0;
 		width: 27px;
 		height: 27px;
-		vertical-align: middle;
+		vertical-align: bottom;
 	}
 	  
 	  #form_opengis>a>label>img{
@@ -2092,10 +1980,10 @@
 			bottom: 106px;
 			}
 			.ol-scale-line {
-			bottom: 83px;
+			bottom: 34px;
 			}
 			.ol-viewport .ol-scale {
-			bottom: 60px;
+			bottom: 11px;
 			}			
 			.mouseposition {
 			bottom: 39px;
@@ -2108,7 +1996,7 @@
 			}
 			
 			#form_opengis{
-			bottom: 41px;
+			bottom: 21px;
 			}
 			/* 
 			.ol-control.ol-layerswitcher.ol-forceopen {

@@ -12,11 +12,15 @@ Google Earth Engine script used to retrieve and preprocess Landsat 8 Collection 
 
 R script used to convert the exported raster files into tabular format for statistical modelling. The output includes the spatial coordinates, acquisition date or time index, and LST values used as input for the Bayesian model.
 
-### `03_fit_svc_excursions.R`
+### `03_exploratoy_analysis.R`
+
+R script used to perform an exploratory analysis of the land surface temperature (LST) data. The outputs include an assessment of the number of observations available for each pixel within the study area and an analysis of LST distributions by year and month.
+
+### `04_fit_svc_excursions.R`
 
 R script used to fit the Bayesian spatially varying coefficient model with the SPDE-INLA framework. The script estimates the baseline spatial field, the spatially varying temporal trend, posterior summaries, SUHI intensity, and posterior excursion sets for warming and cooling regions.
 
-### `04_sensitivity_analysis.R`
+### `05_sensitivity_analysis.R`
 
 R script used to assess the sensitivity of the model to alternative Penalised Complexity prior specifications for the spatial range parameters. The script compares posterior summaries and model selection criteria across prior configurations.
 

@@ -46,18 +46,28 @@ style='font-size:11.0pt;font-family:"Arial",sans-serif;font-weight:normal'>
 This web application presents the main results from the study
 <div class="study-title-box">
   D'Agostini M., Ventrucci M., de'Donato F. & Ranzi A. (2026) <strong>
-    A Bayesian Spatially Varying Coefficient Model for Surface Urban Heat Island Analysis</strong>
+    A Bayesian Spatially Varying Coefficient Model for Surface Urban Heat Island Estimation</strong>
 </div>
-The analysis focuses on the municipality of Bologna, Italy, and uses summer Landsat 8
-land surface temperature observations from 2013 to 2025.
+
+<strong>Abstract</strong>
 </p>
 
 <p>
-The maps display posterior summaries from a Bayesian spatially varying coefficient
-model fitted with the SPDE-INLA framework. The results include baseline land surface
-temperature, surface urban heat island intensity, local temporal trends, and posterior
-excursion sets identifying regions of statistically supported warming and cooling.
+Surface urban heat islands (SUHIs) are commonly studied using satellite-derived land surface temperature (LST). 
+However, many analyses rely on static summaries or pointwise urban-rural contrast measures, which describe spatial patterns but provide limited inference on temporal change, spatial dependence, and uncertainty.  
 </p>
+<p>
+This study represents LST as a stochastic spatio-temporal process and models it through a spatially varying coefficient formulation, decomposing LST into a baseline spatial field and a location-specific temporal trend. This structure allows persistent thermal differences and local warming or cooling rates to be estimated within a unified probabilistic model. For each urban pixel, SUHI is derived from the persistent spatial field as the difference between its estimated LST and the minimum LST among non-urban pixels. The model is fitted using INLA with the stochastic partial differential equation (SPDE) approach to represent the spatial components, allowing efficient computation for large remote-sensing datasets. Posterior excursion probabilities are used to identify areas where temporal changes are supported under simultaneous probability control. 
+</p>
+<p>
+The approach is applied to summer Landsat 8 LST observations for Bologna, Italy, from 2013 to 2025.  
+Results reveal spatial heterogeneity in SUHI, with higher values associated with impervious surfaces and lower values across forests and water bodies. The estimated global trend indicates an overall increase in summer LST, while the spatially varying component shows that warming rates differ across the municipality. Joint excursion sets identify areas where warming is credibly greater than the domain-wide average, as well as smaller clusters where an absolute cooling trend is statistically supported.
+</p>
+<br>
+
+<strong>Keywords</strong>: <i>Land Surface Temperature</i>, <i>Surface Urban Heat Island</i>, 
+<i>Bayesian Hierarchical Modelling</i>, <i>Spatially-Varying Coefficient Model</i>, <i>Excursion Sets</i>
+
 	
   <o:p></o:p></span></h2>
 
