@@ -1,7 +1,51 @@
+/* all */
+
+	html, body {
+		background-color: #ffffff;
+		touch-action: none;
+	}
+
+	.ol-control{
+		box-shadow: 0px 1px 2px rgb(0 0 0 / 100%);
+		clear: unset;
+	}
+	.ol-control button {
+		background-color: #f8f8f8;
+		color: #000000 ;
+		font-weight: 900;
+	}
+	.ol-control button:hover{
+		background-color: rgba(251, 214, 105)!important;
+		}
+	.ol-control button.clicked{
+		background-color: rgba(251, 214, 105)!important;
+		}
+	.ol-control.ol-active > button{
+		background-color: rgba(251, 214, 105)!important;
+		color: black!important;
+	}
+	.ol-control button:focus{
+		background-color: #f8f8f8;
+		}	
+	.ol-touch .ol-control button {
+    	font-size: 1.20em;
+	}
+
+
 /* sidebar */
 
-.sidebar{
-	z-index: 2;
+	.sidebar {
+	z-index: 3;
+	display: none;
+	}
+
+	.sidebar-left {
+		left: 6px;
+		top: 6px;
+        bottom: 6px;
+        transition: width 500ms;
+		border: 3px solid transparent;
+        border-radius: 4px;
 	}
 
 	.sidebar-content{
@@ -34,6 +78,7 @@
 	} 
 	
 	@media (min-width: 768px) {
+		
 		.sidebar-right {
 			border-top: unset;
 			border-right: unset;
@@ -55,33 +100,64 @@
 			border-radius: unset;
 		}
 	}
-		
+
+/* container */
+	#top-left-container {
+		left: 8px;
+		top: 8px;
+		width: 0;
+		height: 0;
+	}
+	.ol-overlaycontainer-stopevent .sidebar-left ~ #top-left-container {
+		left: 59px;
+	}
+
+	#bottom-left-container {
+		left: 8px;
+		bottom: 8px;
+		width: 0;
+		height: fit-content;
+	}
+	.ol-overlaycontainer-stopevent .sidebar-left ~ #bottom-left-container {
+		left: 59px;
+	}
+
+	#top-right-container {
+		right: 8px;
+		top: 8px;
+		display: inline-flex;
+	}
+	.ol-touch #top-right-container {
+		top: 48px;
+	}
+
 	
 /* form logo */
 
       #form_logo {
-	    position: absolute;
+		display: none;
 		background-color: #f8f8f8;
 		border: 2px solid #f8f8f8 ;
 		border-top: none ;
         z-index: 1;
         opacity: 1;
-        top: 10px;
-        left: 4.5em;
-        margin: 1;
-		width: 450px;
+		width: 420px;
 		height: 60px;
 		vertical-align: middle;
 		box-shadow: 0px 1px 2px rgb(0 0 0 / 100%);
       }
-	  
+
+	  #form_logo.visible {
+		display: block;
+	  }
+
 	  #form_logo > h1{
-	    font-size: 15px;
+	    font-size: 14px;
 		font-family: 'arial';
-		width: 370px;
+		width: 350px;
 		height: 60px;
 		position: absolute;
-		left: 70px;
+		left: 65px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -95,43 +171,19 @@
       }
 
 
-/* ol-control */	
-	
-	html, body {
-		background-color: #ffffff;
-	}
-	.ol-control{
-		box-shadow: 0px 1px 2px rgb(0 0 0 / 100%);
-		clear: unset;
-	}
-	.ol-control button {
-		background-color: #f8f8f8;
-		color: #000000 ;
-		font-weight: 900;
-	}
-	.ol-control button:hover{
-		background-color: rgba(251, 214, 105)!important;
-		}
-	.ol-control button.clicked{
-		background-color: rgba(251, 214, 105)!important;
-		}
-	.ol-control button:focus{
-		background-color: #f8f8f8;
-		}	
-	.ol-touch .ol-control button {
-    font-size: 1.20em;
-	}
-	
-
 /* geocoder */
-	
+
+
 	.ol-geocoder.gcd-gl-container {
-    top: 72px !important;
-	left: 51px !important;
+		top: unset;
+		left: unset;
+		margin-top: 8px;
+		margin-left: unset;
+		display: inline-flex;
 	}
 
 	.ol-touch .ol-geocoder{
-	left: unset!important;
+	left: unset;
 	}
 	
 	.ol-geocoder .gcd-gl-input{
@@ -198,16 +250,23 @@
 	
 /* ol-ext geolocate gps */
 	
+
 	.ol-control.ol-geobt {
-    top: 80px;
-    left: 219px;
-    right: unset;
-    bottom: unset;
+		position: relative;
+		margin-top: 8px;
+		display: inline-flex;
+		top: unset;
+		right: unset;
+		bottom: unset;
+		left: unset;
+	}
+
+	.ol-geocoder + .ol-geobt {
+		margin-left: 5px;
 	}
 	
 	.ol-touch .ol-control.ol-geobt{
     bottom: unset;
-	left: 171px;
 	}
 	
 	.ol-control.ol-geobt button:before{
@@ -229,10 +288,13 @@
 
 /* ol-zoom */
 
-	.ol-zoom{ 
-    top: 104px;
-	left: 51px;
+	.ol-zoom{
+		margin-top: 6px;
+		margin-left: 0;
+		display: inline-flex;
+		flex-wrap: wrap;
 	}
+
 	.ol-zoom:hover{ 
     background-color: rgba(255,255,255,.6) ;
 	}
@@ -243,48 +305,65 @@
 
 /* query wms wfs */
 
-		.querywmswfs{
-			top: 112px;
-			left: 91px;
-		}
-		.querywmswfs > button{
-			width: 55px;
-		}
-		.querywmswfs > button > h1{
-			font-size: 12px;
-			display: inline;
-		}		
-		.querywmswfs.ol-active > button {
-			background-color: rgba(251, 214, 105);
+		.querywms{
+			margin-top: 6px;
+			margin-left: 6px;
+			display: inline-flex;
+			position: relative;
 		}
 		
-		#form_querywmswfs {
-		background-color: rgba(251, 214, 105);
-		border: 3px solid rgba(251, 214, 105);
-		border-radius: 3px;
-		z-index: 1;
-		opacity: 1;
-		position: absolute;
-		top: 142px;
-		left: 93px;
-		margin: 0;
-		width: 240px;
-		height: 60px;
+		.globo + .querywms {
+			top: -26px;
+			margin-left: 38px;
+		}		
+		
+		.querywms > button{
+			width: 55px;
 		}
-		#form_querywmswfs > label {
+		.querywms > button > h1{
+			font-size: 12px;
+			display: inline;
+		}
+		
+		.form_querywms {
+			position: absolute;
+			top: 100%;
+			left: 0;
+			margin-top: 4px;
+			background-color: rgba(251, 214, 105) !important;
+			border: 3px solid rgba(251, 214, 105);
+			border-radius: 3px;
+			z-index: 1;
+			padding: 1px;
+			width: 240px;
+		}
+		.form_querywms > label {
 			left: 2px;
 			position: relative;
 		}
-		.ol-touch .querywmswfs {
-		display: none;
+		.ol-touch .querywms {
+			display: none;
 		}
 	
 /* ol-ext bookmark */
 
 		.ol-control.ol-bookmark {
-			top: 112px;
-			left: 157px;
+			margin-top: 6px;
+			margin-left: 6px;
+			display: inline-flex;
+			top: unset;
+			left: unset;
 		} 
+
+		.querywms + .ol-bookmark {
+			margin-top: -27px;
+    		margin-left: 73px;
+		}
+		
+		.globo + .querywms + .ol-bookmark {
+			margin-top: -52px;
+			margin-left: 130px;
+		}
 		
 		.ol-control.ol-bookmark > button::before {
 			border-top-color: unset;
@@ -302,7 +381,8 @@
 		}
 		
 		.ol-touch .ol-bookmark{
-			left: 42px;
+			margin-left: 6px!important;
+    		margin-top: 6px!important;
 		} 
 		
 		.ol-bookmark ul {
@@ -345,21 +425,30 @@
 	.tooltip-static:before {
 	  border-top-color: #ffcc33;
 	}
-	.measure-control {
-	 position: absolute;
-	 top: 158px !important;
-	 left: 51px !important;
-	 display: flex;
+	.measure-toggle {
+	position: relative;
+	width: 22px;
+	height: 22px;
+	display: table-caption;
+	margin-top: 6px;
 	}
-	.ol-touch .measure-control {
-	  display: none;
+	.measure-control {
+	position: absolute;
+    margin-top: unset;
+    margin-left: 2px;
+    padding: 0;
+    left: 100% !important;
+    top: 3px !important;
 	}
 	.measure-control label {
+		position: relative;
 		background-color: rgba(251, 214, 105);
 		padding: 1px;
 		padding-right: 4px;
 	}
-	
+	.ol-touch .measure-toggle {
+	  display: none;
+	}
 	
 /* print button 	
 	
@@ -422,28 +511,30 @@
  
 /*  popup all feature */
 		.popupall-feature {
-		top: 198px;
-		left: 59px;
-		}
-		.popupall-feature.ol-active > button {
-			background-color: rgba(251, 214, 105);
-		}		
+    	margin-top: 6px;
+		position: relative;
+    	width: 22px;
+		display: table-caption;
+		}	
 		.ol-touch .popupall-feature {
 		display: none;
 		}
-		
-		#form_popupall {
-		background-color: rgba(251, 214, 105);
+		#popup-content{
+		user-select: text;
+		}
+		.form_popupall {
+		background-color: rgba(251, 214, 105) !important;
 		border: 3px solid rgba(251, 214, 105);
 		border-radius: 3px;
 		z-index: 1;
 		opacity: 1;
 		position: absolute;
-		top: 199px;
-		left: 89px;
-		margin: 0;
-		width: 147px;
+		width: 88px;
 		height: 30px;
+		margin-left: 3px;
+		left: 100%;
+		top: 0;
+		padding: 1px;
 		}
  
  
@@ -464,18 +555,19 @@
 			box-shadow:none;
 		}
 		
-		.ol-control.ol-bar .ol-toggle.ol-active > button {
-			background-color: rgba(251, 214, 105);
-			color: black;
-		}
 		.ol-control.ol-bar .ol-toggle.ol-active button:hover{
 			color: black;
 		}
 		.ol-control.ol-bar {
-			left: 59px;
-			height: 22px;
-			top: 203px;
-			-webkit-transform: translate(0,100%);
+			left: unset;
+			height: 21px;
+			width: fit-content;
+			top: unset;
+			-webkit-transform: unset;
+			margin-top: 6px;
+			padding-top: 3px;
+			display: table-caption;
+    		position: relative;
 		}
 		
 		.ol-control.ol-bar .ol-control button{
@@ -514,8 +606,13 @@
 /* ol-ext search feature */
 
 		.ol-search {
-			top: 260px;
-			left: 59px;
+			top: unset;
+			left: unset;
+			margin-top: 6px;
+			display: table-caption;
+			z-index: 1;
+			position: relative;
+			width: fit-content;
 		}
 		.ol-search input {
 			border: 1px solid #ccc;
@@ -535,9 +632,9 @@
 			max-width: unset;
 		}
 		.ol-touch .ol-search {
-			top: 168px;
-			left: 8px;
-		} 
+			top: 0;
+			left: 0;
+		}
 		.ol-control.ol-search > button:before{
 		  border: 0.2em solid currentColor;
 		}
@@ -567,14 +664,17 @@
 
 /* extended search table */
 
-		.extendedSearch {
-		left: 59px;
-		top: 291px;
+		.extended-search {
+		margin-top: 6px;
+		display: table-caption;
+		position: relative;
+		width: 22px;
+		height: 22px;
 		}
-		.extendedSearch.ol-active > button {
+		.extended-search.ol-active > button {
 		background-color: rgba(251, 214, 105);
 		}
-		.ol-touch .extendedSearch {
+		.ol-touch .extended-search {
 		display: none;
 		}
 
@@ -596,8 +696,22 @@
 		z-index: 1;
 		bottom: 0px;
 		/*max-height: 30%;*/
-		height: 30%;
+		height: 35%;
 		width: 100%;
+		}
+		
+		#layer-table-loading {
+		text-align: center;
+		position: fixed;
+		bottom: 0px;
+		height: 35%;
+		width: calc(100% - 8px);
+		border: 4px solid steelblue;
+		border-radius: 5px;
+		background: rgb(255, 255, 255);
+		font-weight: bold;
+		font-size: 16px;
+		color: steelblue;
 		}
 
 		.additional-header {
@@ -897,1120 +1011,13 @@
 		}
 
 
-		
-/* overview map  */
-		.ol-control.ol-overview	{
-			left: 59px;
-			bottom: 89px;
-		}	
-		.ol-overview:not(.ol-collapsed) button {
-			z-index: 1;
-		}
-		.ol-touch .ol-control.ol-overview{
-			bottom: 64px;
-			left: 8px;
-		}
-		
-/* scale line */
-	  	
-		 .ol-scale-line {
-			position: absolute;
-			left: 60px;
-			bottom: 66px;
-			margin-bottom: unset;
-			margin-left: unset;
-			padding: unset;
-			border-radius: 0px;
-			
-		}
-		.ol-scale-line-inner {
-			border: 2px solid #ccc ;
-			border-top: none ;
-			background: #f8f8f8;
-			color: black ;
-			font: 11.5px/1.5 Arial;
-			height: 14px;
-			border-top: 1px solid #f8f8f8;
-		}
-		.ol-touch .ol-scale-line{
-			bottom: 40px;
-			left: 8px;
-		}
-		
-/* ol-ext scale control */
-	
-		.ol-viewport .ol-scale {
-		left: 60px;
-		bottom: 43px;
-		height: 13px;
-		border-radius: unset;
-		display: flex;
-		flex-direction: row-reverse;
-		font: 14.4px/1.2 Arial;
-		}
-	 .scaladescription-visible {
-		left: 2px;
-		background-color: #f8f8f8;
-		height: 13px;
-		display: block;
-		position: relative;
-		line-height: 12px;
-		margin-right: 5px;
-		}
-	 .ol-viewport .ol-scale input {
-		height: 11px;
-		width: 70px;
-		background-color: rgba(255,255,255,1);
-		margin-right: 2px;
-		}	
-     .ol-touch .ol-scale{
-		display: none;
-		}			
-		
-/* epsg mouse position coordinates */	
-		
-		.mousePositionDefault {
-			position: absolute;
-			background-color: #f8f8f8;
-			height: 13px;
-			top: unset;
-			bottom: 22px;
-			left: 61px;
-			font: 11.5px/1.6 Arial;
-			border-radius: unset;
-			padding: unset;
-			padding-left: 3px;
-			padding-right: 3px;
-			padding-bottom: 3px;
-		}
-		.mousePositionDefault:hover {
-			background-color: rgba(251, 214, 105);
-				}
-		
-		.ol-touch .mousePositionDefault {
-			display: none;
-		}
-		
-		
-
-		
-		th {
-		color: #666!important;
-		}
-		
-		tr td strong {
-			 color: #333;
-		}
-
-
-		
-		
-/* ol-ext popup feature */
-
-		.ol-popup.default {
-		  left: auto;
-		  padding: unset;
-		  display: block;
-		  bottom: auto;
-		  background: none;
-		  border: 0;
-		  filter: unset;
-		  width: fit-content;
-		  min-width: 110px;
-		  z-index: 4;
-		  font-size: 11.5px;
-		  filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
-		}
-		.ol-popup.default:after {
-		  display: none;
-		}
-		
-		.ol-popup.default:before {
-		  display: none;
-		}
-		
-		.ol-popup .closeBox:after{
-			top: 8px;
-		}
-		
-		.ol-popup-content{
-			min-height: 60px;
-		}
-
-		.ol-popupfeature h1{
-		  height: 10px;  
-		  font-weight: bold;
-		  font-size: 12.5px;
-		  margin-top: 5px;
-		  margin-bottom: 10px;
-		}
-			
-		.ol-popup .ol-popupfeature table td {
-			word-wrap: break-word;
-		}
-		
-		.ol-popupfeature tr:nth-child(2n+1){
-		  background-color: unset!important;
-		}
-
-		tr td:first-child {
-			font-weight: bold;
-			color: #666!important;
-			/* min-width: 125px; */
-		  }
-
-		/* tr td:nth-child(2) {
-			min-width: 125px;
-		  } */
-		  
-		@media screen and (max-width: 649px) {
-			.ol-popup .ol-popupfeature table td {
-			max-width: 110px;
-			word-wrap: break-word;
-			min-width: 80px;
-			}					
-		}
-		
-		.ol-popup-center .ol-count {
-			float: right;
-			margin: 7px 0 0 0!important;
-			position: absolute;
-			bottom: 12px;
-			right: 7px;
-		}
-		 
-		.ol-popup-top.ol-popup-left .ol-count {
-			position: relative;
-			top: -7px;
-			left: -3px;
-			float: left;
-		}
-
-		.ol-popup-top.ol-popup-right h1 {
-		  padding-right: 65px;
-		}
-		.ol-popup-top.ol-popup-right .ol-count {
-			margin: 7px 0 0 0!important;
-			position: absolute;
-			top: 3px;
-			right: 25px; 
-		}
-
-		.ol-popup-left .ol-count {
-			margin: 7px 0 0 0!important;
-			position: absolute;
-			bottom: 12px;
-			left: 32px;
-		}
-
-		.ol-popup-right .ol-count {
-			margin: 7px 0 0 0!important;
-			position: absolute;
-			bottom: 12px;
-			right: 7px;
-		}
-
-		.ol-popup .ol-popupfeature .ol-zoombt {
-			width: 25px;
-			height: 25px;
-		}
-
-		.ol-popup .ol-popupfeature .ol-zoombt:before {
-			width: 0.9em;
-			height: 0.9em
-		}
-		.ol-popup .ol-popupfeature .ol-zoombt:after {
-			top: 16.5px;
-			left: 14.5px;
-			border-width: 0.1em 0.25em;
-		}
-		
-		
-		.ol-popup .ol-fix {
-			/* width: 1em; */
-			/* height: 0.9em; */
-			background: rgba(255, 255, 255, 1);
-			/* color: white; */
-			position: absolute;
-			right: 6px;
-			top: 26px;
-			float: right;
-			margin: 0.2em;
-			cursor: pointer;
-		}
-		.ol-popup .ol-fix:before {
-			content: "";
-			width: 12px;
-			height: 11px;
-			display: block;
-			border: 1px solid rgba(0, 60, 136, 0.5);
-			border-right-width: 0.1em;
-			border-right-width: 4px;
-			-webkit-box-sizing: border-box;
-			box-sizing: border-box;
-			/* margin: 0.1em; */
-		}
-
-		.ol-touch .ol-fix {
-			display: none;
-		}
-
-		.ol-popup.ol-fixed {
-			margin: 0!important;
-			top: 350px!important;
-			right: auto;
-			left: 60px!important;
-			bottom: auto!important;
-			-webkit-transform: none!important;
-			transform: none!important;
-		}
-
-		.ol-fixed .ol-count {
-			position: relative;
-			top: -7px;
-			left: 0px;
-			float: left;
-		}
-
-		
-
-
-/* ol-ext print dialog  */
-	
-		.ol-control.ol-print {
-			top: 9px;
-			right: 105px;
-			left: unset;
-		}
-		.ol-ext-print-dialog .ol-scale-line {
-			display: none;
-		}
-		.ol-scale-bar {
-			display: none;
-		}
-		.ol-ext-print-dialog .ol-scale-bar {
-			display: unset;
-			bottom: 20px;
-			left: 20px;
-		}
-		.ol-ext-print-dialog .ol-geocoder{
-			display: none;
-		}
-		.ol-ext-print-dialog .mousePositionDefault{
-			display: none;
-		}
-		.ol-ext-print-dialog .ol-attribution{
-			display: none;
-		}
-		.ol-ext-print-dialog .ol-print-map .legend-attribution{
-			display: block!important;
-			right: 10px!important;
-			top: 30px!important;
-			background-color: #f8f8f8!important;
-			height: unset!important;
-			max-height: calc(100% - 45px);
-			overflow-y: auto!important;
-			border: 2px solid #000;
-			margin-top: unset!important;
-		}
-		.ol-ext-print-dialog .legend-attribution ul {
-			width: unset;
-			top: unset;
-		}
-		.ol-ext-print-dialog .legend-attribution button{
-			display: none;
-		}
-		.ol-ext-print-dialog .legend-attribution.ol-collapsed ul{
-			display: flex;
-		}
-		.ol-ext-print-dialog .ol-saveas{
-			display: none;
-		}
-		.ol-ext-print-dialog .ol-print-compass{
-			top: 10px!important;
-			right: unset!important;
-		}
-		/* show button on print map
-		.ol-ext-print-dialog .ol-print-map .ol-control.measure-control{
-			display: block!important;
-		}
-		.ol-ext-print-dialog .ol-print-map .ol-control.highlight-feature{
-			display: block!important;
-		}
-		.ol-ext-print-dialog .ol-print-map .ol-control.ol-bar{
-			display: block!important;
-		}
-		.ol-ext-print-dialog .ol-print-map .ol-control.ol-bar .ol-control{
-			display: inline-block!important;
-		}
-		.ol-ext-print-dialog .ol-print-map .ol-bar.collapsed .ol-editbar{
-			display: none!important;
-		}
-		.ol-ext-print-dialog .ol-print-map .ol-control.ol-bar .ol-control.ol-option-bar{
-			display: none!important;
-		}
-		.ol-ext-print-dialog .ol-print-map .ol-control.ol-bar .ol-control.ol-active > .ol-option-bar{
-			display:block!important;
-		} 
-		*/
-		.ol-ext-print-dialog .ol-print-map .ol-viewport .ol-scale{
-			display: block!important;
-			left: 21px;
-			bottom: 55px;
-			background-color: #000000;
-			box-shadow: none;
-		}
-		.ol-ext-print-dialog .ol-print-map .scaladescription-visible{
-			display: none;
-		}
-		.ol-ext-print-dialog .ol-print-map #form_epsg{
-			display: none;
-		}		
-		.ol-ext-print-dialog .ol-print-map .ol-viewport .ol-scale input {
-			bottom: 2px;
-			position: relative;
-		}
-		.ol-touch .ol-control.ol-print{
-			display: none;
-		}		
-
-
-
-
-/* legend attribution in map*/
-
-			.ol-attribution .legend {
-				display: none;
-			}
-
-			.legend-attribution {
-				text-align: left;
-				bottom: unset;
-				right: 12px;
-				top: 43px;
-				z-index: 3;
-				max-height: calc(100% - 172px);
-				box-shadow: none;
-				}
-			.legend-attribution:not(.ol-collapsed){
-				background: #f8f8f8;
-			}
-			.legend-attribution.ol-uncollapsible {
-				bottom: unset;
-				right: unset;
-			}
-			.legend-attribution.ol-unselectable.ol-control.ol-collapsed {
-				height: unset;
-				overflow-y: hidden;
-				background-color: rgb(255 255 255 / 0%);
-				right: 55px;
-				top: 56px;
-				margin-top: 0px;
-			}
-			.legend-attribution.ol-unselectable.ol-control {
-				height: 100%;
-				overflow-y: scroll;
-				margin-top: 40px;
-			}
-
-			.legend-attribution button {
-				z-index: 3;
-				border: 1px solid #00000033;
-			}
-			.legend-attribution.ol-unselectable.ol-control.ol-collapsed > button {
-				position: relative;
-				right: unset;
-				width: 65px;
-				background-color: #f8f8f8;
-			}
-			.legend-attribution.ol-unselectable.ol-control > button {
-				position: fixed;
-				right: 35px;
-				width: 108px;
-				background-color: rgba(251, 214, 105);
-				border-radius: 4px;
-			}
-			.legend-attribution.ol-collapsed ul {
-				display: none;
-			}
-			.legend-attribution ul {
-				position: relative;
-				display: flex;
-				flex-direction: column-reverse;
-				width: 304px;
-				top: 22px;
-				padding-left: 4px;
-				margin-bottom: unset;
-			}
-			.legend-attribution li {
-				padding-bottom: 8px;
-				max-width: 300px;
-				list-style: none;
-			}
-			.legend-attribution img{
-				max-width: 22px;
-				max-height: 22px;
-			}
-			.legend-realtime img {
-				max-width: unset;
-				max-height: unset;
-			}
-			.legend-attribution-expand, .legend-attribution-collapse {
-				font-family: Arial;
-				font-weight: 600;
-				font-size: small;
-			}
-
-			
-		
-/* ol-ext permalink  */		
-		.ol-permalink{
-			position: absolute;
-			right: 39px;
-			top: 9px;
-		}
-		
-		.ol-permalink button {
-		background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QUIzOUY4MzEzOEM5MTFFREJCMjA4ODVCNjRDMzU4RTEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QUIzOUY4MzIzOEM5MTFFREJCMjA4ODVCNjRDMzU4RTEiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpBQjM5RjgyRjM4QzkxMUVEQkIyMDg4NUI2NEMzNThFMSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpBQjM5RjgzMDM4QzkxMUVEQkIyMDg4NUI2NEMzNThFMSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pl8WV18AAAIkSURBVHjapJM/aBRBFMZnZ2d3b++8P14h2Bib4zwEO4UUyaGNRUAUQUJUNBg0jYpCSgs7wSIg2AkmaWxEDAZJE0QRPUGwioiWNjZCIsvt3v6Z9TfhEgx6JOCwj3k7733v+97OWyvPc/E/S3U6HREEwY6JUkrPkvKwha+1/oxF9XpdiEajsRuiEewrlvftG3ayPToqlOd5f2XDNAzTUdwuLS6XSnuGwrBb4v0elmI3syx7VqnWhtU2oGVJ27YfEpzW/W+D9KDXi65Q6CCyE3PmF4srYbf7itgt+SeYZy5N02n8RaXUpHIc468BnlfKGdrMpdBbcn+FYXhImluA1fb94nye64vlcnnB8wpXKXnXlnK/63njAAqOo85tkQlxgtyKX/RXjWSzHtHjBVifRlF0CS0TWmcHKP4J+45UFMq6ATuueyxJkie4gc6yWTBqKo7jy+zPkT/RV9QwIM5e8z6DApEk8ZLjOEfwlzmrUOAUZKvkyUn6DNmvEdj4SLatPhoQYqfYvxB7gIQQfyXXugLBGYIvNz4yhEUKxPjrmz3Gce8xbB9o636SpuMUriVx/J7cvYBP08KLrQFjLhapXCXpDoUKWJlrPEvsOi0siDxvEzuPinfSlscBL20bmmazWWV705+wH9hP41PoRj+lhu3713i2222hWq3Wuuu6YzDcRuIY2MzMgdb5HFdl8tYGzTfkwhr0N5pzCu38kw0K7AZs1m8BBgB/TADv8Sy50QAAAABJRU5ErkJggg==');
-		background-position: center;
-		background-repeat: no-repeat;
-		}
-		
-		.ol-permalink button i:before {
-			display:none;
-		}
-		.ol-permalink button i:after {
-			display:none;
-		}
-
-		.ol-touch .ol-permalink {
-			display: none;
-		}
-		.center {
-		text-align: center;
-		}
-		.ol-ext-dialog > form .ol-content {
-			overflow-x: hidden;
-			overflow-y: auto;
-			user-select: text;
-			cursor: auto;
-			word-wrap: break-word;
-		}	
-		.ol-ext-dialog	{
-			background-color: unset;
-		}
-		
-		
-		
-/* rotate arrow */	
-		
-		.ol-rotate {
-			height: 22px;
-			right: 41px;
-			top: 9px;
-		}
-		
-		.ol-touch .ol-rotate{
-			top: 50px;
-		}
-		
-		.ol-rotate.ol-hidden {
-		opacity: unset;
-		visibility: unset;
-		}
-		.ol-compass{
-			font-weight: unset;
-		}
-		
-		.ol-touch .ol-rotate-reset{
-			height: 20px;
-			width: 20px;
-		}
-	
-		
-/* fullscreen  */	
-	
-		.expand {
-		top: 8px;
-		right: 7px;
-		height: 22px;
-		width: 22px;
-		border-radius: 4px;
-		padding: 2px;
-		margin: 1px;
-		}
-		
-	  .touch.expand {	 
-        top: 49px;
-	  }
-
-		
-/* ol-ext layerswitcher */		
-		
-		.ol-touch .ol-layerswitcher {
-		top: 80px;
-		
-		}
-		
-		.ol-touch .ol-layerswitcher.ol-forceopen {
-		max-height: calc(100% - 158px)!important;
-		}
-		
-		.ol-layerswitcher.ol-forceopen {
-		z-index: 2;
-		height: 100%;
-		max-height: calc(100% - 120px);
-		padding: 3px;
-		right: 8px;
-		cursor: auto;
-		}
-		
-		.ol-layerswitcher.ol-unselectable.ol-collapsed{
-		min-height: 43px;
-		min-width: 43px;
-		padding: 3px;
-		right: 8px;
-		}
-		
-		.ol-layerswitcher.ol-forceopen .panel-container {
-	/* personalize width panel container */	
-		width: 330px;
-		margin-top: 40px;
-		height: calc(100% - 47px);
-		overflow-y: scroll;
-		background-color: #f8f8f8;
-		padding-left: 2px;
-		}
-		
-		.ol-layerswitcher .panel {
-		right: -3px;
-		font-family: sans-serif;
-		font-size: 11.5px;
-		}
-		
-		#layersSelect {
-			float: right;
-			margin-bottom: 6px;
-		}
-
-		.panel a {
-			position: relative;
-			float: right;
-			top: 2px;
-			right: 3px;
-		}
-
-		.ol-layerswitcher .panel ul {
-		padding: 0 0 7px 22px;
-		}
-
-		.ol-layerswitcher .panel li label {
-	/* personalize width label */	
-		width: 200px;
-		max-width: unset;
-		height: auto;
-		min-height: 15px;
-		white-space: unset;
-		/* max-height: 250px; 
-		overflow-y: auto;*/
-		}
-
-		.ol-layerswitcher .panel li > div {
-		display: contents;
-		}
-		
-		.ol-layerswitcher .panel li label span {
-		position: relative;
-		padding-left: 5px;
-		width: 95%;
-		}
-		
-		/* .ol-layerswitcher .panel li label span img {
-		max-width: 98%;
-		} */
-		
-		
-		.ol-layer-group .li-content label span {
-		  font-weight: bold;
-		}
-		
-		.ol-layer-group .ol-layer-group .li-content label span {
-		  font-weight: bold;
-		  font-style: italic;
-		 }		 
-
-		.ol-layer-vector .li-content label span {
-		  font-weight: unset;
-		}
-		
-		.ol-layer-vectorimage .li-content label span {
-		  font-weight: unset;
-		}
-		
-		.ol-layer-tile .li-content label span {
-		  font-weight: unset;
-		 }
-		 
-		 .ol-layerswitcher img {
-			max-width: 22px;
-    		max-height: 22px;
-		 }
-
-		.ol-layerswitcher .layerswitcher-opacity {
-		display: inline-flex;
-		position: absolute;
-		width: 40px;
-		right: 26px;
-		border: unset;
-		margin: 9px 6px 6px 3px;
-		background: linear-gradient(to right, rgba(0,60,136,0), #aaa);
-		box-shadow: 1px 1px 1px rgb(0 0 0 / 35%);
-		}
-		
-		.ol-layerswitcher .layerswitcher-opacity-label {
-		display: inline;
-		position: absolute;
-		right: 50px;
-		bottom: unset;
-		font-size: 0.7em;
-		}
-			
-		.ol-layerswitcher [type="radio"] + label:before, .ol-layerswitcher [type="checkbox"] + label:before, .ol-layerswitcher [type="radio"]:checked + label:after, .ol-layerswitcher [type="checkbox"]:checked + label:after{
-		display:none;
-		} 
-		
-		.ol-layerswitcher input[type="radio"], .ol-layerswitcher input[type="checkbox"]{
-		display:unset;
-		position: absolute;
-		}
-		
-		.ol-layerswitcher .layerswitcher-opacity .layerswitcher-opacity-cursor, .ol-layerswitcher .layerswitcher-opacity .layerswitcher-opacity-cursor:before {
-		width: 10px;
-		height: 10px;
-		background: #aaaaaa61;
-		}
-		
-		.ol-layerswitcher input[type="checkbox"] {
-		display: unset;
-		position: absolute;
-		}
-		
-		@media screen and (max-width: 649px) {
-			.ol-layerswitcher input[type="checkbox"] {
-				width: 15px;
-				height: 15px;
-			}
-			.ol-layerswitcher .panel li label {
-				top: 3px;
-			}
-		}
-		
-		.ol-layerswitcher-buttons > div {
-		vertical-align: 1.2px;
-		height: 12px;
-		}
-		
-		.ol-layerswitcher button {
-		position: static;
-		top: 42px;
-		right: 9px;
-		float: right;
-		z-index: 1;
-		width: 35px;
-		height: 35px;
-		background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAwRJREFUaEPtmP2RDVEQxc9GYDMgAzJABIgAESACRIAIEAEZIAMysBnsZqB+alq1u/ej78d49dTrf96rmTtz+3SfPrd7znTkdnbk/usE4NAZPGXgf87AuaT3G8Cnki73ALsXhe5I+iTp1ub0T0mPJH1fDWIPAE8kvZFEBryRgReSPqwEsRoAlAGA2dX254a7BgAotcRWAYAqUAbqmP1wYHD6trsHlaAU1JqyFQDubc57ynyU9NwVLvfeSnrsvIVSgPg6g2AWwEtJrxIH4DnO5gxQ1Ic3nn89CmIUgEnkw4TvZKOlNNCMqPu6+LzVRbfUjgBIJRIM3yQBJuoAAcDpuy4AQ1LbCyAnke82vo+wAKo9S+qiS2p7AOQkEkBEcsbIHCo1JLURADWJbPE9CgxaDkltC0BEIqNOttYNSW0NQK9EthyM3u+S2hqAEjcpsqjaRJ22dWSBcyJtR4q11qIQ/KdId2kDEnSlWiOQxZajBYA9StykIZtVIMOAk6hcrR3JZjMCwB4kjTag2LWpNmB7Sa7WCE6o7e4BwH7IHVG/6cJBW0BT1lsXRJsOFqUzu9hO9LA8RwDATc/BFW1AtB1J975GoxoArwgc+aiPN+hD+r1FUp+jIt1o2tWiRkgqVCoqXw0AD/r+nbTeT6jSI7VRiWTdl2Q4Yr7w0vonaK0MAOKBC3FuCIlIbVQiu0/+SA3kTkau0YX6Ayg3cdnsG5FIutJ0EKoNR7/3jgBgHZFBfVpDSI7faeGldTIzHIUB2IGGZKanMg552ctJLc/nJJK1ZMd/DOgajqIZ8FGMDCGp1OacWjIcjQAADJsDxFOqJLWsL0mkBYbvR0PD0SgAO5VzQ0gqtT57OYm070fh09e/cAaA1UVEak0IaB26G7Zrx6+7MAvAXtWS2iGJrDlu91YBqEkt90a+H0X875LRyAuhRyq1/rkuiYxsuDIDNanl3sz3oyKWvQB4qbX/q6a3v8DsCcCklt8hiTwkhSJ7L1mzdwaWOPkvzoHdHS1tcMrAwUK/bXz0GfgFVLbIMcdxjJAAAAAASUVORK5CYII=');
-		background-size: contain;
-		background-repeat: no-repeat;
-		/* background-position: 2px; */
-		background-color: #f8f8f8;
-		color: black;
-		border: none;
-		}
-
-		.ol-layerswitcher > button:before , .ol-layerswitcher > button:after {
-		display:none;
-		}
-		
-		.ol-layerswitcher .expend-layers:before, .ol-layerswitcher .collapse-layers:before, .ol-layerswitcher .expend-layers:after{
-		background: #999;
-		}
-		
-		.ol-layerswitcher .expend-layers:before, .ol-layerswitcher .collapse-layers:before {
-		content: "";
-		position: absolute;
-		top: 4px;
-		left: 0;
-		height: 3px;
-		width: 11px;
-		margin: unset;
-		}
-		
-		.ol-layerswitcher .expend-layers:after {
-		content: "";
-		position: absolute;
-		left: 4px;
-		top: 0;
-		width: 3px;
-		height: 11px;
-		margin: unset;
-		}
-		
-		.ol-layerswitcher .layerExtent {
-			background: #ccc;
-			position: absolute;
-			right: 12px;
-			height: 17px;
-			width: 11px;
-			cursor: -moz-zoom-in;
-			cursor: -webkit-zoom-in;
-			cursor: zoom-in;
-		}
-
-		.ol-layerswitcher .layerExtent:before {
-			border-right: 2px solid #fff;
-			border-bottom: 2px solid #fff;
-			content: "";
-			display: block;
-			position: absolute;
-			left: 5px;
-			right: 1px;
-			top: 9px;
-			bottom: 2px;
-		}
-
-		.ol-layerswitcher .layerExtent:after {
-			border-left: 2px solid #fff;
-			border-top: 2px solid #fff;
-			content: "";
-			display: block;
-			position: absolute;
-			bottom: 9px;
-			left: 1px;
-			right: 5px;
-			top: 2px;
-		}	
-		
-		.ol-layerswitcher .layerup {
-		height: 17px;
-		width: 11px;
-		right: -3px;
-		background-color: #ccc;
-		opacity: 1;
-		cursor: move;
-		position: relative;
-		}
-		
-		.ol-layerswitcher .layerup:before, .ol-layerswitcher .layerup:after {
-		border-color: #fff transparent;
-		border-style: solid;
-		border-width: 0.4em 0.4em 0;
-		content: "";
-		position: absolute;
-		bottom: 1px;
-		left: 0.1em;
-		width: 0;
-		}
-		
-		.ol-layerswitcher .layerup:after {
-		border-width: 0 0.4em 0.4em;
-		top: 2px;
-		bottom: auto;
-		}
-		
-		/*Hide layer for hideLayer class list element*/
-		li.hideLayer {
-		display: none!important;
-		}
-
-		.roller-switcher {
-			background-image: url(./icon/lds-roller.gif);
-			background-size: contain;
-			height: 19px;
-			width: 19px;
-			display: inline-block;
-		}
-	
-	
-		/*expand collapse layerlegend */
-		
-				#layertitle {
-					position: relative;
-					display: flex;
-					justify-content: space-between;
-					align-items: center;
-					cursor: pointer;
-					
-				}
-
-				#secondImage {
-				  display: none;
-				}
-				.active #firstImage {
-				  display:none;
-				}
-				.active #secondImage {
-				  display: inline-block;
-				}
-				.fa-angle-down, .fa-angle-up {
-					position: relative;
-					cursor: pointer!important;
-					font-size: large;
-					color: #999;
-					left: 1px;
-				}
-
-				/*layerlegend before*/
-				.layerlegend, .layerlegend-realtime {
-				  display: none;
-				  max-height: 0px; 
-				  /*transition: all 1s;*/
-				}
-								
-				/*layerlegend after*/
-				.active + .layerlegend , .active + .layerlegend-realtime {
-				  display: block;
-				  height: auto;
-				  max-height: 250px;
-				  overflow-y: auto;
-				  overflow-x: auto;
-				  width: 100%;
-				  padding-bottom: 2px;
-				}
-				/*layerlegend-realtime img*/
-				.layerlegend-realtime img {
-					max-width: unset;
-					max-height: unset;
-				}
-		
-		
-		/*scroolbar in legend */
-		.layerlegend::-webkit-scrollbar , .layerlegend-realtime::-webkit-scrollbar {
-			width: 10px;
-			height: 10px;
-			background: #eee;
-		}
-		.layerlegend::-webkit-scrollbar-thumb , .layerlegend-realtime::-webkit-scrollbar-thumb {
-			background: #ccc;
-		}
-		
-		
-		/* Hide opacity bar for noOpacity class list element */
-		li.noOpacity > .li-content .layerswitcher-opacity {
-		display: none;
-		}
-		li.noOpacity > .li-content .layerswitcher-opacity-label {
-		display: none;
-		}
-
-		
-		/* Remove the checkbox in Group Layer (using initial [#map .visible] if using Father/Children group relation in .js) */
-		#map .ol-layer-group > .li-content input[type="checkbox"]{
-		display: none;
-		
-		
-		/* Prevent clic (using initial [#map .visible] if using Father/Children group relation in .js) */
-		  padding-left: 0px;
-		  pointer-events: none;
-		}
-		
-		/* 
-		.ol-touch .ol-layerswitcher .layerswitcher-opacity .layerswitcher-opacity-cursor {
-			width: 10px;
-			height: 10px;
-		} */
-		
-		.ol-touch .layerup , .ol-touch .layerExtent , .ol-touch .layerswitcher-opacity , .ol-touch .layerswitcher-opacity-label {
-			display: none;
-			}
-			
-		.ol-touch .panel-container {
-			width: 250px!important;
-		}
-		
-				
-/* modify walkermatt layer switcher 
-	  
-		.layer-switcher {
-		top: 75px;
-		}
-		.layer-switcher.shown {
-		max-height: calc(100% - 140px);
-		width: 290px;
-		}
-		.layer-switcher.shown.layer-switcher-activation-mode-click > button
-		{
-		left: unset;
-		right: 22px;
-		border: 4px solid #eee;
-		border-radius: 4px!important;
-		font: 24px/0 Arial;
-		}
-		.layer-switcher li label {
-		padding-left: 2.7em;
-		padding-right: 1.2em;
-		display: inline-block;
-		margin-top: -1px;
-		}
-		.layer-switcher ul {
-		margin: 7px 0.4em;
-		}
-			*/
-		
-/* street-view */
- 
-	.ol-street-view--activated .ol-street-view--size-toggler {
-	 display: none;
-	 }
-	 
-	#ol-street-view--pegman-button-div {
-    top: unset;
-	bottom: 14px;
-    right:47px;
-	z-index: 1;
-	}
-	
-	#ol-street-view--pegman-button-div.ol-street-view--md-btn #ol-street-view--pegman-button, #ol-street-view--pegman-button-div.ol-street-view--md-btn #ol-street-view--pegman-draggable {
-    transform: scale(0.6);
-	}
-	
-	#ol-street-view--pegman-button-div #ol-street-view--pegman-button {
-	box-shadow: 0 1px 4px rgb(0 0 0 / 100%);
-	}
-	
-	.gm-control-exit {
-    color: #f8f8f8;
-	}
-	
-
-/* form opengis */
-
-      #form_opengis {
-		position: absolute;
-		background-color: #fff;
-		border: 2px solid #fff;
-		border-radius: 3px;
-		box-shadow: 0 1px 4px rgb(0 0 0 / 100%);
-		z-index: 1;
-		opacity: 1;
-		bottom: 24px;
-		right: 8px;
-		margin: 0;
-		width: 27px;
-		height: 27px;
-		vertical-align: bottom;
-	}
-	  
-	  #form_opengis>a>label>img{
-		position: absolute;
-		left: 1px;
-		float: center;
-		height: 26px ;
-		cursor: pointer;
-      }
-
-	  
-/* form data source 
-
-      #form_datasource {
-		position: absolute;
-		background-color: #fff;
-		border: 2px solid #fff;
-		border-radius: 3px;
-		z-index: 1;
-		bottom: 0;
-		right: 0;
-		width: auto;
-		height: auto;
-		vertical-align: middle;
-		max-width: calc(100% - 60px);
-	}  	
-	
-	/* select all elements #form_datasource that precede .ol-touch
-	  .touch#form_datasource {	 
-        max-width: unset;
-	  }
-	
-	#form_datasource > a {
-		text-decoration: none;
-		color: #666;
-      }
-*/
-
-
-/* bottom attribution  */
-
-	.bottom-attribution {
-						  
-		background-color: #fff;
-		}
-	.bottom-attribution:hover {
-		background-color: #fff;
-		}	
-	.bottom-attribution .legend , .bottom-attribution .legend-realtime {
-		display: none;
-		} 	
-						 
-								
-	
-	.bottom-attribution ul {
-		display: flex;
-		gap: unset;
-		}		
-	.bottom-attribution ul li {
-		display: flex;
-		align-items: center;
-		}
-	.bottom-attribution ul li a {
-		padding-right: 8px;
-		display: flex;
-		align-items: center;
-		}
-
-		
-/* modify for attribution enlargement */		
-		
-		
-		/* Modify other element for attribution enlargement +17px 	
-		@media screen and (max-width: 649px) {
-		}*/				
-		
-		/* Modify other element for attribution enlargement +23px */	
-		@media screen and (max-width: 1000px) {
-			.ol-control.ol-overview	{
-			bottom: 106px;
-			}
-			.ol-scale-line {
-			bottom: 34px;
-			}
-			.ol-viewport .ol-scale {
-			bottom: 11px;
-			}			
-			.mouseposition {
-			bottom: 39px;
-			}
-			.mousePositionDefault {
-			bottom: 39px;
-			}			
-			#ol-street-view--pegman-button-div {
-			bottom: 31px;
-			}
-			
-			#form_opengis{
-			bottom: 21px;
-			}
-			/* 
-			.ol-control.ol-layerswitcher.ol-forceopen {
-			max-height: calc(100% - 135px);
-			}
-			 */ 
-		}
-
-		
 /* spatial query */
 
 		.spatial-query{
-		left: 59px;
-		top: 322px;
+		margin-top: 6px;
+		position: relative;
+    	display: table-caption;
+		width: fit-content;
 		}
 		.spatial-query.ol-active > button {
 		background-color: rgba(251, 214, 105);
@@ -2022,8 +1029,8 @@
 		#spatial-query-menu {
 		  display:none;
 		  position: absolute;
-		  top: 112px;
-		  left: 91px;
+		  top: 6px;
+		  left: 90px;
 		  background-color: white;
 		  padding: 10px;
 		  z-index: 2;
@@ -2389,6 +1396,27 @@
 		#cadastral-parcels {
 		  position: relative;
 		}
+		
+		#cadastral-parcels-archive-and-config {
+			position: absolute;
+			right: 0;
+			width: 20px;
+		}
+				
+		#spatial-parcels-show-cdu-archive-button {
+			padding-left: 4px;
+			padding-right: 4px;
+			border-radius: 5px;
+			border: 1px solid;
+			margin-bottom: 2px;
+		}
+		
+		#spatial-parcels-show-cdu-config {
+			padding-left: 4px;
+			padding-right: 4px;
+			border-radius: 5px;
+			border: 1px solid;
+		}
 
 		#spatial-parcels-set-layer-to-query-button {
 		  margin-top: 5px;
@@ -2473,6 +1501,7 @@
 		  left: unset!important;
 		  position: relative;
 		  min-height: 25px;
+		  display: inline-block;
 		}
 
 		#cadastral-parcels .ol-search button {
@@ -2535,7 +1564,7 @@
 		  position: fixed;
 		  z-index: 1;
 		  bottom: 0px;
-		  height: 30%;
+		  height: 35%;
 		  width: 100%;
 		  display: none;
 		  overflow: auto;
@@ -2546,8 +1575,8 @@
 		/* modifica posizione menù spatial query se lo schermo ha altezza sotto i 850px */
 		@media screen and (max-height: 850px) {
 			#spatial-query-table-container:not([style*="display: none"]) + #spatial-query-menu {
-			  top: unset;
-			  bottom: 10px;
+			  max-height: calc(100% - 41px);
+			  overflow: auto;
 			}
 		}
 
@@ -2612,7 +1641,6 @@
 		  right:0px;
 		  background-color: #f8f8f8;
 		  padding: 5px;
-		  width: 200px;
 		  border: 1px solid #999;
 		  text-align: center;
 		}
@@ -2621,48 +1649,14 @@
 		  border-radius: 5px;
 		  background-color: #f8f8f8;
 		}
-		.spatial-print-label-one {
-		  position: relative;
-		  display: block;
-		  text-align: justify;
-		  margin-top: 10px;
-		}
-		.spatial-print-label-two {
-		  position: relative;
-		  display: block;
-		  text-align: justify;
-		}
-		#uploadButton {
-			padding: 10px 20px;
-			background-color: #007BFF;
-			color: #fff;
-			border: none;
-			cursor: pointer;
-		}
-		#fileName {
-			margin-top: 10px;
-			font-weight: bold;
-			margin-bottom: 10px;
-		}
-		#download-from-flying-model-button {
-			padding: 10px 20px;
-			background-color: #007BFF;
-			color: #fff;
-			border: none;
-			cursor: pointer;
-		}
-		#download-from-flying-model-button:disabled {
-		  background-color: #ccc;
-		  color: #666;
-		  cursor: not-allowed;
-		}
-		#download-from-default-model-button{
+		#download-for-word, #download-for-libre{
 			padding: 10px 20px;
 			background-color: forestgreen;
 			color: #fff;
 			border: none;
 			cursor: pointer;
 			margin-top: 5px;
+			width: 150px;
 		}
 
 
@@ -2675,4 +1669,1508 @@
 		#close-table-spatial:hover {
 		  border-radius: 5px;
 		  background-color: #ddd;
+		}
+		
+	/* cdu search delta */
+		
+		#cdu-list-delta {
+			display: none;
+			position: absolute;
+			top: 6px;
+			left: 381px;
+			background-color: white;
+			padding: 10px;
+			z-index: 2;
+			width: 195px;
+			border: 1px solid rgba(0, 60, 136, 1);
+			font-size: 12px !important;
+			border-radius: 5px;;
+		}
+		
+		.cdu-list-delta-title {
+			margin: unset;
+			padding-bottom: 5px;
+			text-align: center;
+		}
+		
+		.delta-translation-item {
+			position: relative;
+			margin-top: 5px;
+		}
+		
+		.delta-translation-item button {
+			position: absolute;
+			right: 0;
+			bottom: -3px;
+		}
+		
+		
+	/* cdu archive table */
+	
+		#cdu-archive-table {
+		  position: fixed;
+		  z-index: 1;
+		  bottom: 0px;
+		  height: 35%;
+		  width: 100%;
+		  display: none;
+		  overflow: hidden;
+		  border-top: 1px solid #999;
+		  background: rgb(7,89,141);
+		}
+		
+		#cdu-archive-table .tabulator-tableholder {
+		  overflow-x: hidden;
+		}
+		
+		#cdu-archive-table .cdu-numero-input {
+			width: 100px;
+			position: absolute;
+			right: 267px;
+			bottom: 2px;
+			color: grey;
+		}
+	
+		#cdu-archive-table .cdu-data-input {
+			position: absolute;
+			right: 147px;
+			bottom: 2px;
+			color: grey;
+		}
+		
+		#cdu-archive-table .cdu-save-button {
+			position: absolute;
+			right: 94px;
+			bottom: 2px;
+			color: green;
+		}
+		
+		#cdu-archive-table .cdu-delete-button {
+			position: absolute;
+			right: 18px;
+			bottom: 2px;
+			color: red;
+		}
+		
+		/* cdu config table */
+		
+		#cdu-config-table {
+			display: none;
+			width: 80%;
+			height: 80%;
+			position: absolute;
+			top: 10%;
+			left: 10%;
+			z-index: 9999;
+			background-color: rgba(255, 255, 255, 1);
+			border: 2px solid #666;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+			overflow: auto;
+			padding: 20px;
+			border-radius: 8px;
+		}
+
+
+/* globo  */
+		.globo {
+			top: 6px;
+			margin-left: 6px;
+			display: inline-flex;
+			position: relative;
+		}
+		.globo > button {
+			font-size: 14px;
+			width: 20px;
+			font-weight: bold;
+			top: 1px;
+			position: relative;
+		}
+		.ol-touch .globo {
+			display: none;
+		}
+		
+
+		
+/* overview map  */
+		.ol-control.ol-overview	{
+			margin-bottom: 6px;
+			left: 0;
+			bottom: 0;
+			position: relative;
+			width: fit-content;
+		}	
+		.ol-overview:not(.ol-collapsed) button {
+			z-index: 1;
+		}
+		
+/* scale line */
+	  	
+		 .ol-scale-line {
+			position: relative;
+			margin-bottom: 6px;
+			margin-left: unset;
+			padding: unset;
+			border-radius: 0px;
+			
+		}
+		.ol-scale-line-inner {
+			border: 2px solid #ccc ;
+			border-top: none ;
+			background: #f8f8f8;
+			color: black ;
+			font: 11.5px/1.5 Arial;
+			height: 14px;
+			border-top: 1px solid #f8f8f8;
+		}
+
+
+		
+/* ol-ext scale control */
+	
+		.ol-viewport .ol-scale {
+			left: unset;
+			bottom: unset;
+			height: 13px;
+			border-radius: unset;
+			display: flex;
+			flex-direction: row-reverse;
+			font: 14.4px / 1.2 Arial;
+			align-items: center;
+			position: relative;
+			clear: both;
+			margin-bottom: 6px;
+			width: fit-content;
+			background-color: #f8f8f8;
+		}
+		.ol-viewport .ol-scale input {
+			height: 11px;
+			width: 70px;
+			background-color: rgba(255,255,255,1);
+			margin-right: 2px;
+		}	
+		.ol-viewport .ol-scale .scale-text {
+			margin-right: 4px;
+		}
+		.ol-touch .ol-scale{
+			display: none;
+		}			
+
+/* popup coordinates */	
+		.popup-coordinates {
+			position: relative;
+			width: fit-content;
+			display: inline-flex;
+			align-items: center;
+			padding: unset;
+			float: left;
+		}
+		.popup-coordinates button {
+			width: 17px;
+			height: 16px;
+			margin: unset;
+			font-size: 12px;
+		}
+		.popup-coordinates:hover {
+			background-color: rgba(251, 214, 105);
+		}
+		.ol-touch .popup-coordinates {
+			display: none;
+		}
+
+/* epsg mouse position coordinates */	
+		
+		.mousePositionDefault {
+			position: relative;
+			display: inline-flex;
+			align-items: center;
+			background-color: #f8f8f8;
+			height: 12px;
+			font: 11.5px / 1.6 Arial;
+			border-radius: unset;
+			padding: 2px;
+			width: max-content;
+		}
+		.popup-coordinates + .mousePositionDefault {
+			margin-left: 6px;
+		}
+		.mousePositionDefault u {
+			margin-right: 4px;
+		}
+		.mousePositionDefault:hover {
+			background-color: rgba(251, 214, 105);
+			}
+		.ol-touch .mousePositionDefault {
+			display: none;
+		}
+		
+		
+/* form login 
+	
+      #form_login {
+		background-color: rgba(255, 255, 255, 0.75);
+		border: 2px solid #f8f8f8 ;
+		border-top: none ;
+        z-index: 1;
+        opacity: 1;
+		top: 10px;
+		right: 10px;
+		margin: 0;
+		width: 77px;
+		height: 24px;
+		vertical-align: middle
+      }
+	  .text_login {
+		position: absolute;
+		top: -1.6px;
+		left: 7px;
+		}
+	  .fa-sign-in-alt {
+		position: absolute;
+		top: 4.4px;
+		right: 8px;
+		}
+*/
+
+		
+/* modify qgis2web popup */
+
+		/*
+		#popup-content>ul>li:nth-child(even) {
+			background-color: unset;
+		}
+	
+		#popup-content li table{
+		max-height: 200px;
+		overflow-x: hidden;
+		overflow-y: auto;
+		display: block;
+		}
+		
+		#popup-content {
+			max-height: calc(100vh - 300px);
+			max-width: 350px;
+			overflow-y: auto;
+			font-size: 11.5px;
+		}
+		
+		#popup-content > a {
+			display: block;
+			padding: 2px;
+			border-bottom: 1px solid #666;
+			font-size: 12.4px;
+		}
+		
+		table.featureInfo caption {
+			color: #666;
+		}
+		
+		.ol-selectable {
+			z-index: 3;
+		}
+			
+		th {
+		min-width: 125px;
+		color: #666!important;
+		}
+		td {
+		min-width: 125px;
+		}
+		
+		@media screen and (max-width: 649px) {
+		th {
+		min-width: 125px;
+		}
+		td {
+		min-width: 125px;
+		}
+		#popup-content {
+			max-width: 265px;
+		}
+		}
+		
+		.ol-popup {
+		user-select: text;	
+		overflow: unset;
+		max-height: unset;
+		cursor: default;
+		left: -145px;
+		padding: 5px;
+		}
+		.ol-popup:after {
+        top: 100%;
+        border: solid transparent;
+        content: " ";
+        position: absolute;
+		border-top-color: white;
+        border-width: 10px;
+        left: 145px;
+        margin-left: -10px;
+		}	
+		#popup-content>ul>li>a {
+		position: relative;
+		display: block;
+		padding: 2px;
+		border-bottom: 1px solid #666;
+		font-size: 12.5px;
+		}
+		
+		#popup-content>table{
+			font-size: 11.4px!important;
+		} */
+		
+		th {
+		color: #666!important;
+		}
+		
+		tr td strong {
+			 color: #333;
+		}
+
+
+		
+		
+/* ol-ext popup feature */
+
+		.ol-popup.default {
+		  left: auto;
+		  padding: unset;
+		  display: block;
+		  bottom: auto;
+		  background: none;
+		  border: 0;
+		  filter: unset;
+		  width: fit-content;
+		  min-width: 110px;
+		  z-index: 4;
+		  font-size: 11.5px;
+		  filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
+		  user-select: text;
+		}
+		.ol-popup.default:after {
+		  display: none;
+		}
+		
+		.ol-popup.default:before {
+		  display: none;
+		}
+		
+		.ol-popup .closeBox:after{
+			top: 8px;
+		}
+
+		.ol-popupfeature h1{
+		  height: 10px;  
+		  font-weight: bold;
+		  font-size: 12.5px;
+		  margin-top: 5px;
+		  margin-bottom: 10px;
+		}
+
+		.ol-popup .ol-popupfeature table {
+			min-height: 60px;
+			max-height: 60vh;
+			overflow: auto;
+			display: block;
+		}
+			
+		.ol-popup .ol-popupfeature table td {
+			word-wrap: break-word;
+		}
+		
+		.ol-popupfeature tr:nth-child(2n+1){
+		  background-color: unset!important;
+		}
+
+		tr td:first-child {
+			font-weight: bold;
+			color: #666!important;
+			/* min-width: 125px; */
+		  }
+
+		/* tr td:nth-child(2) {
+			min-width: 125px;
+		  } */
+		  
+		@media screen and (max-width: 649px) {
+			.ol-popup .ol-popupfeature table td {
+			max-width: 110px;
+			word-wrap: break-word;
+			min-width: 80px;
+			}					
+		}
+		
+		.ol-popup-center .ol-count {
+			float: right;
+			margin: 7px 0 0 0!important;
+			position: absolute;
+			bottom: 12px;
+			right: 7px;
+		}
+		 
+		.ol-popup-top.ol-popup-left .ol-count {
+			position: relative;
+			top: -7px;
+			left: -3px;
+			float: left;
+		}
+
+		.ol-popup-top.ol-popup-right h1 {
+		  padding-right: 65px;
+		}
+		.ol-popup-top.ol-popup-right .ol-count {
+			margin: 7px 0 0 0!important;
+			position: absolute;
+			top: 3px;
+			right: 25px; 
+		}
+
+		.ol-popup-left .ol-count {
+			margin: 7px 0 0 0!important;
+			position: absolute;
+			bottom: 12px;
+			left: 32px;
+		}
+
+		.ol-popup-right .ol-count {
+			margin: 7px 0 0 0!important;
+			position: absolute;
+			bottom: 12px;
+			right: 7px;
+		}
+
+		.ol-popup .ol-popupfeature .ol-zoombt {
+			width: 25px;
+			height: 25px;
+		}
+
+		.ol-popup .ol-popupfeature .ol-zoombt:before {
+			width: 0.9em;
+			height: 0.9em
+		}
+		.ol-popup .ol-popupfeature .ol-zoombt:after {
+			top: 16.5px;
+			left: 14.5px;
+			border-width: 0.1em 0.25em;
+		}
+		
+		
+		.ol-popup .ol-fix {
+			/* width: 1em; */
+			/* height: 0.9em; */
+			background: rgba(255, 255, 255, 1);
+			/* color: white; */
+			position: absolute;
+			right: 6px;
+			top: 26px;
+			float: right;
+			margin: 0.2em;
+			cursor: pointer;
+		}
+		.ol-popup .ol-fix:before {
+			content: "";
+			width: 12px;
+			height: 11px;
+			display: block;
+			border: 1px solid rgba(0, 60, 136, 0.5);
+			border-right-width: 0.1em;
+			border-right-width: 4px;
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+			/* margin: 0.1em; */
+		}
+
+		.ol-touch .ol-fix {
+			display: none;
+		}
+
+		.ol-popup.ol-fixed {
+			margin: 0!important;
+			top: 7px!important;
+			right: auto;
+			left: 260px!important;
+			bottom: auto!important;
+			-webkit-transform: none!important;
+			transform: none!important;
+		}
+
+		.ol-fixed .ol-count {
+			position: relative;
+			top: -7px;
+			left: 0px;
+			float: left;
+		}
+		
+		.popupimage button {
+			margin: 3px;
+			background: #f8f8f8;
+			cursor: pointer;
+			padding: 3px;
+			font-size: 13px;
+			box-shadow: 0px 0px 3px 1px black;
+			border: none;
+		}
+
+		.popupimage:fullscreen img {
+			max-width: 100%!important;
+			max-height: 100%!important;
+		}
+
+		.popupimage .expand-btn { display: inline-flex; }
+		.popupimage .compress-btn { display: none; }
+		.popupimage:fullscreen .expand-btn { display: none; }
+		.popupimage:fullscreen .compress-btn { display: inline-flex; }
+
+
+
+/* ol-ext print dialog  */
+
+
+	
+		.ol-control.ol-print {
+			top: unset;
+			right: unset;
+			left: unset;
+			margin-right: 6px;
+			position: relative;
+		}
+
+		/* selettore principale: disabilita gesti sull'intero dialog */
+		.ol-ext-print-dialog,
+		.ol-ext-print-dialog * {
+			touch-action: none;
+		}
+
+		.ol-ext-print-dialog .ol-saveas,
+		.ol-ext-print-dialog .ol-print-param button[type="button"]{
+			display: none;
+		}
+		.ol-ext-print-dialog .print-copy-button,
+		.ol-ext-print-dialog .print-download-button,
+		.ol-ext-print-dialog .print-submit-button {
+			background-color: rgba(0,60,136,.7);
+			color: white;
+			padding-left: 8px;
+    		padding-right: 8px;
+		}	
+		.ol-ext-print-dialog #sidebar {
+			display: none!important;
+		}
+
+		.ol-ext-print-dialog #form_logo {
+			display: none;
+		}
+
+		.ol-ext-print-dialog #form_logo.print {
+			display: block; 
+		}
+		.ol-ext-print-dialog #top-left-container {
+			top: 15px;
+			left: 15px!important;
+		}
+		/* se c'è il titolo della mappa sposta in basso il logo */
+		.ol-ext-print-dialog .ol-control-title.visible ~ #top-left-container {
+			top: 30px;
+		}
+
+		.ol-ext-print-dialog .ol-scale-line {
+			display: none;
+		}
+		.ol-ext-print-dialog #bottom-left-container {
+			left: 0!important;
+			bottom: 0;
+		}
+		.ol-ext-print-dialog .scale-text{
+			display: none;
+		}
+		.ol-scale-bar {
+			display: none;
+		}
+		.ol-ext-print-dialog #form_opengis {
+			display: none;
+		}
+
+		.ol-ext-print-dialog #ol-street-view--pegman-button-div{
+			display: none;
+		}
+		.ol-scale-bar-inner {
+			display: flex;
+		}
+		.ol-scale-singlebar-odd {
+			background-color: white;
+		}
+		.ol-scale-singlebar-even {
+			background-color: black;
+		}		
+		.ol-ext-print-dialog .ol-scale-bar {
+			display: unset;
+			bottom: 20px;
+			left: 20px;
+		}
+		.ol-ext-print-dialog .ol-geocoder{
+			display: none;
+		}
+		.ol-ext-print-dialog .mousePositionDefault{
+			display: none;
+		}
+		.ol-ext-print-dialog .ol-attribution{
+			display: none;
+		}
+		.ol-ext-print-dialog .ol-print-map .ol-control.ol-layerswitcher {
+			display: block !important;
+			width: unset;
+			height: unset;
+			position: static;
+			padding: unset;
+			min-width: unset;
+			min-height: unset;
+		}
+		.ol-ext-print-dialog .ol-print-map .ol-control.ol-layerswitcher > button {
+			display: none
+		}
+		.ol-ext-print-dialog .ol-print-map .ol-control.ol-layerswitcher .panel-container {
+			display: none
+		}
+		.ol-ext-print-dialog .ol-print-map .legend-attribution{
+			display: none!important;
+		}
+		.ol-ext-print-dialog .ol-print-map .bottom-attribution{
+			display: flex!important;
+			right: 15px
+		}
+		.ol-ext-print-dialog .legend-attribution.print{
+			display: block!important;
+			width: fit-content;
+			right: 15px!important;
+			top: 15px!important;
+			background-color: #f8f8f8!important;
+			height: unset!important;
+			max-height: calc(100% - 45px);
+			overflow-y: auto!important;
+			border: 2px solid #000;
+			margin-top: unset!important;
+		}
+		/* se c'è il titolo della mappa sposta in basso la legenda */
+		.ol-ext-print-dialog .ol-control-title.visible ~ .ol-layerswitcher .legend-attribution.print {
+			top: 30px!important;
+			max-height: calc(100% - 60px);
+		}	
+		.ol-ext-print-dialog .legend-attribution ul {
+			width: unset;
+			top: unset;
+			margin-top: unset;
+		}
+		.ol-ext-print-dialog .legend-attribution li {
+			max-width: 250px;
+		}
+		.ol-ext-print-dialog .legend-attribution button{
+			display: none!important;
+		}
+		.ol-ext-print-dialog .legend-attribution.ol-collapsed ul{
+			display: flex;
+		}
+		.ol-ext-print-dialog .ol-print-compass{
+			bottom: 70px !important;
+			top: unset !important;
+			right: unset !important;
+			margin: 7px !important;
+		}
+		.ol-ext-toggle-switch {
+			font-size: 12.3px;
+			display: block !important;
+			cursor: pointer;
+			position: relative;
+			margin-bottom: 5px;
+		}
+		/* show button on print map
+		.ol-ext-print-dialog .ol-print-map .ol-control.measure-control{
+			display: block!important;
+		}
+		.ol-ext-print-dialog .ol-print-map .ol-control.highlight-feature{
+			display: block!important;
+		}
+		.ol-ext-print-dialog .ol-print-map .ol-control.ol-bar{
+			display: block!important;
+		}
+		.ol-ext-print-dialog .ol-print-map .ol-control.ol-bar .ol-control{
+			display: inline-block!important;
+		}
+		.ol-ext-print-dialog .ol-print-map .ol-bar.collapsed .ol-editbar{
+			display: none!important;
+		}
+		.ol-ext-print-dialog .ol-print-map .ol-control.ol-bar .ol-control.ol-option-bar{
+			display: none!important;
+		}
+		.ol-ext-print-dialog .ol-print-map .ol-control.ol-bar .ol-control.ol-active > .ol-option-bar{
+			display:block!important;
+		} 
+		*/
+		.ol-ext-print-dialog .ol-print-map .ol-viewport .ol-scale{
+			display: block!important;
+			left: 21px!important;
+			bottom: 55px;
+			background-color: #000000;
+			box-shadow: none;
+		}
+		.ol-ext-print-dialog .ol-print-map .scaladescription-visible{
+			display: none;
+		}
+		.ol-ext-print-dialog .ol-print-map #form_epsg{
+			display: none;
+		}		
+		.ol-ext-print-dialog .ol-print-map .ol-viewport .ol-scale input {
+			bottom: 2px;
+			position: relative;
+		}
+		/* .ol-touch .ol-control.ol-print{
+			display: none;
+		}	
+		*/
+		@media (max-width: 700px) {
+			.ol-ext-print-dialog > form .ol-closebox {
+				right: 5px;
+				left: unset;
+			}
+			.ol-ext-print-dialog .ol-print-param {
+				width: 100%;
+				height: 60%;
+				padding: 5px;
+			}
+			.ol-ext-print-dialog .ol-print-map {
+				top: 60%;
+				width: 100%;
+				height: 40%;
+			}
+		}
+
+
+
+
+			
+		
+/* ol-ext permalink  */		
+		.ol-permalink{
+			position: relative;
+			right: unset;
+			top: unset;
+			margin-right: 6px;
+		}
+		
+		.ol-permalink button {
+		background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QUIzOUY4MzEzOEM5MTFFREJCMjA4ODVCNjRDMzU4RTEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QUIzOUY4MzIzOEM5MTFFREJCMjA4ODVCNjRDMzU4RTEiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpBQjM5RjgyRjM4QzkxMUVEQkIyMDg4NUI2NEMzNThFMSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpBQjM5RjgzMDM4QzkxMUVEQkIyMDg4NUI2NEMzNThFMSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pl8WV18AAAIkSURBVHjapJM/aBRBFMZnZ2d3b++8P14h2Bib4zwEO4UUyaGNRUAUQUJUNBg0jYpCSgs7wSIg2AkmaWxEDAZJE0QRPUGwioiWNjZCIsvt3v6Z9TfhEgx6JOCwj3k7733v+97OWyvPc/E/S3U6HREEwY6JUkrPkvKwha+1/oxF9XpdiEajsRuiEewrlvftG3ayPToqlOd5f2XDNAzTUdwuLS6XSnuGwrBb4v0elmI3syx7VqnWhtU2oGVJ27YfEpzW/W+D9KDXi65Q6CCyE3PmF4srYbf7itgt+SeYZy5N02n8RaXUpHIc468BnlfKGdrMpdBbcn+FYXhImluA1fb94nye64vlcnnB8wpXKXnXlnK/63njAAqOo85tkQlxgtyKX/RXjWSzHtHjBVifRlF0CS0TWmcHKP4J+45UFMq6ATuueyxJkie4gc6yWTBqKo7jy+zPkT/RV9QwIM5e8z6DApEk8ZLjOEfwlzmrUOAUZKvkyUn6DNmvEdj4SLatPhoQYqfYvxB7gIQQfyXXugLBGYIvNz4yhEUKxPjrmz3Gce8xbB9o636SpuMUriVx/J7cvYBP08KLrQFjLhapXCXpDoUKWJlrPEvsOi0siDxvEzuPinfSlscBL20bmmazWWV705+wH9hP41PoRj+lhu3713i2222hWq3Wuuu6YzDcRuIY2MzMgdb5HFdl8tYGzTfkwhr0N5pzCu38kw0K7AZs1m8BBgB/TADv8Sy50QAAAABJRU5ErkJggg==');
+		background-position: center;
+		background-repeat: no-repeat;
+		}
+		
+		.ol-permalink button i:before {
+			display:none;
+		}
+		.ol-permalink button i:after {
+			display:none;
+		}
+
+		.ol-touch .ol-permalink {
+			display: none;
+		}
+		.center {
+		text-align: center;
+		}
+		.ol-ext-dialog > form .ol-content {
+			overflow-x: hidden;
+			overflow-y: auto;
+			user-select: text;
+			cursor: auto;
+			word-wrap: break-word;
+		}	
+		.ol-ext-dialog	{
+			background-color: unset;
+		}
+		
+		
+		
+/* rotate arrow */	
+		
+		.ol-rotate {
+			display: none;
+			width: fit-content;
+			position: relative;
+			right: 0;
+			top: unset;
+			margin-right: 6px;
+		}
+		
+		.ol-rotate.ol-hidden {
+		opacity: unset;
+		visibility: unset;
+		}
+		.ol-compass{
+			font-weight: unset;
+		}
+		
+		.ol-touch .ol-rotate-reset{
+			height: 20px;
+			width: 20px;
+		}
+	
+		
+/* fullscreen  */	
+	
+		.ol-full-screen {
+			right: 0;
+			top: unset;
+			position: relative;
+		}
+
+		.ol-full-screen.touch {	 
+			top: 49px;
+		}
+
+		
+/* ol-ext layerswitcher */		
+		
+		.ol-touch .ol-layerswitcher {
+		top: 80px;
+		
+		}
+		
+		.ol-touch .ol-layerswitcher.ol-forceopen {
+		max-height: calc(100% - 158px)!important;
+		}
+		
+		.ol-layerswitcher.ol-forceopen {
+		z-index: 2;
+		height: 100%;
+		max-height: calc(100% - 120px);
+		padding: 3px;
+		right: 8px;
+		cursor: auto;
+		}
+		
+		.ol-layerswitcher.ol-collapsed{
+		min-height: 43px;
+		min-width: 43px;
+		padding: 3px;
+		right: 8px;
+		}
+		
+		.ol-layerswitcher.ol-forceopen .panel-container {
+		/* personalize width panel container */	
+		width: 330px;
+		margin-top: 40px;
+		height: calc(100% - 47px);
+		overflow-y: scroll;
+		background-color: #f8f8f8;
+		padding-left: 2px;
+		}
+		
+		.ol-layerswitcher .ol-counter{
+			display: none;
+		}
+		
+		.ol-layerswitcher .panel {
+		right: -3px;
+		font-family: sans-serif;
+		font-size: 11.5px;
+		}
+		
+		#layersSelect {
+			float: right;
+			margin-bottom: 6px;
+		}
+
+		.panel a {
+			position: relative;
+			float: right;
+			top: 2px;
+			right: 3px;
+		}
+
+		.ol-layerswitcher .panel ul {
+		padding: 0 0 0 22px;
+		}
+
+		.ol-layerswitcher .panel li label {
+		/* personalize width label */	
+		width: calc(100% - 92px);
+		max-width: unset;
+		height: auto;
+		min-height: 15px;
+		white-space: unset;
+		/* max-height: 250px; 
+		overflow-y: auto;*/
+		}
+		
+		.ol-layerswitcher .panel li.ol-layer-group > .li-content > label {
+		width: calc(100% - 110px);
+		}
+
+		.ol-layerswitcher .panel li > div {
+		display: contents;
+		}
+		
+		.ol-layerswitcher .panel li label span {
+		position: relative;
+		padding-left: 5px;
+		padding-right: unset;
+		width: 97%;
+		}
+		
+		/* .ol-layerswitcher .panel li label span img {
+		max-width: 98%;
+		} */
+		
+		.ol-layer-group {
+			margin-top: 3px;
+		}
+		
+		.ol-layer-group > .li-content label span {
+		  font-weight: bold;
+		}
+		
+		.ol-layer-group .ol-layer-group > .li-content label span {
+		  font-style: italic;
+		 }
+		 
+		.ol-layerswitcher img {
+			max-width: 22px;
+			max-height: 22px;
+			vertical-align: middle;
+			padding-bottom: 1px;
+			padding-right: 2px;
+		}
+
+		.ol-layerswitcher .layerswitcher-opacity {
+		display: inline-flex;
+		position: absolute;
+		width: 40px;
+		right: 26px;
+		border: unset;
+		margin: 9px 6px 6px 3px;
+		background: linear-gradient(to right, rgba(0,60,136,0), #aaa);
+		box-shadow: 1px 1px 1px rgb(0 0 0 / 35%);
+		}
+		
+		.ol-layerswitcher .layerswitcher-opacity-label {
+		display: inline;
+		position: absolute;
+		right: 50px;
+		bottom: unset;
+		font-size: 0.7em;
+		}
+			
+		.ol-layerswitcher [type="radio"] + label:before, .ol-layerswitcher [type="checkbox"] + label:before, .ol-layerswitcher [type="radio"]:checked + label:after, .ol-layerswitcher [type="checkbox"]:checked + label:after{
+		display:none;
+		} 
+		
+		.ol-layerswitcher input[type="radio"], .ol-layerswitcher input[type="checkbox"]{
+		width: auto;
+		height: auto;
+		opacity: 1
+		}
+		
+		.ol-layerswitcher .ol-layer-group > .li-content > input[type="checkbox"] {
+			margin-top: unset;
+		}
+		
+		.ol-layerswitcher .layerswitcher-opacity .layerswitcher-opacity-cursor, .ol-layerswitcher .layerswitcher-opacity .layerswitcher-opacity-cursor:before {
+		width: 10px;
+		height: 10px;
+		background: #aaaaaa61;
+		}
+		
+			.ol-touch .ol-layerswitcher input[type="checkbox"] {
+				width: 15px;
+				height: 15px;
+			}
+			.ol-touch .ol-layerswitcher .panel li label {
+				top: 3px;
+				width: calc(100% - 24px);
+			}
+			
+			.ol-touch .ol-layerswitcher .panel li.ol-layer-group > .li-content > label {
+			width: calc(100% - 41px);
+			}
+		
+		.ol-layerswitcher-buttons > div {
+		vertical-align: top;
+		}
+		
+		.ol-layerswitcher > button {
+		position: static;
+		top: 42px;
+		right: 9px;
+		float: right;
+		z-index: 1;
+		width: 35px;
+		height: 35px;
+		background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAwRJREFUaEPtmP2RDVEQxc9GYDMgAzJABIgAESACRIAIEAEZIAMysBnsZqB+alq1u/ej78d49dTrf96rmTtz+3SfPrd7znTkdnbk/usE4NAZPGXgf87AuaT3G8Cnki73ALsXhe5I+iTp1ub0T0mPJH1fDWIPAE8kvZFEBryRgReSPqwEsRoAlAGA2dX254a7BgAotcRWAYAqUAbqmP1wYHD6trsHlaAU1JqyFQDubc57ynyU9NwVLvfeSnrsvIVSgPg6g2AWwEtJrxIH4DnO5gxQ1Ic3nn89CmIUgEnkw4TvZKOlNNCMqPu6+LzVRbfUjgBIJRIM3yQBJuoAAcDpuy4AQ1LbCyAnke82vo+wAKo9S+qiS2p7AOQkEkBEcsbIHCo1JLURADWJbPE9CgxaDkltC0BEIqNOttYNSW0NQK9EthyM3u+S2hqAEjcpsqjaRJ22dWSBcyJtR4q11qIQ/KdId2kDEnSlWiOQxZajBYA9StykIZtVIMOAk6hcrR3JZjMCwB4kjTag2LWpNmB7Sa7WCE6o7e4BwH7IHVG/6cJBW0BT1lsXRJsOFqUzu9hO9LA8RwDATc/BFW1AtB1J975GoxoArwgc+aiPN+hD+r1FUp+jIt1o2tWiRkgqVCoqXw0AD/r+nbTeT6jSI7VRiWTdl2Q4Yr7w0vonaK0MAOKBC3FuCIlIbVQiu0/+SA3kTkau0YX6Ayg3cdnsG5FIutJ0EKoNR7/3jgBgHZFBfVpDSI7faeGldTIzHIUB2IGGZKanMg552ctJLc/nJJK1ZMd/DOgajqIZ8FGMDCGp1OacWjIcjQAADJsDxFOqJLWsL0mkBYbvR0PD0SgAO5VzQ0gqtT57OYm070fh09e/cAaA1UVEak0IaB26G7Zrx6+7MAvAXtWS2iGJrDlu91YBqEkt90a+H0X875LRyAuhRyq1/rkuiYxsuDIDNanl3sz3oyKWvQB4qbX/q6a3v8DsCcCklt8hiTwkhSJ7L1mzdwaWOPkvzoHdHS1tcMrAwUK/bXz0GfgFVLbIMcdxjJAAAAAASUVORK5CYII=');
+		background-size: contain;
+		background-repeat: no-repeat;
+		/* background-position: 2px; */
+		background-color: #f8f8f8;
+		color: black;
+		border: none;
+		}
+
+		.ol-layerswitcher > button:before , .ol-layerswitcher > button:after {
+		display:none;
+		}
+		
+		.ol-layerswitcher .expend-layers:before, .ol-layerswitcher .collapse-layers:before, .ol-layerswitcher .expend-layers:after{
+		background: #999;
+		}
+		
+		.ol-layerswitcher .expend-layers:before, .ol-layerswitcher .collapse-layers:before {
+		content: "";
+		position: absolute;
+		top: 4px;
+		left: 0;
+		height: 3px;
+		width: 11px;
+		margin: unset;
+		}
+		
+		.ol-layerswitcher .expend-layers:after {
+		content: "";
+		position: absolute;
+		left: 4px;
+		top: 0;
+		width: 3px;
+		height: 11px;
+		margin: unset;
+		}
+		
+		.ol-layerswitcher .layerExtent {
+			background: #ccc;
+			position: absolute;
+			right: 12px;
+			height: 17px;
+			width: 11px;
+			cursor: -moz-zoom-in;
+			cursor: -webkit-zoom-in;
+			cursor: zoom-in;
+		}
+
+		.ol-layerswitcher .layerExtent:before {
+			border-right: 2px solid #fff;
+			border-bottom: 2px solid #fff;
+			content: "";
+			display: block;
+			position: absolute;
+			left: 5px;
+			right: 1px;
+			top: 9px;
+			bottom: 2px;
+		}
+
+		.ol-layerswitcher .layerExtent:after {
+			border-left: 2px solid #fff;
+			border-top: 2px solid #fff;
+			content: "";
+			display: block;
+			position: absolute;
+			bottom: 9px;
+			left: 1px;
+			right: 5px;
+			top: 2px;
+		}	
+		
+		.ol-layerswitcher .layerup {
+		height: 17px;
+		width: 11px;
+		right: -3px;
+		background-color: #ccc;
+		opacity: 1;
+		cursor: move;
+		position: relative;
+		}
+		
+		.ol-layerswitcher .layerup:before, .ol-layerswitcher .layerup:after {
+		border-color: #fff transparent;
+		border-style: solid;
+		border-width: 0.4em 0.4em 0;
+		content: "";
+		position: absolute;
+		bottom: 1px;
+		left: 0.1em;
+		width: 0;
+		}
+		
+		.ol-layerswitcher .layerup:after {
+		border-width: 0 0.4em 0.4em;
+		top: 2px;
+		bottom: auto;
+		}
+		
+		/*Hide layer for hideLayer class list element*/
+		li.hideLayer {
+		display: none!important;
+		}
+
+		.roller-switcher {
+			background-image: url(./icon/lds-roller.gif);
+			background-size: contain;
+			height: 19px;
+			width: 19px;
+			display: inline-block;
+		}
+
+		.fa-triangle-exclamation {
+			color: orangered;
+			font-size: 19px; /* Add this to scale the icon */
+		}
+	
+	
+		/*expand collapse layerlegend */
+		
+				#layertitle {
+					position: relative;
+					display: flex;
+					align-items: center;
+					cursor: pointer;
+					justify-content: space-between;
+				}
+
+				#secondImage {
+				  display: none;
+				}
+				.active #firstImage {
+				  display:none;
+				}
+				.active #secondImage {
+				  display: inline-block;
+				}
+				.fa-angle-down, .fa-angle-up {
+					position: relative;
+					cursor: pointer!important;
+					font-size: large;
+					color: #999;
+					left: 1px;
+				}
+
+				/*layerlegend before*/
+				.layerlegend, .layerlegend-realtime {
+				  display: none;
+				  max-height: 0px; 
+				  /*transition: all 1s;*/
+				}
+								
+				/*layerlegend after*/
+				.active + .layerlegend , .active + .layerlegend-realtime {
+				  display: block;
+				  height: auto;
+				  max-height: 250px;
+				  overflow-y: auto;
+				  overflow-x: auto;
+				  width: 100%;
+				  padding-bottom: 2px;
+				  left: 0;
+				}
+				/*layerlegend-realtime img*/
+				.layerlegend-realtime img , .legend-realtime img {
+					max-width: unset !important;
+					max-height: unset !important;
+				}
+
+				.layerlegend .symbology {
+					position: relative!important;
+					margin-left: unset;
+					margin-top: unset;
+					margin-bottom: 1px;
+					vertical-align: top;
+				}
+		
+		
+		/*scroolbar in legend */
+		.layerlegend::-webkit-scrollbar , .layerlegend-realtime::-webkit-scrollbar {
+			width: 10px;
+			height: 10px;
+			background: #eee;
+		}
+		.layerlegend::-webkit-scrollbar-thumb , .layerlegend-realtime::-webkit-scrollbar-thumb {
+			background: #ccc;
+		}
+		
+		
+		/* Hide opacity bar for noOpacity class list element
+		li.noOpacity .layerswitcher-opacity {
+		display: none;
+		}
+		li.noOpacity .layerswitcher-opacity-label {
+		display: none;
+		}
+		*/
+		
+		/* Remove the checkbox in Group Layer (using initial [#map .visible] if using Father/Children group relation in .js)
+		#map .ol-layer-group > .li-content input[type="checkbox"]{
+		display: none;
+		}
+		
+		/* Prevent clic (using initial [#map .visible] if using Father/Children group relation in .js)
+		#map .ol-layer-group > .li-content label {
+		  padding-left: 0px;
+		  pointer-events: none;
+		}*/
+		
+		/* 
+		.ol-touch .ol-layerswitcher .layerswitcher-opacity .layerswitcher-opacity-cursor {
+			width: 10px;
+			height: 10px;
+		} */
+		
+		.ol-touch .layerup , .ol-touch .layerExtent , .ol-touch .layerswitcher-opacity , .ol-touch .layerswitcher-opacity-label {
+			display: none;
+			}
+			
+		.ol-touch .panel-container {
+			width: 240px!important;
+		}
+		
+				
+/* modify walkermatt layer switcher 
+	  
+		.layer-switcher {
+		top: 75px;
+		}
+		.layer-switcher.shown {
+		max-height: calc(100% - 140px);
+		width: 290px;
+		}
+		.layer-switcher.shown.layer-switcher-activation-mode-click > button
+		{
+		left: unset;
+		right: 22px;
+		border: 4px solid #eee;
+		border-radius: 4px!important;
+		font: 24px/0 Arial;
+		}
+		.layer-switcher li label {
+		padding-left: 2.7em;
+		padding-right: 1.2em;
+		display: inline-block;
+		margin-top: -1px;
+		}
+		.layer-switcher ul {
+		margin: 7px 0.4em;
+		}
+			*/
+	
+
+/* legend attribution in map*/
+			.ol-layerswitcher.ol-collapsed > .legend-attribution {
+				display: none;
+			}
+
+			.ol-layerswitcher.ol-collapsed.ol-forceopen > .legend-attribution {
+				display: block;
+			}
+
+			.legend-attribution {
+				height: calc(100% - 47px);
+				width: calc(100% - 11px);
+				overflow-y: scroll;
+				overflow-x: hidden;
+				text-align: left;
+				right: 4px;
+				top: 42px;
+				z-index: 3;
+				box-shadow: none;
+				}
+			.legend-attribution:not(.ol-collapsed){
+				background: #f8f8f8;
+			}
+			.legend-attribution.ol-uncollapsible {
+				bottom: unset;
+				right: unset;
+			}
+			.legend-attribution.ol-collapsed {
+				height: unset;
+				overflow-y: hidden;
+				background-color: rgb(255 255 255 / 0%);
+				right: 55px;
+				top: 16px;
+				margin-top: 0px;
+				width: fit-content
+			}
+
+			.legend-attribution button {
+				z-index: 3;
+				border: 1px solid #00000033;
+			}
+			.legend-attribution.ol-collapsed > button {
+				position: relative;
+				right: unset;
+				width: 65px;
+				background-color: #f8f8f8;
+			}
+			.legend-attribution > button {
+				position: fixed;
+				right: 35px;
+				width: 108px;
+				background-color: rgba(251, 214, 105);
+				border-radius: 4px;
+			}
+			.legend-attribution.ol-collapsed ul {
+				display: none;
+			}
+			.legend-attribution ul {
+				display: flex;
+				flex-direction: column-reverse;
+				width: 100%;
+				padding-left: 4px;
+				margin-top: 20px;
+				margin-bottom: 0px;
+			}
+			.legend-attribution li {
+				padding-bottom: 8px;
+				list-style: none;
+			}
+			.legend-attribution-expand, .legend-attribution-collapse {
+				font-family: Arial;
+				font-weight: 600;
+				font-size: small;
+			}		
+	
+			
+/* street-view */
+ 
+	.ol-street-view--activated .ol-street-view--size-toggler {
+	 display: none;
+	 }
+	 
+	#ol-street-view--pegman-button-div {
+    top: unset;
+	bottom: 14px;
+    right:47px;
+	z-index: 1;
+	}
+	
+	#ol-street-view--pegman-button-div.ol-street-view--md-btn #ol-street-view--pegman-button, #ol-street-view--pegman-button-div.ol-street-view--md-btn #ol-street-view--pegman-draggable {
+    transform: scale(0.6);
+	}
+	
+	#ol-street-view--pegman-button-div #ol-street-view--pegman-button {
+	box-shadow: 0 1px 4px rgb(0 0 0 / 100%);
+	}
+	
+	.gm-control-exit {
+    color: #f8f8f8;
+	}
+	
+
+/* form opengis */
+
+      #form_opengis {
+		position: absolute;
+		background-color: #fff;
+		border: 2px solid #fff;
+		border-radius: 3px;
+		box-shadow: 0 1px 4px rgb(0 0 0 / 100%);
+		z-index: 1;
+		opacity: 1;
+		bottom: 24px;
+		right: 8px;
+		margin: 0;
+		width: 27px;
+		height: 27px;
+		vertical-align: middle;
+	}
+	  
+	  #form_opengis>a>label>img{
+		position: absolute;
+		left: 1px;
+		float: center;
+		height: 26px ;
+		cursor: pointer;
+      }
+
+	  
+/* form data source 
+
+      #form_datasource {
+		position: absolute;
+		background-color: #fff;
+		border: 2px solid #fff;
+		border-radius: 3px;
+		z-index: 1;
+		bottom: 0;
+		right: 0;
+		width: auto;
+		height: auto;
+		vertical-align: middle;
+		max-width: calc(100% - 60px);
+	}  	
+	
+	/* select all elements #form_datasource that precede .ol-touch
+	  .touch#form_datasource {	 
+        max-width: unset;
+	  }
+	
+	#form_datasource > a {
+		text-decoration: none;
+		color: #666;
+      }
+*/
+
+
+/* bottom attribution  */
+
+	.bottom-attribution {		  
+		background-color: #fff;
+		font-size: 0.9rem;
+		}
+	.bottom-attribution a {
+		color:#0078A8;
+    	text-decoration: none;
+		}
+	.bottom-attribution a:hover {
+		text-decoration: underline;
+		}
+	.bottom-attribution:hover {
+		background-color: #fff;
+		}	
+	.bottom-attribution .legend , .bottom-attribution .legend-realtime {
+		display: none;
+		} 	
+						 
+								
+	
+	.bottom-attribution ul {
+		display: flex;
+		gap: unset;
+		}		
+	.bottom-attribution ul li {
+		display: flex;
+		align-items: center;
+		}
+	.bottom-attribution ul li a {
+		padding-right: 5px;
+		display: flex;
+		align-items: center;
+		}
+
+		
+/* modify for attribution enlargement */		
+		
+		
+		/* Modify other element for attribution enlargement +17px 	
+		@media screen and (max-width: 649px) {
+		}*/				
+		
+		/* Modify other element for attribution enlargement +23px */	
+		@media screen and (max-width: 1000px) {
+			#bottom-left-container {
+			bottom: 35px;
+			}
+			#ol-street-view--pegman-button-div {
+			bottom: 31px;
+			}
+			
+			#form_opengis{
+			bottom: 41px;
+			}
+			/* 
+			.ol-control.ol-layerswitcher.ol-forceopen {
+			max-height: calc(100% - 135px);
+			}
+			 */ 
 		}

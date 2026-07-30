@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
     <head>
-	<script type="text/javascript" src="./resources/master/ol-ext-master/dist/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="./resources/master/ol-ext-master/dist/jquery-2.0.0.min.js"></script>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
@@ -21,15 +21,15 @@
       });
     });
   </script>	
-		<script type="text/javascript" src="./resources/master/ol-ext-master/dist/ol.js"></script>	
-		<link rel="stylesheet" href="./resources/ol.css">
+		<script type="text/javascript" src="./resources/master/openlayers-master/ol.js"></script>	
+		<link rel="stylesheet" href="./resources/master/openlayers-master/ol.css">
 
 		<link rel="stylesheet" href="./resources/master/ol-ext-master/dist/ol-ext.css"/>
 		<script type="text/javascript" src="./resources/master/ol-ext-master/dist/ol-ext.js"></script>	
 		<script src="./resources/master/ol-ext-master/dist/FontAwesome5Def.js"></script>
 		<link rel="stylesheet" type="text/css" href="./resources/master/font-awesome-master/js/fontawesome-all.css">
-		<link rel="stylesheet" href="./resources/master/sidebar-v2-master/css/ol3-sidebar.css">
-		<script src="./resources/master/sidebar-v2-master/js/ol3-sidebar.js"></script>
+		<link rel="stylesheet" href="./resources/master/ol-sidebar-master/css/ol-sidebar.css">
+		<script src="./resources/master/ol-sidebar-master/js/ol-sidebar.js"></script>
 
 		<script src="./resources/master/ol-street-view-master/dist/interact.min.js" data-no-source-map></script>
 		<script src="./resources/master/ol-street-view-master/dist/ol-street-view.js" data-no-source-map></script>	
@@ -42,22 +42,20 @@
         <script src="./resources/functions.js"></script>
         <!--<script src="./resources/ol-layerswitcher.js"></script>-->
 		<link href="./resources/master/ol-geocoder-master/dist/ol-geocoder.css" rel="stylesheet">
-        <script src="./resources/master/ol-geocoder-master/dist/ol-geocoder.js"></script>		
+        <script src="./resources/master/ol-geocoder-master/dist/ol-geocoder.js"></script>
+		<script src="./resources/master/idb-master/dist/index-min.js"></script>			
+		<script src="./resources/master/sldreader-master/dist/sldreader.js"></script>	
+		<script src="./resources/master/html2canvas-master/html2canvas.min.js"></script>
+		<script src="./resources/master/filesaver.js-master/dist/FileSaver.min.js"></script>		
 
 		<link rel="stylesheet" href="./resources/o.gis/o.gis_style.css">
   <!-- layerswitcher and legend attribution -->
 	<style>
 		.ol-layerswitcher.ol-forceopen .panel-container {
-		width: 353px;
-		}		
-		.ol-layerswitcher .panel li label {
-		width: 200px;
-		}		
+			width: 350px;
+		}				
 		.ol-touch .panel-container {
-			width: 270px!important;
-		}
-		.legend-attribution ul { 
-		width: 327px;
+			width: 240px!important;
 		}
 	</style>
 		<!--
@@ -76,31 +74,29 @@
     </head>
     <body>
 <!-- map -->
-        <div id="map" style="position: relative;">
-            <div id="popup" class="ol-popup">
+		<div id="map" style="position: relative;">
+			<div id="popup" class="ol-popup">
                 <a href="#" id="popup-closer" class="ol-popup-closer"></a>
                 <div id="popup-content"></div>
             </div>
 
 			<!--form logo -->
-			<div id="form_logo" style="position:absolute; z-index:1">
+			<div id="form_logo">
 			<label><a href="./index.html"><img src="./resources/stemma.png" align="left" height="60" title='Reset map'></img></a></label>
-			<h1 align="left" >A Bayesian Spatially Varying Coefficient Model <br>for Surface Urban Heat Island Estimation</h1>
+				<h1 align="center">A Bayesian Spatially Varying Coefficient Model <br>for Surface Urban Heat Island Estimation
+			</h1>
 			</div>
+
 			<!-- print button  		
 				<div id="print" class="print print-hover" style="position:absolute; z-index:1">
 				<button onClick="window.print()" class="fa fa-print"></button>
 				</div> -->
-			<!-- full screen  -->			
-				<div id="toggle-fs" class="ol-control expand" style="position:absolute; z-index:1">
-				<button class="toggle-fs-button fa fa-expand"></button>
-				</div> 
 			<!--form o.gis -->
-			<div id="form_opengis" style="position:absolute; z-index:1">
+			<div id="form_opengis" style="z-index:1">
 			<a href="https://www.opengis.it/" target="_blank"><label><img src="./resources/o.gis.png" title="O.GIS"></img></label></a>
 			</div>
-			<!-- sidebar-v2 start --> 
-			  <div id="sidebar" class="sidebar collapsed">
+			<!-- ol-sidebar start --> 
+				<div id="sidebar" class="sidebar collapsed">
 					<!-- Nav tabs -->
 					<div class="sidebar-tabs">
 						<ul role="tablist">
@@ -124,16 +120,7 @@
 
 					<!-- Tab panes -->
 					<div class="sidebar-content">
-					<!--	<div class="sidebar-pane" id="tab1">
-							<h1 class="sidebar-header">
-								About the Project
-								<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
-							</h1>
-							<iframe frameborder="0" scrolling="auto" 
-							style="height:90%; width:99%; position: absolute; top: 50px; left: 0; bottom: 0; right: 0; " 
-							src="./resources/html_sidebar_content/01_SIT.htm"></iframe>
-						</div> -->
-						<div class="sidebar-pane" id="tab1">
+												<div class="sidebar-pane" id="tab1">
 							<h1 class="sidebar-header">
 								About
 								<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
@@ -188,21 +175,24 @@
 
 						</div>
 				</div> <!-- sidebar content end -->
-			</div> <!-- sidebar collapsed end -->  <!-- sidebar-v2 end -->			
-        </div> <!-- map end --> 
+			</div> <!-- sidebar collapsed end -->  <!-- ol-sidebar end -->			
+		</div> <!-- map end --> 
         <!--
         <script src="resources/thanks_for_the_coffee_expressions.js"></script>
+<script src="resources/proj4.js"></script>
 		-->
+        <script>proj4.defs('EPSG:32632','+proj=utm +zone=32 +datum=WGS84 +units=m +no_defs');</script>
         <!--
 		<script src="resources/polyfills.js"></script>
         <script src="./resources/functions.js"></script>
         <script src="./resources/ol.js"></script>
         <script src="./resources/ol-layerswitcher.js"></script>
 		-->
-		</script><script src="layers/WarmingRegions.js"></script><script src="layers/CoolingRegions.js"></script><script src="layers/MunicipalityofBologna.js"></script>
-        </script><script src="styles/WarmingRegions_style.js"></script><script src="styles/CoolingRegions_style.js"></script><script src="styles/MunicipalityofBologna_style.js"></script>
+		<script src="layers/MeanLSTChange.js"></script><script src="layers/WarmingRegions.js"></script><script src="layers/CoolingRegions.js"></script><script src="layers/MunicipalityofBologna.js"></script>
+        <script src="styles/MeanLSTChange_style.js"></script><script src="styles/WarmingRegions_style.js"></script><script src="styles/CoolingRegions_style.js"></script><script src="styles/MunicipalityofBologna_style.js"></script>
 		<!--
-        <script src="./layers/layers.js" type="text/javascript"></script> 
+        <script src="./layers/layers.js" type="text/javascript"></script> -->
+		<!--
 		-->
 <!-- layers definition -->
 		<script src="./layers/layers.js" type="text/javascript"></script>
@@ -211,108 +201,140 @@
 		<script src="./resources/Autolinker.min.js" data-no-source-map></script>
 		<script src="./resources/thanks_for_the_coffee.js"></script>
 		<script src="./resources/o.gis/o.gis.js"></script>	  
+<!-- add control -->
+		<script>
+			//SIDEBAR
+				map.addControl(sidebar);
+                    sidebar.element.style.display = 'block';
+                    var olOverlayContainerStopEvent = document.getElementsByClassName('ol-overlaycontainer-stopevent')[0];
+                    olOverlayContainerStopEvent.insertBefore(sidebar.element, olOverlayContainerStopEvent.firstChild);
+
+			//TOP LEFT
+				//logo and title
+				var logoForm = document.getElementById('form_logo');
+                    logoForm.classList.add('visible');
+                    topLeftContainerDiv.appendChild(logoForm);
+
+				// geocoder
+				// geoloc
+				// zoom
+				topLeftContainerDiv.appendChild(zoomControl);
+
+				// query wms e wfs
+				// bookmark
+				// measure
+				map.addControl(measureToggle);
+                    topLeftContainerDiv.appendChild(measureToggle.element);
+
+				//popup all
+				//editbar
+				// search feature
+			//BOTTOM LEFT
+				// minimap
+				// scale line
+				map.addControl(scaleLine);
+                    var scaleLineControl = document.getElementsByClassName('ol-scale-line')[0];
+                    scaleLineControl.className += ' ol-control';
+                    bottomLeftContainerDiv.appendChild(scaleLineControl);
+
+				//scale control
+				map.addControl(scaleCtrl);
+                    bottomLeftContainerDiv.appendChild(scaleCtrl.element);
+                    var scaleText = document.createElement('DIV');
+                    scaleText.className = 'scale-text';
+                    scaleText.innerHTML = "Scale";
+                    scaleCtrl.element.appendChild(scaleText);
+				// popup coordinates
+				//mouse position
+				map.addControl(mousePositionDefault);
+                    bottomLeftContainerDiv.appendChild(mousePositionDefault.element);
+			//TOP RIGHT
+				// print
+				// permalink
+				map.addControl(permalink);
+                    topRightContainerDiv.appendChild(permalink.element);
+
+				// rotate
+				var rotate = document.getElementsByClassName('ol-rotate')[0];
+                    rotate.style.display = 'block';
+                    topRightContainerDiv.appendChild(rotate);
+
+				// full screen
+				map.addControl(fullScreenControl);
+                    topRightContainerDiv.appendChild(fullScreenControl.element);
+
+				// layerswitcher and legend attribution
+				map.addControl(layerSwitcher);
+                    map.addControl(legendAttribution);
+                    layerSwitcher.element.appendChild(legendAttribution.element);
+
+			//BOTTOM RIGHT
+				// street view
+		</script>
  <!-- Geocoder search language -->
-<script>
-	geocoder.options.lang = 'en-US';   // it-IT, pt-BR, fr-FR
-</script> 
+		<script>
+			geocoder.options.lang = 'en-US';   // it-IT, pt-BR, fr-FR
+		</script> 
 
 <!-- bookmark 	
-<script> 
-		bm.setBookmarks({
-			Quartiere_1: {pos:ol.proj.transform([2351142,4842857], 'EPSG:3004', 'EPSG:25832'), zoom:15},
-			Quartiere_2: {pos:ol.proj.transform([2352404,4841605], 'EPSG:3004', 'EPSG:25832'), zoom:15},
-			Quartiere_3: {pos:ol.proj.transform([2355410,4838774], 'EPSG:3004', 'EPSG:25832'), zoom:15},
-			Quartiere_4: {pos:ol.proj.transform([2357220,4839534], 'EPSG:3004', 'EPSG:25832'), zoom:15},
-			});
-		map.addControl(bm);	  			  
-</script> -->
+		<script> 
+			bm.setBookmarks({
+				Quartiere_1: {pos:ol.proj.transform([2351142,4842857], 'EPSG:3004', 'EPSG:25832'), zoom:15},
+				Quartiere_2: {pos:ol.proj.transform([2352404,4841605], 'EPSG:3004', 'EPSG:25832'), zoom:15},
+				Quartiere_3: {pos:ol.proj.transform([2355410,4838774], 'EPSG:3004', 'EPSG:25832'), zoom:15},
+				Quartiere_4: {pos:ol.proj.transform([2357220,4839534], 'EPSG:3004', 'EPSG:25832'), zoom:15},
+				});
+			map.addControl(bm);	  			  
+		</script> -->
 
-<!-- search feature 
-<script>
-		function searchFeatures() {
-			// Insert combo box for source choice
-			var selectElt = document.createElement('select');
-			var buttonElt = search.element.querySelector('button');
-			search.element.insertBefore(selectElt, buttonElt);
-			//// Example: Collection to merge multiple sources
-			//class sourceCollection extends ol.source.Vector {
-			//	constructor(opt) {
-			//		opt = opt || {};
-			//		super(opt);
-			//		this._sources = opt.sources;
-			//	}
-			//	getFeatures() {
-			//		var a = [];
-			//		this._sources.forEach(s => a = a.concat(s.getFeatures()));
-			//		return a;
-			//	}
-			//}
-			//// Define all source layers
-			//const combinedSource = new sourceCollection({
-			//	sources: [jsonSource_1, jsonSource_2, jsonSource_3]
-			//});
+<!-- search feature -->
+        <!-- No searchable fields defined in project file -->
 
-			// Set options to search in different source, one at a time
-			['Option_1', 'Option_2'].forEach(function (l) {
-			  ol.ext.element.create('OPTION', {
-				text: l,
-				parent: selectElt
-			  });
-			});
-			// For each option set data to perform the search
-			function handleComboBoxChange() {
-			  search.clearHistory();
-			  search.setInput('');
-			  isManualSearch = true;
-
-			  if (selectElt.value === 'Option_1') {
-				search.setSource(jsonSource_Option1);
-				search.set('property', 'FieldName');
-				search.set('placeholder', 'Find (es: F17 P44) ...');
-				if (isManualSearch) {
-					search.on('select', function(e) { lyr_Option1.setVisible(true); }); //show layer when search
-				}
-				//// Example: search in a field but the list reports a sum of values ​​from the feature
-				//search.getTitle = function(f) {
-				//	var title = 'F' + f.get('FOGLIO') + ' ' + 'P' + f.get('PARTICELLA');
-				//	return title;
-				//};				
-			  } 
-			  if (selectElt.value === 'Option_2') {
-				search.setSource(jsonSource_Option2);
-				search.set('property', 'FieldName');
-				search.set('placeholder', 'Find Cod (es: F-05-0123)');
-				if (isManualSearch) {
-					search.on('select', function(e) { lyr_Option2.setVisible(true); }); //show layer when search
-				}
-			  }
-			  // Reset del placeholder nella barra di ricerca
-			  var inputField = search.element.querySelector('.ol-search input');
-			  inputField.placeholder = search.get('placeholder');
-			}
-			handleComboBoxChange();
-
-			// Change event
-			selectElt.addEventListener('change', function() {
-			  handleComboBoxChange(); 
-			});	
-		}
-		if (window.layersLoadedFlag) {
-			searchFeatures();
-		} else {
-			document.addEventListener('layersLoaded', searchFeatures);
-		}
-</script> -->
-<!-- overview map -->		
-<script>
-			var MaxMapExtent = map.getView().getProperties().extent;
-			var ov = new ol.control.Overview({
+<!-- overview map 	
+		<script>
+			// rimuovo il controllo già configurato
+			map.removeControl(miniMap);
+			// definisco nuovo controllo
+			miniMap = new ol.control.Overview({
 				layers: [ 
 					new ol.layer.Tile({
-					source: new ol.source.OSM()
+						source: new ol.source.XYZ({
+							url: 'https://tile.opentopomap.org/{z}/{x}/{y}.png'
+						})
 					}),
 				],
 
+				/*
+				// google satellite example
+				layers: [ 
+					new ol.layer.Tile({
+					source: new ol.source.XYZ({
+						url: 'https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}'
+					})
+					}),
+				], 
+				*/
+				/*
+				//static image example, set also minZoom and maxZoom	
+				layers: [ 
+					new ol.layer.Image({
+						source: new ol.source.ImageStatic({
+							url: './resources/minimap.png',
+							imageExtent: MaxMapExtent,
+						})
+					})
+				],
+				*/
+
+				projection: currentProjection,
+				rotation: true,
+				//minZoom: 10.5,
+				//maxZoom: 12,
+				//panAnimation: 'elastic',
+			});
+			map.addControl(miniMap);
+			bottomLeftContainerDiv.insertBefore(miniMap.element, bottomLeftContainerDiv.firstChild);
+		</script>
 				// google satellite example
 			/* 	layers: [ 
 					new ol.layer.Tile({
@@ -352,62 +374,23 @@
 			var overviewbuttontitle = $('div.ol-overview button');
 			// Set button title
 			overviewbuttontitle.attr('title', 'Minimap');			
-</script>
+		</script>-->
 <!-- scale line
-<script>
-		scaleLine.setUnits('imperial')
-</script> -->
+		<script>
+			scaleLine.setUnits('imperial')
+		</script> -->
 <!-- mouse position coordinates 
-<script>
-		currentProjection = 'EPSG:3857'
-		mousePositionDefault.setProjection(ol.proj.get(currentProjection));
-</script> -->
-
-<!-- streetview api key -->
-<script>
-	opt_options.apiKey = ''; //define your own apikey to remove "for development purposes only"
-	streetView = new StreetView(opt_options);
-	map.addControl(streetView);
-	streetView.on('streetViewInit', function () {				
-		if (typeof opt_options.apiKey === 'undefined' || opt_options.apiKey === '') {
-		  $('#ol-street-view--panorama').css('filter', 'invert(1)');
-		}
-	});
-</script>
+			<script>
+				currentProjection = 'EPSG:3857'
+				mousePositionDefault.setProjection(ol.proj.get(currentProjection));
+			</script> -->
 <!-- attribution 
-<script>	
-	// Define your own static attribution
-	attributionList.innerHTML = `<a>Data Source: </a>`;
-</script> -->
-
-<script>
-	 map.removeControl(geocoder);				// remove address search
-	map.removeControl(geoloc);				// remove gps loc
-	map.removeControl(querywmswfs);			// remove query wms
-	map.removeControl(popupall);				// remove popup all
-	map.removeControl(bar);					// remove design bar
-	map.removeControl(search); 				// remove quick search
-	map.removeControl(ov);					// remove minimap
-	// map.removeControl(scaleCtrl);			// remove scale control
-	map.removeControl(mousePositionDefault); // remove mouse position
-	 map.removeControl(printControl);			// remove print
-</script>
-
-<style>
-	/* .ol-zoom {display: none!important;}						/* remove zoom */
-	/*.measure-control {display: none!important;}				/* remove measure */
-	/*.ol-scale-line {display: none!important;}					/* remove scale line */
-	/* .ol-permalink {display: none!important;}					/* remove permalink */
-	 .ol-rotate {display: none!important;}					/* remove rotate */
-	/* .expand {display: none!important;}						/* remove full screen */
-	/* .legend-attribution {display: none!important;}			/* remove legend */
-	/* .layerswitcher-opacity, .layerswitcher-opacity-label {display: none!important;}	/* remove layers opacity */
-		
-	/* .layerExtent {display: none!important;}					/* remove layers extent */
-	/* .layerup {display: none!important;}						/* remove layers move */
-	 #ol-street-view--pegman-button-div {	display: none!important;}					/* remove street view */
-		
-</style>
-
+		<script>	
+			// Define your own static attribution
+			attributionList.innerHTML = `
+				<a>Your Text Here</a>&nbsp;
+				<a href="https://www.yoursitehere.it/" target="_blank">Your Site Here</a>&nbsp;
+			`;
+		</script> -->
     </body>
 </html>

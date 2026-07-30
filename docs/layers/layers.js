@@ -1,100 +1,162 @@
+ol.proj.proj4.register(proj4);
+//ol.proj.get("EPSG:32632").setExtent([665991.400419, 4917132.362926, 708059.315241, 4942941.383839]);
 var wms_layers = [];
 
 var lyr_OSMStandard = new ol.layer.Tile({
-            'title': 'BaseMap',
+            'title': 'OSM Standard',
+            'baseLayer':'true',
             'opacity': 1.000000,
+            
+            
             source: new ol.source.XYZ({
-            attributions: '<a href="https://cartodb.com/basemaps/">CartoDB</a> &nbsp&nbsp ',
-                url: 'https://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png'
+            attributions: '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors, CC-BY-SA</a>',
+                url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
             })
         });
 
+var lyr_LandCover = new ol.layer.Image({
+    source: new ol.source.ImageStatic({
+        url: "./layers/LandCover.png",
+        projection: 'EPSG:3857',
+        alwaysInRange: true,
+        imageExtent: [1249622.969563, 5530466.661843, 1272973.228749, 5552327.064966],
+    attributions: '<a class="legend"><b>Land Cover</b><br />\
+        <img src="styles/legend/LandCover_0.png" /> Other Unclassified Artificial Surfaces<br />\
+        <img src="styles/legend/LandCover_1.png" /> Impermeable Surfaces<br />\
+        <img src="styles/legend/LandCover_2.png" /> Permeable Surfaces<br />\
+        <img src="styles/legend/LandCover_3.png" /> Consolidated Surfaces<br />\
+        <img src="styles/legend/LandCover_4.png" /> Unconsolidated Surfaces<br />\
+        <img src="styles/legend/LandCover_5.png" /> Broadleaf Trees<br />\
+        <img src="styles/legend/LandCover_6.png" /> Coniferous Trees<br />\
+        <img src="styles/legend/LandCover_7.png" /> Shrublands<br />\
+        <img src="styles/legend/LandCover_8.png" /> Periodic Herbaceous Vegetation<br />\
+        <img src="styles/legend/LandCover_9.png" /> Permanent Herbaceous Vegetation<br />\
+        <img src="styles/legend/LandCover_10.png" /> Permanent Water Bodies<br />\
+        <img src="styles/legend/LandCover_11.png" /> Permanent Ice and Snow<br />\
+        <img src="styles/legend/LandCover_12.png" /> Wetlands<br /></a>'
+        }),
+    opacity: 1,
+    permalink: "LandCover",
+    title: '<div id="layertitle">Land Cover<br />\
+        <i class="fas fa-angle-up" id="secondImage"></i><i class="fas fa-angle-down" id="firstImage"></i></div><a class="layerlegend">\
+        <img src="styles/legend/LandCover_0.png" /> Other Unclassified Artificial Surfaces<br />\
+        <img src="styles/legend/LandCover_1.png" /> Impermeable Surfaces<br />\
+        <img src="styles/legend/LandCover_2.png" /> Permeable Surfaces<br />\
+        <img src="styles/legend/LandCover_3.png" /> Consolidated Surfaces<br />\
+        <img src="styles/legend/LandCover_4.png" /> Unconsolidated Surfaces<br />\
+        <img src="styles/legend/LandCover_5.png" /> Broadleaf Trees<br />\
+        <img src="styles/legend/LandCover_6.png" /> Coniferous Trees<br />\
+        <img src="styles/legend/LandCover_7.png" /> Shrublands<br />\
+        <img src="styles/legend/LandCover_8.png" /> Periodic Herbaceous Vegetation<br />\
+        <img src="styles/legend/LandCover_9.png" /> Permanent Herbaceous Vegetation<br />\
+        <img src="styles/legend/LandCover_10.png" /> Permanent Water Bodies<br />\
+        <img src="styles/legend/LandCover_11.png" /> Permanent Ice and Snow<br />\
+        <img src="styles/legend/LandCover_12.png" /> Wetlands<br /></a>'
+        });
 
-var lyr_Voyager = new ol.layer.Tile({
-            'title': 'Labels',
-            'opacity': 1.000000,
-            source: new ol.source.XYZ({
-                url: 'https://a.basemaps.cartocdn.com/rastertiles/voyager_only_labels/{z}/{x}/{y}@2x.png'
-            })
-        });
-    
-var lyr_PosteriorSD = new ol.layer.Image({
+var lyr_LandUse = new ol.layer.Image({
     source: new ol.source.ImageStatic({
-        url: "./layers/PosteriorSD.png",
+        url: "./layers/LandUse.png",
         projection: 'EPSG:3857',
         alwaysInRange: true,
-        imageExtent: [1249622.969618, 5530466.251247, 1272987.037882, 5552327.065035],
-    attributions: '<a class="legend"><b>Posterior SD</b><br />\
-        <img src="styles/legend/PosteriorSD_0.png" /> 0,04<br />\
-        <img src="styles/legend/PosteriorSD_1.png" /> 0,05<br />\
-        <img src="styles/legend/PosteriorSD_2.png" /> 0,06<br />\
-        <img src="styles/legend/PosteriorSD_3.png" /> 0,07<br />\
-        <img src="styles/legend/PosteriorSD_4.png" /> 0,08<br />\
-        <img src="styles/legend/PosteriorSD_5.png" /> 0,09<br /></a>'
+        imageExtent: [1249622.969563, 5530466.661843, 1272973.228749, 5552327.064966],
+    attributions: '<a class="legend"><b>Land Use</b><br />\
+        <img src="styles/legend/LandUse_0.png" /> Forest Use<br />\
+        <img src="styles/legend/LandUse_1.png" /> Quarries and Mines<br />\
+        <img src="styles/legend/LandUse_2.png" /> Urban and Related Areas<br />\
+        <img src="styles/legend/LandUse_3.png" /> Water Bodies<br />\
+        <img src="styles/legend/LandUse_4.png" /> Arable Land (Cropland)<br />\
+        <img src="styles/legend/LandUse_5.png" /> Forage Crops<br />\
+        <img src="styles/legend/LandUse_6.png" /> Permanent Crops<br />\
+        <img src="styles/legend/LandUse_7.png" /> Agroforestry Areas<br />\
+        <img src="styles/legend/LandUse_8.png" /> Other Agricultural Uses<br />\
+        <img src="styles/legend/LandUse_9.png" /> Wetlands<br />\
+        <img src="styles/legend/LandUse_10.png" /> Other Non-economic Uses<br /></a>'
         }),
     opacity: 1,
-    permalink: "PosteriorSD",
-    
-     
-    title: '<div id="layertitle">Posterior SD<br />\
+    permalink: "LandUse",
+    title: '<div id="layertitle">Land Use<br />\
         <i class="fas fa-angle-up" id="secondImage"></i><i class="fas fa-angle-down" id="firstImage"></i></div><a class="layerlegend">\
-        <img src="styles/legend/PosteriorSD_0.png" /> 0,04<br />\
-        <img src="styles/legend/PosteriorSD_1.png" /> 0,05<br />\
-        <img src="styles/legend/PosteriorSD_2.png" /> 0,06<br />\
-        <img src="styles/legend/PosteriorSD_3.png" /> 0,07<br />\
-        <img src="styles/legend/PosteriorSD_4.png" /> 0,08<br />\
-        <img src="styles/legend/PosteriorSD_5.png" /> 0,09<br /></a>'
+        <img src="styles/legend/LandUse_0.png" /> Forest Use<br />\
+        <img src="styles/legend/LandUse_1.png" /> Quarries and Mines<br />\
+        <img src="styles/legend/LandUse_2.png" /> Urban and Related Areas<br />\
+        <img src="styles/legend/LandUse_3.png" /> Water Bodies<br />\
+        <img src="styles/legend/LandUse_4.png" /> Arable Land (Cropland)<br />\
+        <img src="styles/legend/LandUse_5.png" /> Forage Crops<br />\
+        <img src="styles/legend/LandUse_6.png" /> Permanent Crops<br />\
+        <img src="styles/legend/LandUse_7.png" /> Agroforestry Areas<br />\
+        <img src="styles/legend/LandUse_8.png" /> Other Agricultural Uses<br />\
+        <img src="styles/legend/LandUse_9.png" /> Wetlands<br />\
+        <img src="styles/legend/LandUse_10.png" /> Other Non-economic Uses<br /></a>'
         });
-    
-var lyr_PosteriorMean = new ol.layer.Image({
-    source: new ol.source.ImageStatic({
-        url: "./layers/PosteriorMean.png",
-        projection: 'EPSG:3857',
-        alwaysInRange: true,
-        imageExtent: [1249622.969618, 5530466.251247, 1272987.037882, 5552327.065035],
-    attributions: '<a class="legend"><b>β+v(s) - Temporal Trend</b><br />\
-        <img src="styles/legend/PosteriorMean_8.png" /> 0,72<br />\
-        <img src="styles/legend/PosteriorMean_7.png" /> 0,57<br />\
-        <img src="styles/legend/PosteriorMean_6.png" /> 0,39<br />\
-        <img src="styles/legend/PosteriorMean_5.png" /> 0,20<br />\
-        <img src="styles/legend/PosteriorMean_4.png" /> 0,01<br />\
-        <img src="styles/legend/PosteriorMean_3.png" /> -0,18<br />\
-        <img src="styles/legend/PosteriorMean_2.png" /> -0,38<br />\
-        <img src="styles/legend/PosteriorMean_1.png" /> -0,57<br />\
-        <img src="styles/legend/PosteriorMean_0.png" /> -0,76<br /></a>'
-        }),
-    opacity: 1,
-    permalink: "PosteriorMean",
-    
-     
-    title: '<div id="layertitle">β+v(s) - Temporal Trend<br />\
+        
+
+var format_MeanLSTChange = new ol.format.GeoJSON();
+var features_MeanLSTChange = format_MeanLSTChange.readFeatures(json_MeanLSTChange, 
+    {dataProjection: 'EPSG:4326', featureProjection: 'EPSG:32632'});
+var jsonSource_MeanLSTChange = new ol.source.Vector({
+        attributions:
+    '<a class="legend"><b>Mean LST Change</b><br />\
+        <img src="styles/legend/MeanLSTChange_0.png"/>-4,07 - -4<br />\
+        <img src="styles/legend/MeanLSTChange_1.png"/>-4 - -3<br />\
+        <img src="styles/legend/MeanLSTChange_2.png"/>-3 - -2<br />\
+        <img src="styles/legend/MeanLSTChange_3.png"/>-2 - -1<br />\
+        <img src="styles/legend/MeanLSTChange_4.png"/>-1 - 0<br />\
+        <img src="styles/legend/MeanLSTChange_5.png"/>0 - 1<br />\
+        <img src="styles/legend/MeanLSTChange_6.png"/>1 - 2<br />\
+        <img src="styles/legend/MeanLSTChange_7.png"/>2 - 3<br />\
+        <img src="styles/legend/MeanLSTChange_8.png"/>3 - 4<br />\
+        <img src="styles/legend/MeanLSTChange_9.png"/>4 - 5<br />\
+        <img src="styles/legend/MeanLSTChange_10.png"/>5 - 5,2<br /></a>'
+        });
+var lyr_MeanLSTChange = new ol.layer.Vector({
+    declutter: false,
+    source: jsonSource_MeanLSTChange, 
+    sourceType: 'json',
+    permalink: "MeanLSTChange",
+    popuplayertitle: 'Mean LST Change',
+    creationdate: '2026-07-30 02:08:48',
+    interactive: false,
+    style: style_MeanLSTChange,
+    title: '<div id="layertitle">Mean LST Change<br />\
         <i class="fas fa-angle-up" id="secondImage"></i><i class="fas fa-angle-down" id="firstImage"></i></div><a class="layerlegend">\
-        <img src="styles/legend/PosteriorMean_8.png" /> 0,72<br />\
-        <img src="styles/legend/PosteriorMean_7.png" /> 0,57<br />\
-        <img src="styles/legend/PosteriorMean_6.png" /> 0,39<br />\
-        <img src="styles/legend/PosteriorMean_5.png" /> 0,20<br />\
-        <img src="styles/legend/PosteriorMean_4.png" /> 0,01<br />\
-        <img src="styles/legend/PosteriorMean_3.png" /> -0,18<br />\
-        <img src="styles/legend/PosteriorMean_2.png" /> -0,38<br />\
-        <img src="styles/legend/PosteriorMean_1.png" /> -0,57<br />\
-        <img src="styles/legend/PosteriorMean_0.png" /> -0,76<br /></a>'
+        <input type="checkbox" class="symbology" symbology-type="graduated" min-value="-4.07" max-value="-4.0" checked><img src="styles/legend/MeanLSTChange_0.png"/>-4,07 - -4<br />\
+        <input type="checkbox" class="symbology" symbology-type="graduated" min-value="-3.999999" max-value="-3.0" checked><img src="styles/legend/MeanLSTChange_1.png"/>-4 - -3<br />\
+        <input type="checkbox" class="symbology" symbology-type="graduated" min-value="-2.999999" max-value="-2.0" checked><img src="styles/legend/MeanLSTChange_2.png"/>-3 - -2<br />\
+        <input type="checkbox" class="symbology" symbology-type="graduated" min-value="-1.999999" max-value="-1.0" checked><img src="styles/legend/MeanLSTChange_3.png"/>-2 - -1<br />\
+        <input type="checkbox" class="symbology" symbology-type="graduated" min-value="-0.999999" max-value="0.0" checked><img src="styles/legend/MeanLSTChange_4.png"/>-1 - 0<br />\
+        <input type="checkbox" class="symbology" symbology-type="graduated" min-value="1e-06" max-value="1.0" checked><img src="styles/legend/MeanLSTChange_5.png"/>0 - 1<br />\
+        <input type="checkbox" class="symbology" symbology-type="graduated" min-value="1.000001" max-value="2.0" checked><img src="styles/legend/MeanLSTChange_6.png"/>1 - 2<br />\
+        <input type="checkbox" class="symbology" symbology-type="graduated" min-value="2.000001" max-value="3.0" checked><img src="styles/legend/MeanLSTChange_7.png"/>2 - 3<br />\
+        <input type="checkbox" class="symbology" symbology-type="graduated" min-value="3.000001" max-value="4.0" checked><img src="styles/legend/MeanLSTChange_8.png"/>3 - 4<br />\
+        <input type="checkbox" class="symbology" symbology-type="graduated" min-value="4.000001" max-value="5.0" checked><img src="styles/legend/MeanLSTChange_9.png"/>4 - 5<br />\
+        <input type="checkbox" class="symbology" symbology-type="graduated" min-value="5.000001" max-value="5.2" checked><img src="styles/legend/MeanLSTChange_10.png"/>5 - 5,2<br /></a>'
         });
+var featureCounter_MeanLSTChange = 1;
+jsonSource_MeanLSTChange.on('addfeature', function (event) {
+    var feature = event.feature;
+    feature.set("idO", featureCounter_MeanLSTChange++);
+    feature.set("layerObject", lyr_MeanLSTChange);
+});        
+jsonSource_MeanLSTChange.addFeatures(features_MeanLSTChange);
+
 
 var format_WarmingRegions = new ol.format.GeoJSON();
 var features_WarmingRegions = format_WarmingRegions.readFeatures(json_WarmingRegions, 
-    {dataProjection: 'EPSG:4326', featureProjection: 'EPSG:3857'});
+    {dataProjection: 'EPSG:4326', featureProjection: 'EPSG:32632'});
 var jsonSource_WarmingRegions = new ol.source.Vector({
-    attributions: '<a class="legend"><img src="styles/legend/WarmingRegions.png" /> <b>Warming Regions</b>'
-    });
+        attributions:'<a class="legend"><img src="styles/legend/WarmingRegions.png"/><b>Warming Regions</b>'
+        });
 var lyr_WarmingRegions = new ol.layer.Vector({
     declutter: false,
     source: jsonSource_WarmingRegions, 
-    style: style_WarmingRegions,
+    sourceType: 'json',
     permalink: "WarmingRegions",
     popuplayertitle: 'Warming Regions',
-    creationdate: '2026-03-21 19:16:51',
+    creationdate: '2026-07-30 02:08:48',
     interactive: false,
-    title: '<img src="styles/legend/WarmingRegions.png" /> Warming Regions'
+    style: style_WarmingRegions,
+    title: '<img src="styles/legend/WarmingRegions.png"/>Warming Regions'
     });
 var featureCounter_WarmingRegions = 1;
 jsonSource_WarmingRegions.on('addfeature', function (event) {
@@ -104,21 +166,23 @@ jsonSource_WarmingRegions.on('addfeature', function (event) {
 });        
 jsonSource_WarmingRegions.addFeatures(features_WarmingRegions);
 
+
 var format_CoolingRegions = new ol.format.GeoJSON();
 var features_CoolingRegions = format_CoolingRegions.readFeatures(json_CoolingRegions, 
-    {dataProjection: 'EPSG:4326', featureProjection: 'EPSG:3857'});
+    {dataProjection: 'EPSG:4326', featureProjection: 'EPSG:32632'});
 var jsonSource_CoolingRegions = new ol.source.Vector({
-    attributions: '<a class="legend"><img src="styles/legend/CoolingRegions.png" /> <b>Cooling Regions</b>'
-    });
+        attributions:'<a class="legend"><img src="styles/legend/CoolingRegions.png"/><b>Cooling Regions</b>'
+        });
 var lyr_CoolingRegions = new ol.layer.Vector({
     declutter: false,
     source: jsonSource_CoolingRegions, 
-    style: style_CoolingRegions,
+    sourceType: 'json',
     permalink: "CoolingRegions",
     popuplayertitle: 'Cooling Regions',
-    creationdate: '2026-03-21 19:16:51',
+    creationdate: '2026-07-30 02:08:48',
     interactive: false,
-    title: '<img src="styles/legend/CoolingRegions.png" /> Cooling Regions'
+    style: style_CoolingRegions,
+    title: '<img src="styles/legend/CoolingRegions.png"/>Cooling Regions'
     });
 var featureCounter_CoolingRegions = 1;
 jsonSource_CoolingRegions.on('addfeature', function (event) {
@@ -127,6 +191,64 @@ jsonSource_CoolingRegions.on('addfeature', function (event) {
     feature.set("layerObject", lyr_CoolingRegions);
 });        
 jsonSource_CoolingRegions.addFeatures(features_CoolingRegions);
+
+
+var format_MunicipalityofBologna = new ol.format.GeoJSON();
+var features_MunicipalityofBologna = format_MunicipalityofBologna.readFeatures(json_MunicipalityofBologna, 
+    {dataProjection: 'EPSG:4326', featureProjection: 'EPSG:32632'});
+var jsonSource_MunicipalityofBologna = new ol.source.Vector({
+        attributions:'<a class="legend"><img src="styles/legend/MunicipalityofBologna.png"/><b>Municipality of Bologna</b>'
+        });
+var lyr_MunicipalityofBologna = new ol.layer.Vector({
+    declutter: false,
+    source: jsonSource_MunicipalityofBologna, 
+    sourceType: 'json',
+    permalink: "MunicipalityofBologna",
+    popuplayertitle: 'Municipality of Bologna',
+    creationdate: '2026-07-30 02:08:48',
+    interactive: false,
+    style: style_MunicipalityofBologna,
+    title: '<img src="styles/legend/MunicipalityofBologna.png"/>Municipality of Bologna'
+    });
+var featureCounter_MunicipalityofBologna = 1;
+jsonSource_MunicipalityofBologna.on('addfeature', function (event) {
+    var feature = event.feature;
+    feature.set("idO", featureCounter_MunicipalityofBologna++);
+    feature.set("layerObject", lyr_MunicipalityofBologna);
+});        
+jsonSource_MunicipalityofBologna.addFeatures(features_MunicipalityofBologna);
+
+var lyr_PosteriorMean_beta_vs = new ol.layer.Image({
+    source: new ol.source.ImageStatic({
+        url: "./layers/PosteriorMean.png",
+        projection: 'EPSG:3857',
+        alwaysInRange: true,
+        imageExtent: [1249622.969618, 5530466.251247, 1272987.037882, 5552327.065035],
+    attributions: '<a class="legend"><b>β+v(s) - Posterior Mean</b><br />\
+        <img src="styles/legend/PosteriorMean_8.png" /> 0,72<br />\
+        <img src="styles/legend/PosteriorMean_7.png" /> 0,57<br />\
+        <img src="styles/legend/PosteriorMean_6.png" /> 0,39<br />\
+        <img src="styles/legend/PosteriorMean_5.png" /> 0,20<br />\
+        <img src="styles/legend/PosteriorMean_4.png" /> 0,01<br />\
+        <img src="styles/legend/PosteriorMean_3.png" /> -0,18<br />\
+        <img src="styles/legend/PosteriorMean_2.png" /> -0,38<br />\
+        <img src="styles/legend/PosteriorMean_1.png" /> -0,57<br />\
+        <img src="styles/legend/PosteriorMean_0.png" /> -0,76<br /></a>'
+        }),
+    opacity: 1,
+    permalink: "PosteriorMeanBetaVs",
+    title: '<div id="layertitle">β+v(s) - Posterior Mean<br />\
+        <i class="fas fa-angle-up" id="secondImage"></i><i class="fas fa-angle-down" id="firstImage"></i></div><a class="layerlegend">\
+        <img src="styles/legend/PosteriorMean_8.png" /> 0,72<br />\
+        <img src="styles/legend/PosteriorMean_7.png" /> 0,57<br />\
+        <img src="styles/legend/PosteriorMean_6.png" /> 0,39<br />\
+        <img src="styles/legend/PosteriorMean_5.png" /> 0,20<br />\
+        <img src="styles/legend/PosteriorMean_4.png" /> 0,01<br />\
+        <img src="styles/legend/PosteriorMean_3.png" /> -0,18<br />\
+        <img src="styles/legend/PosteriorMean_2.png" /> -0,38<br />\
+        <img src="styles/legend/PosteriorMean_1.png" /> -0,57<br />\
+        <img src="styles/legend/PosteriorMean_0.png" /> -0,76<br /></a>'
+        });
 
 var lyr_vsPosteriorSD = new ol.layer.Image({
     source: new ol.source.ImageStatic({
@@ -143,8 +265,6 @@ var lyr_vsPosteriorSD = new ol.layer.Image({
         }),
     opacity: 1,
     permalink: "vsPosteriorSD",
-    
-     
     title: '<div id="layertitle">v(s) - Posterior SD<br />\
         <i class="fas fa-angle-up" id="secondImage"></i><i class="fas fa-angle-down" id="firstImage"></i></div><a class="layerlegend">\
         <img src="styles/legend/vsPosteriorSD_0.png" /> 0,03<br />\
@@ -160,7 +280,7 @@ var lyr_vsPosteriorMean = new ol.layer.Image({
         projection: 'EPSG:3857',
         alwaysInRange: true,
         imageExtent: [1249622.477437, 5530481.577854, 1272969.872405, 5552313.551122],
-    attributions: '<a class="legend"><b>v(s)</b><br />\
+    attributions: '<a class="legend"><b>v(s) - Posterior Mean</b><br />\
         <img src="styles/legend/vsPosteriorMean_0.png" /> -0,88<br />\
         <img src="styles/legend/vsPosteriorMean_1.png" /> -0,70<br />\
         <img src="styles/legend/vsPosteriorMean_2.png" /> -0,52<br />\
@@ -173,9 +293,7 @@ var lyr_vsPosteriorMean = new ol.layer.Image({
         }),
     opacity: 1,
     permalink: "vsPosteriorMean",
-    
-     
-    title: '<div id="layertitle">v(s)<br />\
+    title: '<div id="layertitle">v(s) - Posterior Mean<br />\
         <i class="fas fa-angle-up" id="secondImage"></i><i class="fas fa-angle-down" id="firstImage"></i></div><a class="layerlegend">\
         <img src="styles/legend/vsPosteriorMean_8.png" /> 0,58<br />\
         <img src="styles/legend/vsPosteriorMean_7.png" /> 0,40<br />\
@@ -194,7 +312,7 @@ var lyr_PosteriorMean_alpha_us = new ol.layer.Image({
         projection: 'EPSG:3857',
         alwaysInRange: true,
         imageExtent: [1249622.969618, 5530466.251247, 1272987.037882, 5552327.065035],
-    attributions: '<a class="legend"><b>α + u(s) - Spatial Pattern</b><br />\
+    attributions: '<a class="legend"><b>α + u(s) - Posterior Mean</b><br />\
         <img src="styles/legend/PosteriorMean_alpha_us_0.png" /> 29,89<br />\
         <img src="styles/legend/PosteriorMean_alpha_us_1.png" /> 32,09<br />\
         <img src="styles/legend/PosteriorMean_alpha_us_2.png" /> 34,29<br />\
@@ -208,10 +326,8 @@ var lyr_PosteriorMean_alpha_us = new ol.layer.Image({
         <img src="styles/legend/PosteriorMean_alpha_us_10.png" /> 51,91<br /></a>'
         }),
     opacity: 1,
-    permalink: "PosteriorMean",
-    
-     
-    title: '<div id="layertitle">α + u(s) - Spatial Pattern<br />\
+    permalink: "PosteriorMeanAlphaUs",
+    title: '<div id="layertitle">α + u(s) - Posterior Mean<br />\
         <i class="fas fa-angle-up" id="secondImage"></i><i class="fas fa-angle-down" id="firstImage"></i></div><a class="layerlegend">\
         <img src="styles/legend/PosteriorMean_alpha_us_0.png" /> 29,89<br />\
         <img src="styles/legend/PosteriorMean_alpha_us_1.png" /> 32,09<br />\
@@ -241,8 +357,6 @@ var lyr_SUHIPosteriorSD = new ol.layer.Image({
         }),
     opacity: 1,
     permalink: "SUHIPosteriorSD",
-    
-     
     title: '<div id="layertitle">Posterior SD<br />\
         <i class="fas fa-angle-up" id="secondImage"></i><i class="fas fa-angle-down" id="firstImage"></i></div><a class="layerlegend">\
         <img src="styles/legend/SUHIPosteriorSD_0.png" /> 1,10<br />\
@@ -275,8 +389,6 @@ var lyr_SUHIPosteriorMean = new ol.layer.Image({
         }),
     opacity: 1,
     permalink: "SUHIPosteriorMean",
-    
-     
     title: '<div id="layertitle">Posterior Mean<br />\
         <i class="fas fa-angle-up" id="secondImage"></i><i class="fas fa-angle-down" id="firstImage"></i></div><a class="layerlegend">\
         <img src="styles/legend/SUHIPosteriorMean_0.png" /> 0,10<br />\
@@ -313,8 +425,6 @@ var lyr_usPosteriorSD = new ol.layer.Image({
         }),
     opacity: 1,
     permalink: "usPosteriorSD",
-    
-     
     title: '<div id="layertitle">u(s) - Posterior SD<br />\
         <i class="fas fa-angle-up" id="secondImage"></i><i class="fas fa-angle-down" id="firstImage"></i></div><a class="layerlegend">\
         <img src="styles/legend/usPosteriorSD_0.png" /> 0,32<br />\
@@ -346,9 +456,7 @@ var lyr_usPosteriorMean = new ol.layer.Image({
         }),
     opacity: 1,
     permalink: "usPosteriorMean",
-    
-     
-    title: '<div id="layertitle">u(s)<br />\
+    title: '<div id="layertitle">u(s) - Posterior Mean<br />\
         <i class="fas fa-angle-up" id="secondImage"></i><i class="fas fa-angle-down" id="firstImage"></i></div><a class="layerlegend">\
         <img src="styles/legend/usPosteriorMean_7.png" /> 12,21<br />\
         <img src="styles/legend/usPosteriorMean_6.png" /> 9,08<br />\
@@ -359,156 +467,55 @@ var lyr_usPosteriorMean = new ol.layer.Image({
         <img src="styles/legend/usPosteriorMean_1.png" /> -6,60<br />\
         <img src="styles/legend/usPosteriorMean_0.png" /> -9,73<br /></a>'
         });
-    
-var lyr_LandCover = new ol.layer.Image({
-    source: new ol.source.ImageStatic({
-        url: "./layers/LandCover.png",
-        projection: 'EPSG:3857',
-        alwaysInRange: true,
-        imageExtent: [1249622.969563, 5530466.661843, 1272973.228749, 5552327.064966],
-    attributions: '<a class="legend"><b>Land Cover</b><br />\
-        <img src="styles/legend/LandCover_0.png" /> Other Unclassified Artificial Surfaces<br />\
-        <img src="styles/legend/LandCover_1.png" /> Impermeable Surfaces<br />\
-        <img src="styles/legend/LandCover_2.png" /> Permeable Surfaces<br />\
-        <img src="styles/legend/LandCover_3.png" /> Consolidated Surfaces<br />\
-        <img src="styles/legend/LandCover_4.png" /> Unconsolidated Surfaces<br />\
-        <img src="styles/legend/LandCover_5.png" /> Broadleaf Trees<br />\
-        <img src="styles/legend/LandCover_6.png" /> Coniferous Trees<br />\
-        <img src="styles/legend/LandCover_7.png" /> Shrublands<br />\
-        <img src="styles/legend/LandCover_8.png" /> Periodic Herbaceous Vegetation<br />\
-        <img src="styles/legend/LandCover_9.png" /> Permanent Herbaceous Vegetation<br />\
-        <img src="styles/legend/LandCover_10.png" /> Permanent Water Bodies<br />\
-        <img src="styles/legend/LandCover_11.png" /> Permanent Ice and Snow<br />\
-        <img src="styles/legend/LandCover_12.png" /> Wetlands<br /></a>'
-        }),
-    opacity: 1,
-    permalink: "LandCover",
-    
-     
-    title: '<div id="layertitle">Land Cover<br />\
-        <i class="fas fa-angle-up" id="secondImage"></i><i class="fas fa-angle-down" id="firstImage"></i></div><a class="layerlegend">\
-        <img src="styles/legend/LandCover_0.png" /> Other Unclassified Artificial Surfaces<br />\
-        <img src="styles/legend/LandCover_1.png" /> Impermeable Surfaces<br />\
-        <img src="styles/legend/LandCover_2.png" /> Permeable Surfaces<br />\
-        <img src="styles/legend/LandCover_3.png" /> Consolidated Surfaces<br />\
-        <img src="styles/legend/LandCover_4.png" /> Unconsolidated Surfaces<br />\
-        <img src="styles/legend/LandCover_5.png" /> Broadleaf Trees<br />\
-        <img src="styles/legend/LandCover_6.png" /> Coniferous Trees<br />\
-        <img src="styles/legend/LandCover_7.png" /> Shrublands<br />\
-        <img src="styles/legend/LandCover_8.png" /> Periodic Herbaceous Vegetation<br />\
-        <img src="styles/legend/LandCover_9.png" /> Permanent Herbaceous Vegetation<br />\
-        <img src="styles/legend/LandCover_10.png" /> Permanent Water Bodies<br />\
-        <img src="styles/legend/LandCover_11.png" /> Permanent Ice and Snow<br />\
-        <img src="styles/legend/LandCover_12.png" /> Wetlands<br /></a>'
-        });
-    
-var lyr_LandUse = new ol.layer.Image({
-    source: new ol.source.ImageStatic({
-        url: "./layers/LandUse.png",
-        projection: 'EPSG:3857',
-        alwaysInRange: true,
-        imageExtent: [1249622.969563, 5530466.661843, 1272973.228749, 5552327.064966],
-    attributions: '<a class="legend"><b>Land Use</b><br />\
-        <img src="styles/legend/LandUse_0.png" /> Forest Use<br />\
-        <img src="styles/legend/LandUse_1.png" /> Quarries and Mines<br />\
-        <img src="styles/legend/LandUse_2.png" /> Urban and Related Areas<br />\
-        <img src="styles/legend/LandUse_3.png" /> Water Bodies<br />\
-        <img src="styles/legend/LandUse_4.png" /> Arable Land (Cropland)<br />\
-        <img src="styles/legend/LandUse_5.png" /> Forage Crops<br />\
-        <img src="styles/legend/LandUse_6.png" /> Permanent Crops<br />\
-        <img src="styles/legend/LandUse_7.png" /> Agroforestry Areas<br />\
-        <img src="styles/legend/LandUse_8.png" /> Other Agricultural Uses<br />\
-        <img src="styles/legend/LandUse_9.png" /> Wetlands<br />\
-        <img src="styles/legend/LandUse_10.png" /> Other Non-economic Uses<br /></a>'
-        }),
-    opacity: 1,
-    permalink: "LandUse",
-    
-     
-    title: '<div id="layertitle">Land Use<br />\
-        <i class="fas fa-angle-up" id="secondImage"></i><i class="fas fa-angle-down" id="firstImage"></i></div><a class="layerlegend">\
-        <img src="styles/legend/LandUse_0.png" /> Forest Use<br />\
-        <img src="styles/legend/LandUse_1.png" /> Quarries and Mines<br />\
-        <img src="styles/legend/LandUse_2.png" /> Urban and Related Areas<br />\
-        <img src="styles/legend/LandUse_3.png" /> Water Bodies<br />\
-        <img src="styles/legend/LandUse_4.png" /> Arable Land (Cropland)<br />\
-        <img src="styles/legend/LandUse_5.png" /> Forage Crops<br />\
-        <img src="styles/legend/LandUse_6.png" /> Permanent Crops<br />\
-        <img src="styles/legend/LandUse_7.png" /> Agroforestry Areas<br />\
-        <img src="styles/legend/LandUse_8.png" /> Other Agricultural Uses<br />\
-        <img src="styles/legend/LandUse_9.png" /> Wetlands<br />\
-        <img src="styles/legend/LandUse_10.png" /> Other Non-economic Uses<br /></a>'
-        });
-    
-var format_MunicipalityofBologna = new ol.format.GeoJSON();
-var features_MunicipalityofBologna = format_MunicipalityofBologna.readFeatures(json_MunicipalityofBologna, 
-    {dataProjection: 'EPSG:4326', featureProjection: 'EPSG:3857'});
-var jsonSource_MunicipalityofBologna = new ol.source.Vector({
-    attributions: '<a class="legend"><img src="styles/legend/MunicipalityofBologna.png" /> <b>Municipality of Bologna</b>'
-    });
-var lyr_MunicipalityofBologna = new ol.layer.Vector({
-    declutter: false,
-    source: jsonSource_MunicipalityofBologna, 
-    style: style_MunicipalityofBologna,
-    permalink: "MunicipalityofBologna",
-    popuplayertitle: 'Municipality of Bologna',
-    creationdate: '2026-03-21 19:16:51',
-    interactive: false,
-    title: '<img src="styles/legend/MunicipalityofBologna.png" /> Municipality of Bologna'
-    });
-var featureCounter_MunicipalityofBologna = 1;
-jsonSource_MunicipalityofBologna.on('addfeature', function (event) {
-    var feature = event.feature;
-    feature.set("idO", featureCounter_MunicipalityofBologna++);
-    feature.set("layerObject", lyr_MunicipalityofBologna);
-});        
-jsonSource_MunicipalityofBologna.addFeatures(features_MunicipalityofBologna);
 
-var group_Boundaries = new ol.layer.Group({
-                            layers: [lyr_Voyager,lyr_MunicipalityofBologna,],
-                            openInLayerSwitcher: true,
-                            title: 'Boundaries and Labels',
-                            noOpacity: true});
-var group_Land = new ol.layer.Group({
-                        layers: [lyr_LandUse,lyr_LandCover,],
-                        openInLayerSwitcher: true,
-                        title: 'Land Classification',
-                        noOpacity: true});
-var group_SpatialResults = new ol.layer.Group({
-                                layers: [lyr_PosteriorMean,lyr_PosteriorMean_alpha_us,lyr_vsPosteriorMean,lyr_usPosteriorMean,],
-                                openInLayerSwitcher: true,
-                                title: 'Random Fields - Posterior Means',
-                                noOpacity: true});
-var group_suhi = new ol.layer.Group({
-                                layers: [lyr_SUHIPosteriorSD,lyr_SUHIPosteriorMean,],
-                                openInLayerSwitcher: true,
-                                title: 'Surface Urban Heat Island',
-                                noOpacity: true});
-var group_TemporalResults = new ol.layer.Group({
-                                layers: [lyr_WarmingRegions,lyr_CoolingRegions,],
-                                openInLayerSwitcher: true,
-                                title: 'Excursion Sets',
-                                noOpacity: true});
 
-lyr_Voyager.setVisible(false);lyr_OSMStandard.setVisible(true);
-lyr_PosteriorSD.setVisible(false);lyr_PosteriorMean.setVisible(false)
-lyr_WarmingRegions.setVisible(false);lyr_CoolingRegions.setVisible(false);lyr_PosteriorMean_alpha_us.setVisible(false);
-lyr_vsPosteriorSD.setVisible(false);lyr_vsPosteriorMean.setVisible(false);lyr_SUHIPosteriorSD.setVisible(false);lyr_SUHIPosteriorMean.setVisible(false);lyr_usPosteriorSD.setVisible(false);lyr_usPosteriorMean.setVisible(false);lyr_LandCover.setVisible(false);lyr_LandUse.setVisible(false);lyr_MunicipalityofBologna.setVisible(true);
-var layersList = [lyr_OSMStandard,group_TemporalResults,group_suhi, group_SpatialResults,group_Land,group_Boundaries];
-lyr_MeanLSTChange.set('fieldAliases', {'fid': 'fid', '_count': '_count', '_sum': '_sum', '_mean': '_mean', 'total_effect_14-25': 'total_effect_14-25', '_stdev': '_stdev', 'mean_12y': 'mean_12y', 'fid_2': 'fid_2', '_count_2': '_count_2', '_sum_2': '_sum_2', '_mean_2': '_mean_2', '_stdev_2': '_stdev_2', 'mean_tot_14_25': 'mean_tot_14_25', 'mean_12y_2': 'mean_12y_2', 'mean_12y_merged': 'mean_12y_merged', });
-lyr_WarmingRegions.set('fieldAliases', {'FID': 'FID', });
-lyr_CoolingRegions.set('fieldAliases', {'FID': 'FID', });
-lyr_MunicipalityofBologna.set('fieldAliases', {'OBJECTID_1': 'OBJECTID_1', 'OBJECTID': 'OBJECTID', 'ISTAT': 'ISTAT', 'NOME_C': 'NOME_C', 'CD_BLF': 'CD_BLF', 'PRV_ID_E': 'PRV_ID_E', 'TY_E': 'TY_E', 'ID_E': 'ID_E', 'DT_INI_VAL': 'DT_INI_VAL', 'DATA_AGG': 'DATA_AGG', 'D_TIPO_AGG': 'D_TIPO_AGG', 'DT_PRES': 'DT_PRES', 'ST_VALID': 'ST_VALID', 'ST_CERTIF': 'ST_CERTIF', 'QUALITA': 'QUALITA', 'METODO': 'METODO', 'D_METODO': 'D_METODO', 'COMP_FONTI': 'COMP_FONTI', 'SEZ_ID_E': 'SEZ_ID_E', 'INT_FONTI': 'INT_FONTI', 'VISIBILITA': 'VISIBILITA', 'TIPO_FONTE': 'TIPO_FONTE', 'DATA_DA': 'DATA_DA', 'DATA_A': 'DATA_A', 'SHAPE_Leng': 'SHAPE_Leng', 'DT_FIN_VAL': 'DT_FIN_VAL', 'Shape_Le_1': 'Shape_Le_1', 'Shape_Le_2': 'Shape_Le_2', 'Shape_Area': 'Shape_Area', });
-lyr_WarmingRegions.set('fieldImages', {'FID': 'TextEdit', 'layerObject': 'Hidden', 'idO': 'Hidden'});
-lyr_CoolingRegions.set('fieldImages', {'FID': 'TextEdit', 'layerObject': 'Hidden', 'idO': 'Hidden'});
-lyr_MunicipalityofBologna.set('fieldImages', {'OBJECTID_1': 'TextEdit', 'OBJECTID': 'TextEdit', 'ISTAT': 'TextEdit', 'NOME_C': 'TextEdit', 'CD_BLF': 'TextEdit', 'PRV_ID_E': 'TextEdit', 'TY_E': 'TextEdit', 'ID_E': 'TextEdit', 'DT_INI_VAL': 'DateTime', 'DATA_AGG': 'DateTime', 'D_TIPO_AGG': 'TextEdit', 'DT_PRES': 'DateTime', 'ST_VALID': 'TextEdit', 'ST_CERTIF': 'TextEdit', 'QUALITA': 'TextEdit', 'METODO': 'TextEdit', 'D_METODO': 'TextEdit', 'COMP_FONTI': 'TextEdit', 'SEZ_ID_E': 'TextEdit', 'INT_FONTI': 'TextEdit', 'VISIBILITA': 'TextEdit', 'TIPO_FONTE': 'TextEdit', 'DATA_DA': 'DateTime', 'DATA_A': 'DateTime', 'SHAPE_Leng': 'TextEdit', 'DT_FIN_VAL': 'DateTime', 'Shape_Le_1': 'TextEdit', 'Shape_Le_2': 'TextEdit', 'Shape_Area': 'TextEdit', 'layerObject': 'Hidden', 'idO': 'Hidden'});
-lyr_WarmingRegions.set('fieldLabels', {'FID': 'no label', });
-lyr_CoolingRegions.set('fieldLabels', {'FID': 'header label - visible with data', });
-lyr_MunicipalityofBologna.set('fieldLabels', {'OBJECTID_1': 'no label', 'OBJECTID': 'no label', 'ISTAT': 'no label', 'NOME_C': 'no label', 'CD_BLF': 'no label', 'PRV_ID_E': 'no label', 'TY_E': 'no label', 'ID_E': 'no label', 'DT_INI_VAL': 'no label', 'DATA_AGG': 'no label', 'D_TIPO_AGG': 'no label', 'DT_PRES': 'no label', 'ST_VALID': 'no label', 'ST_CERTIF': 'no label', 'QUALITA': 'no label', 'METODO': 'no label', 'D_METODO': 'no label', 'COMP_FONTI': 'no label', 'SEZ_ID_E': 'no label', 'INT_FONTI': 'no label', 'VISIBILITA': 'no label', 'TIPO_FONTE': 'no label', 'DATA_DA': 'no label', 'DATA_A': 'no label', 'SHAPE_Leng': 'no label', 'DT_FIN_VAL': 'no label', 'Shape_Le_1': 'no label', 'Shape_Le_2': 'no label', 'Shape_Area': 'no label', });
-lyr_MunicipalityofBologna.on('precompose', function(evt) {
-    evt.context.globalCompositeOperation = 'normal';
-});
 
 window.layersLoadedFlag = true;
 const layersLoaded = new Event('layersLoaded');
 document.dispatchEvent(layersLoaded);
+var group_StudyArea = new ol.layer.Group({
+                                layers: [lyr_MunicipalityofBologna,],
+                                openInLayerSwitcher: true,
+                                title: 'Study Area'});
+var group_LandClassification = new ol.layer.Group({
+                                layers: [lyr_LandUse, lyr_LandCover,],
+                                openInLayerSwitcher: true,
+                                title: 'Land Classification'});
+var group_SpatialRandomFields = new ol.layer.Group({
+                                layers: [lyr_vsPosteriorSD, lyr_vsPosteriorMean, lyr_usPosteriorSD,lyr_usPosteriorMean,],
+                                openInLayerSwitcher: true,
+                                title: 'Spatial Random Fields'});
+var group_PersistentSpatialPatternalphaus = new ol.layer.Group({
+                                layers: [lyr_PosteriorMean_alpha_us,],
+                                openInLayerSwitcher: true,
+                                title: 'Persistent Spatial Pattern in LST'});
+var group_SurfaceUrbanHeatIsland = new ol.layer.Group({
+                                layers: [lyr_SUHIPosteriorSD, lyr_SUHIPosteriorMean,],
+                                openInLayerSwitcher: true,
+                                title: 'Surface Urban Heat Island'});
+var group_TemporalTrendbetavs = new ol.layer.Group({
+                                layers: [lyr_PosteriorMean_beta_vs,],
+                                openInLayerSwitcher: true,
+                                title: 'Temporal Trend in LST'});
+var group_ExcursionSets = new ol.layer.Group({
+                                layers: [lyr_MeanLSTChange,lyr_WarmingRegions,lyr_CoolingRegions,],
+                                openInLayerSwitcher: true,
+                                title: 'Excursion Sets'});
+
+lyr_OSMStandard.setVisible(true);lyr_MeanLSTChange.setVisible(false);lyr_WarmingRegions.setVisible(false);lyr_CoolingRegions.setVisible(false);lyr_MunicipalityofBologna.setVisible(false);
+;lyr_LandCover.setVisible(false);lyr_LandUse.setVisible(false);lyr_PosteriorMean_alpha_us.setVisible(false);lyr_PosteriorMean_beta_vs.setVisible(false);
+lyr_SUHIPosteriorMean.setVisible(false);lyr_SUHIPosteriorSD.setVisible(false);lyr_vsPosteriorMean.setVisible(false);
+lyr_vsPosteriorSD.setVisible(false);lyr_usPosteriorMean.setVisible(false);lyr_usPosteriorSD.setVisible(false);
+var layersList = [lyr_OSMStandard,group_ExcursionSets,group_TemporalTrendbetavs,group_SurfaceUrbanHeatIsland,group_PersistentSpatialPatternalphaus,group_SpatialRandomFields,group_LandClassification,group_StudyArea];
+lyr_MeanLSTChange.set('fieldAliases', {'fid': 'fid', '_count': '_count', '_sum': '_sum', '_mean': '_mean', 'total_effect_14-25': 'total_effect_14-25', '_stdev': '_stdev', 'mean_12y': 'mean_12y', 'fid_2': 'fid_2', '_count_2': '_count_2', '_sum_2': '_sum_2', '_mean_2': '_mean_2', '_stdev_2': '_stdev_2', 'mean_tot_14_25': 'mean_tot_14_25', 'mean_12y_2': 'mean_12y_2', 'mean_12y_merged': 'mean_12y_merged', });
+lyr_WarmingRegions.set('fieldAliases', {'FID': 'FID', });
+lyr_CoolingRegions.set('fieldAliases', {'FID': 'FID', });
+lyr_MunicipalityofBologna.set('fieldAliases', {'OBJECTID': 'OBJECTID', 'ISTAT': 'ISTAT', 'NOME_C': 'NOME_C', });
+lyr_MeanLSTChange.set('fieldImages', {'fid': 'TextEdit', '_count': 'TextEdit', '_sum': 'TextEdit', '_mean': 'TextEdit', 'total_effect_14-25': 'TextEdit', '_stdev': 'TextEdit', 'mean_12y': 'TextEdit', 'fid_2': 'TextEdit', '_count_2': 'TextEdit', '_sum_2': 'TextEdit', '_mean_2': 'TextEdit', '_stdev_2': 'TextEdit', 'mean_tot_14_25': 'TextEdit', 'mean_12y_2': 'TextEdit', 'mean_12y_merged': 'TextEdit', 'layerObject': 'Hidden', 'idO': 'Hidden'});
+lyr_WarmingRegions.set('fieldImages', {'FID': 'TextEdit', 'layerObject': 'Hidden', 'idO': 'Hidden'});
+lyr_CoolingRegions.set('fieldImages', {'FID': 'TextEdit', 'layerObject': 'Hidden', 'idO': 'Hidden'});
+lyr_MunicipalityofBologna.set('fieldImages', {'OBJECTID': 'TextEdit', 'ISTAT': 'TextEdit', 'NOME_C': 'TextEdit', 'layerObject': 'Hidden', 'idO': 'Hidden'});
+lyr_MeanLSTChange.set('fieldLabels', {'fid': 'no label', '_count': 'no label', '_sum': 'no label', '_mean': 'no label', 'total_effect_14-25': 'no label', '_stdev': 'no label', 'mean_12y': 'no label', 'fid_2': 'no label', '_count_2': 'no label', '_sum_2': 'no label', '_mean_2': 'no label', '_stdev_2': 'no label', 'mean_tot_14_25': 'no label', 'mean_12y_2': 'no label', 'mean_12y_merged': 'no label', });
+lyr_WarmingRegions.set('fieldLabels', {'FID': 'header label - visible with data', });
+lyr_CoolingRegions.set('fieldLabels', {'FID': 'header label - visible with data', });
+lyr_MunicipalityofBologna.set('fieldLabels', {'OBJECTID': 'no label', 'ISTAT': 'no label', 'NOME_C': 'no label', });

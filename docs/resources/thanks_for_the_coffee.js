@@ -4,12 +4,45 @@ var map = new ol.Map({
     renderer: 'canvas',
     layers: layersList,
     view: new ol.View({
-         maxZoom: 28, minZoom: 1
+        maxZoom: 28,
+        minZoom: 1,
+        extent: [665991.400419, 4917132.362926, 708059.315241, 4942941.383839],
+        projection: new ol.proj.Projection({
+            code: 'EPSG:32632',
+            //extent: [677157.986199, 4921248.973919, 693427.822298, 4936364.356319],
+            units: 'm'
+        })
     })
 });
 
 //initial view - epsg:3857 coordinates if not "Match project CRS"
-map.getView().fit([1242202.355426, 5523508.016491, 1281904.220721, 5560569.001509], map.getSize());
+map.getView().fit([665991.400419, 4917132.362926, 708059.315241, 4942941.383839], map.getSize());
+
+//full zooms only
+map.getView().setProperties({constrainResolution: true});
+
+//change cursor
+function pointerOnFeature(evt) {
+    if (evt.dragging) {
+        return;
+    }
+    var hasFeature = map.hasFeatureAtPixel(evt.pixel, {
+        layerFilter: function(layer) {
+            return layer && (layer.get("interactive"));
+        }
+    });
+    map.getViewport().style.cursor = hasFeature ? "pointer" : "";
+}
+map.on('pointermove', pointerOnFeature);
+function styleCursorMove() {
+    map.on('pointerdrag', function() {
+        map.getViewport().style.cursor = "move";
+    });
+    map.on('pointerup', function() {
+        map.getViewport().style.cursor = "default";
+    });
+}
+styleCursorMove();
 
 ////small screen definition
     var hasTouchScreen = map.getViewport().classList.contains('ol-touch');
@@ -69,7 +102,8 @@ closer.onclick = function() {
     return false;
 };
 var overlayPopup = new ol.Overlay({
-    element: container
+    element: container,
+	autoPan: true
 });
 map.addOverlay(overlayPopup)
     
@@ -112,7 +146,7 @@ var featureOverlay = new ol.layer.Vector({
     updateWhileInteracting: true // optional, for instant visual feedback
 });
 
-var doHighlight = false;
+var doHighlight = true;
 var doHover = false;
 
 function createPopupField(currentFeature, currentFeatureKeys, layer) {
@@ -150,7 +184,9 @@ function createPopupField(currentFeature, currentFeatureKeys, layer) {
 					popupField += (fieldValue != null ? '<img src="images/' + fieldValue.replace(/[\\\/:]/g, '_').trim() + '" /></td>' : '');
 				} else if (/\.(mp4|webm|ogg|avi|mov|flv)$/i.test(fieldValue)) {
 					popupField += (fieldValue != null ? '<video controls><source src="images/' + fieldValue.replace(/[\\\/:]/g, '_').trim() + '" type="video/mp4">Il tuo browser non supporta il tag video.</video></td>' : '');
-				} else {
+				} else if (/\.(mp3|wav|ogg|aac|flac)$/i.test(fieldValue)) {
+                    popupField += (fieldValue != null ? '<audio controls><source src="images/' + fieldValue.replace(/[\\\/:]/g, '_').trim() + '" type="audio/mpeg">Il tuo browser non supporta il tag audio.</audio></td>' : '');
+                } else {
 					popupField += (fieldValue != null ? autolinker.link(fieldValue.toLocaleString()) + '</td>' : '');
 				}
 			}
@@ -175,42 +211,53 @@ function onPointerMove(evt) {
     var clusteredFeatures;
     var clusterLength;
     var popupText = '<ul>';
+
+    // Collect all features and their layers at the pixel
+    var featuresAndLayers = [];
     map.forEachFeatureAtPixel(pixel, function(feature, layer) {
-        if (layer && feature instanceof ol.Feature && (layer.get("interactive") || layer.get("interactive") == undefined)) {
-            var doPopup = false;
-            for (k in layer.get('fieldImages')) {
-                if (layer.get('fieldImages')[k] != "Hidden") {
-                    doPopup = true;
-                }
-            }
-            currentFeature = feature;
-            currentLayer = layer;
-            clusteredFeatures = feature.get("features");
-            if (clusteredFeatures) {
-				clusterLength = clusteredFeatures.length;
-			}
-            if (typeof clusteredFeatures !== "undefined") {
-                if (doPopup) {
-                    for(var n=0; n<clusteredFeatures.length; n++) {
-                        currentFeature = clusteredFeatures[n];
-                        currentFeatureKeys = currentFeature.getKeys();
-                        popupText += '<li><table>'
-                        popupText += '<a>' + '<b>' + layer.get('popuplayertitle') + '</b>' + '</a>';
-                        popupText += createPopupField(currentFeature, currentFeatureKeys, layer);
-                        popupText += '</table></li>';    
-                    }
-                }
-            } else {
-                currentFeatureKeys = currentFeature.getKeys();
-                if (doPopup) {
-                    popupText += '<li><table>';
-                    popupText += '<a>' + '<b>' + layer.get('popuplayertitle') + '</b>' + '</a>';
-                    popupText += createPopupField(currentFeature, currentFeatureKeys, layer);
-                    popupText += '</table></li>';
-                }
-            }
+        if (layer && feature instanceof ol.Feature && (layer.get("interactive") || layer.get("interactive") === undefined)) {
+            featuresAndLayers.push({ feature, layer });
         }
     });
+
+    // Iterate over the features and layers in reverse order
+    for (var i = featuresAndLayers.length - 1; i >= 0; i--) {
+        var feature = featuresAndLayers[i].feature;
+        var layer = featuresAndLayers[i].layer;
+        var doPopup = false;
+        for (k in layer.get('fieldImages')) {
+            if (layer.get('fieldImages')[k] != "Hidden") {
+                doPopup = true;
+            }
+        }
+        currentFeature = feature;
+        currentLayer = layer;
+        clusteredFeatures = feature.get("features");
+        if (clusteredFeatures) {
+            clusterLength = clusteredFeatures.length;
+        }
+        if (typeof clusteredFeatures !== "undefined") {
+            if (doPopup) {
+                for(var n=0; n<clusteredFeatures.length; n++) {
+                    currentFeature = clusteredFeatures[n];
+                    currentFeatureKeys = currentFeature.getKeys();
+                    popupText += '<li><table>'
+                    popupText += '<a>' + '<b>' + layer.get('popuplayertitle') + '</b>' + '</a>';
+                    popupText += createPopupField(currentFeature, currentFeatureKeys, layer);
+                    popupText += '</table></li>';    
+                }
+            }
+        } else {
+            currentFeatureKeys = currentFeature.getKeys();
+            if (doPopup) {
+                popupText += '<li><table>';
+                popupText += '<a>' + '<b>' + layer.get('popuplayertitle') + '</b>' + '</a>';
+                popupText += createPopupField(currentFeature, currentFeatureKeys, layer);
+                popupText += '</table></li>';
+            }
+        }
+    }
+
     if (popupText == '<ul>') {
         popupText = '';
     } else {
@@ -276,9 +323,9 @@ function onPointerMove(evt) {
 
     if (doHover) {
         if (popupText) {
+			content.innerHTML = popupText;
+            container.style.display = 'block';
             overlayPopup.setPosition(coord);
-            content.innerHTML = popupText;
-            container.style.display = 'block';        
         } else {
             container.style.display = 'none';
             closer.blur();
@@ -294,9 +341,9 @@ var featuresPopupActive = false;
 
 function updatePopup() {
     if (popupContent) {
-        overlayPopup.setPosition(popupCoord);
         content.innerHTML = popupContent;
         container.style.display = 'block';
+		overlayPopup.setPosition(popupCoord);
     } else {
         container.style.display = 'none';
         closer.blur();
@@ -364,9 +411,9 @@ function onSingleClickWMS(evt) {
     if (doHover || sketch) {
         return;
     }
-	if (!featuresPopupActive) {
-		popupContent = '';
-	}
+    if (!featuresPopupActive) {
+        popupContent = '';
+    }
     var coord = evt.coordinate;
     var viewProjection = map.getView().getProjection();
     var viewResolution = map.getView().getResolution();
@@ -377,12 +424,12 @@ function onSingleClickWMS(evt) {
                 evt.coordinate, viewResolution, viewProjection, {
                     'INFO_FORMAT': 'text/html',
                 });
-            if (url) {				
-                const wmsTitle = wms_layers[i][0].get('popuplayertitle');					
-                var ldsRoller = '<div id="lds-roller"><img class="lds-roller-img" style="height: 25px; width: 25px;"></img></div>';
-				
+            if (url) {
+                const wmsTitle = wms_layers[i][0].get('popuplayertitle');
+                var ldsRoller = '<div class="roller-switcher" style="height: 25px; width: 25px;"></div>';
+
                 popupCoord = coord;
-				popupContent += ldsRoller;
+                popupContent += ldsRoller;
                 updatePopup();
 
                 var timeoutPromise = new Promise((resolve, reject) => {
@@ -391,30 +438,44 @@ function onSingleClickWMS(evt) {
                     }, 5000); // (5 second)
                 });
 
-                Promise.race([
-                    fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(url)),
-                    timeoutPromise
-                ])
-                .then((response) => {
-                    if (response.ok) {
-                        return response.text();
+                // Function to try fetch with different option
+                function tryFetch(urls) {
+                    if (urls.length === 0) {
+                        return Promise.reject(new Error('All fetch attempts failed'));
                     }
-                })
-                .then((html) => {
-                    if (html.indexOf('<table') !== -1) {
-                        popupContent += '<a><b>' + wmsTitle + '</b></a>';
-                        popupContent += html + '<p></p>';
-                        updatePopup();
-                    }
-                })
-                // .catch((error) => {
-				// })
-                .finally(() => {
-                    setTimeout(() => {
-                        var loaderIcon = document.querySelector('#lds-roller');
-						loaderIcon.remove();
-                    }, 500); // (0.5 second)	
-                });
+                    return fetch(urls[0])
+                        .then((response) => {
+                            if (response.ok) {
+                                return response.text();
+                            } else {
+                                throw new Error('Fetch failed');
+                            }
+                        })
+                        .catch(() => tryFetch(urls.slice(1))); // Try next URL
+                }
+
+                // List of URLs to try
+                // The first URL is the original, the second is the encoded version, and the third is the proxy
+                const urlsToTry = [
+                    url,
+                    encodeURIComponent(url),
+                    'https://api.allorigins.win/raw?url=' + encodeURIComponent(url)
+                ];
+
+                Promise.race([tryFetch(urlsToTry), timeoutPromise])
+                    .then((html) => {
+                        if (html.indexOf('<table') !== -1) {
+                            popupContent += '<a><b>' + wmsTitle + '</b></a>';
+                            popupContent += html + '<p></p>';
+                            updatePopup();
+                        }
+                    })
+                    .finally(() => {
+                        setTimeout(() => {
+                            var loaderIcon = document.querySelector('.roller-switcher');
+                            if (loaderIcon) loaderIcon.remove();
+                        }, 500); // (0.5 second)
+                    });
             }
         }
     }
@@ -426,6 +487,7 @@ map.on('singleclick', onSingleClickWMS);
 //get container
 var topLeftContainerDiv = document.getElementById('top-left-container')
 var bottomLeftContainerDiv = document.getElementById('bottom-left-container')
+var topRightContainerDiv = document.getElementById('top-right-container')
 var bottomRightContainerDiv = document.getElementById('bottom-right-container')
 
 //title
@@ -438,15 +500,15 @@ var bottomRightContainerDiv = document.getElementById('bottom-right-container')
 
 
 //measurement
+var isImperialUnits = false;
+var isNauticalUnits = false;
+
 
 
 
 
 
 //geocoder
-
-
-//layer search
 
 
 //scalebar

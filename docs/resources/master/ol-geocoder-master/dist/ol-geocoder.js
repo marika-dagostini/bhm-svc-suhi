@@ -513,6 +513,7 @@
           limit: opt.limit || this.settings.params.limit,
           countrycodes: opt.countrycodes || this.settings.params.countrycodes,
           viewbox: opt.viewbox || this.settings.params.viewbox,
+		  bounded: 1,
           'accept-language': opt.lang || this.settings.params['accept-language'],
         },
       };
@@ -1181,7 +1182,10 @@
         new Style__default["default"]({
           image: new Icon__default["default"]({
             scale: 0.7,
-            src: FEATURE_SRC
+            src: FEATURE_SRC,
+            anchor: [0.5, 1], // Ancoraggio in basso al centro
+            anchorXUnits: 'fraction',
+            anchorYUnits: 'fraction'
           })
         }),
       ];
