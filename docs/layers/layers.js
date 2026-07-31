@@ -97,17 +97,17 @@ var features_MeanLSTChange = format_MeanLSTChange.readFeatures(json_MeanLSTChang
 var jsonSource_MeanLSTChange = new ol.source.Vector({
         attributions:
     '<a class="legend"><b>Mean LST Change</b><br />\
-        <img src="styles/legend/MeanLSTChange_0.png"/>-4,07 - -4<br />\
-        <img src="styles/legend/MeanLSTChange_1.png"/>-4 - -3<br />\
-        <img src="styles/legend/MeanLSTChange_2.png"/>-3 - -2<br />\
-        <img src="styles/legend/MeanLSTChange_3.png"/>-2 - -1<br />\
-        <img src="styles/legend/MeanLSTChange_4.png"/>-1 - 0<br />\
-        <img src="styles/legend/MeanLSTChange_5.png"/>0 - 1<br />\
-        <img src="styles/legend/MeanLSTChange_6.png"/>1 - 2<br />\
-        <img src="styles/legend/MeanLSTChange_7.png"/>2 - 3<br />\
-        <img src="styles/legend/MeanLSTChange_8.png"/>3 - 4<br />\
+        <img src="styles/legend/MeanLSTChange_10.png"/>5 - 5,2<br />\
         <img src="styles/legend/MeanLSTChange_9.png"/>4 - 5<br />\
-        <img src="styles/legend/MeanLSTChange_10.png"/>5 - 5,2<br /></a>'
+        <img src="styles/legend/MeanLSTChange_8.png"/>3 - 4<br />\
+        <img src="styles/legend/MeanLSTChange_7.png"/>2 - 3<br />\
+        <img src="styles/legend/MeanLSTChange_6.png"/>1 - 2<br />\
+        <img src="styles/legend/MeanLSTChange_5.png"/>0 - 1<br />\
+        <img src="styles/legend/MeanLSTChange_4.png"/>-1 - 0<br />\
+        <img src="styles/legend/MeanLSTChange_3.png"/>-2 - -1<br />\
+        <img src="styles/legend/MeanLSTChange_2.png"/>-3 - -2<br />\
+        <img src="styles/legend/MeanLSTChange_1.png"/>-4 - -3<br />\
+        <img src="styles/legend/MeanLSTChange_0.png"/>-4,07 - -4<br /></a>'
         });
 var lyr_MeanLSTChange = new ol.layer.Vector({
     declutter: false,
@@ -120,17 +120,17 @@ var lyr_MeanLSTChange = new ol.layer.Vector({
     style: style_MeanLSTChange,
     title: '<div id="layertitle">Mean LST Change<br />\
         <i class="fas fa-angle-up" id="secondImage"></i><i class="fas fa-angle-down" id="firstImage"></i></div><a class="layerlegend">\
-        <input type="checkbox" class="symbology" symbology-type="graduated" min-value="-4.07" max-value="-4.0" checked><img src="styles/legend/MeanLSTChange_0.png"/>-4,07 - -4<br />\
-        <input type="checkbox" class="symbology" symbology-type="graduated" min-value="-3.999999" max-value="-3.0" checked><img src="styles/legend/MeanLSTChange_1.png"/>-4 - -3<br />\
-        <input type="checkbox" class="symbology" symbology-type="graduated" min-value="-2.999999" max-value="-2.0" checked><img src="styles/legend/MeanLSTChange_2.png"/>-3 - -2<br />\
-        <input type="checkbox" class="symbology" symbology-type="graduated" min-value="-1.999999" max-value="-1.0" checked><img src="styles/legend/MeanLSTChange_3.png"/>-2 - -1<br />\
-        <input type="checkbox" class="symbology" symbology-type="graduated" min-value="-0.999999" max-value="0.0" checked><img src="styles/legend/MeanLSTChange_4.png"/>-1 - 0<br />\
-        <input type="checkbox" class="symbology" symbology-type="graduated" min-value="1e-06" max-value="1.0" checked><img src="styles/legend/MeanLSTChange_5.png"/>0 - 1<br />\
-        <input type="checkbox" class="symbology" symbology-type="graduated" min-value="1.000001" max-value="2.0" checked><img src="styles/legend/MeanLSTChange_6.png"/>1 - 2<br />\
-        <input type="checkbox" class="symbology" symbology-type="graduated" min-value="2.000001" max-value="3.0" checked><img src="styles/legend/MeanLSTChange_7.png"/>2 - 3<br />\
-        <input type="checkbox" class="symbology" symbology-type="graduated" min-value="3.000001" max-value="4.0" checked><img src="styles/legend/MeanLSTChange_8.png"/>3 - 4<br />\
+        <input type="checkbox" class="symbology" symbology-type="graduated" min-value="5.000001" max-value="5.2" checked><img src="styles/legend/MeanLSTChange_10.png"/>5 - 5,2<br />\
         <input type="checkbox" class="symbology" symbology-type="graduated" min-value="4.000001" max-value="5.0" checked><img src="styles/legend/MeanLSTChange_9.png"/>4 - 5<br />\
-        <input type="checkbox" class="symbology" symbology-type="graduated" min-value="5.000001" max-value="5.2" checked><img src="styles/legend/MeanLSTChange_10.png"/>5 - 5,2<br /></a>'
+        <input type="checkbox" class="symbology" symbology-type="graduated" min-value="3.000001" max-value="4.0" checked><img src="styles/legend/MeanLSTChange_8.png"/>3 - 4<br />\
+        <input type="checkbox" class="symbology" symbology-type="graduated" min-value="2.000001" max-value="3.0" checked><img src="styles/legend/MeanLSTChange_7.png"/>2 - 3<br />\
+        <input type="checkbox" class="symbology" symbology-type="graduated" min-value="1.000001" max-value="2.0" checked><img src="styles/legend/MeanLSTChange_6.png"/>1 - 2<br />\
+        <input type="checkbox" class="symbology" symbology-type="graduated" min-value="1e-06" max-value="1.0" checked><img src="styles/legend/MeanLSTChange_5.png"/>0 - 1<br />\
+        <input type="checkbox" class="symbology" symbology-type="graduated" min-value="-0.999999" max-value="0.0" checked><img src="styles/legend/MeanLSTChange_4.png"/>-1 - 0<br />\
+        <input type="checkbox" class="symbology" symbology-type="graduated" min-value="-1.999999" max-value="-1.0" checked><img src="styles/legend/MeanLSTChange_3.png"/>-2 - -1<br />\
+        <input type="checkbox" class="symbology" symbology-type="graduated" min-value="-2.999999" max-value="-2.0" checked><img src="styles/legend/MeanLSTChange_2.png"/>-3 - -2<br />\
+        <input type="checkbox" class="symbology" symbology-type="graduated" min-value="-3.999999" max-value="-3.0" checked><img src="styles/legend/MeanLSTChange_1.png"/>-4 - -3<br />\
+        <input type="checkbox" class="symbology" symbology-type="graduated" min-value="-4.07" max-value="-4.0" checked><img src="styles/legend/MeanLSTChange_0.png"/>-4,07 - -4<br /></a>'
         });
 var featureCounter_MeanLSTChange = 1;
 jsonSource_MeanLSTChange.on('addfeature', function (event) {
