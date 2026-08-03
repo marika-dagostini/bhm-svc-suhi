@@ -274,7 +274,7 @@ land_use_df = merge(land_use_df, df_dtm, by = c("x","y"), all.x = T)
 
 # crate altitude 100m classes: 
 # 0-100m = 1; 100-200m = 2; 200-300m = 3; 300-400m = 4
-land_use_df$altitude_class = factor(round(land_use_df$Altitude_m/100,0)+1)
+land_use_df$altitude_class = factor(floor(land_use_df$Altitude_m/100)+1)
 
 # 5.3 Create poster sample for SUHI estimation ----
 
