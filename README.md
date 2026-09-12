@@ -1,6 +1,5 @@
 # A Bayesian Spatially Varying Coefficient Model for Surface Urban Heat Island Estimation
 
-<br>
 
 This repository contains the code and data used to reproduce the analysis presented in the study 
 >  *D'Agostini M., Ventrucci M., de'Donato F. & Ranzi A. (2026+) A Bayesian Spatially Varying Coefficient Model for Surface Urban Heat Island Estimation*. 
@@ -21,7 +20,6 @@ The case study focuses on the municipality of Bologna, Italy.
 - `data/`: Example input data and derived data products 
 - `docs/`: Configuration files and assets for the interactive data-visualisation web app
 
-<br>
 
 >[!NOTE]
 > All datasets used in this study are publicly available from the original providers. To avoid duplicating large remote-sensing datasets, the repository does not include the full Landsat LST archive. Instead, it provides a subset of the processed LST data that allows users to test the workflow and reproduce the main computational steps.
