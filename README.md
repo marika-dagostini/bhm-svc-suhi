@@ -2,7 +2,7 @@
 
 
 This repository contains the code and data used to reproduce the analysis presented in the study 
->  *D'Agostini M., Ventrucci M., de'Donato F. & Ranzi A. (2026+) A Bayesian Spatially Varying Coefficient Model for Surface Urban Heat Island Estimation*. 
+>  *D'Agostini M., Ventrucci M., de'Donato F.K. & Ranzi A. (2026+) A Bayesian Spatially Varying Coefficient Model for Surface Urban Heat Island Estimation*. 
 
 The project develops a Bayesian spatio-temporal framework for analysing surface urban heat island (SUHI) intensity and temporal change using satellite-derived land surface temperature (LST).
 
@@ -10,6 +10,7 @@ The model combines a spatially varying coefficient specification with the SPDE-I
 
 The case study focuses on the municipality of Bologna, Italy.
 
+> #### 📄 Read the preprint ➡️ [**arXiv**](https://doi.org/10.48550/arXiv.2610.21980)
 > #### 🗺️ Explore the project results ➡️ [**Interactive Web Map**](https://marika-dagostini.github.io/bhm-svc-suhi/)
 
 <br>
